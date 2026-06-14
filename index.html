@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" class="light">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Shobdotori Premium Store - Your Premier Literary Haven</title>
-  <meta name="description" content="Discover handpicked books at Shobdotori Premium Store. Fiction, non-fiction, and more with free shipping on orders over $50.">
+  <meta name="description"
+    content="Discover handpicked books at Shobdotori Premium Store. Fiction, non-fiction, and more with free shipping on orders over $50.">
   <meta name="keywords" content="books, bookstore, fiction, non-fiction, premium books, Shobdotori">
   <meta name="author" content="Shobdotori">
   <meta property="og:title" content="Shobdotori Premium Store - Your Premier Literary Haven">
   <meta property="og:description" content="Discover handpicked books at Shobdotori Premium Store.">
   <meta property="og:type" content="website">
-  
+
 
   <!-- Inlined critical CSS -->
   <style>
     /* CSS RESET & FOUC PREVENTION */
-    * { box-sizing: border-box; }
-    html, body { max-width: 100vw; overflow-x: hidden; position: relative; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      max-width: 100vw;
+      overflow-x: hidden;
+      position: relative;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
@@ -28,120 +39,426 @@
       opacity: 0;
       transition: opacity 0.35s ease-out;
     }
-    body.ready { opacity: 1; }
-    .font-serif { font-family: 'Playfair Display', serif; font-style: italic; }
-    /* STRUCTURAL LAYOUTS */
-    #main-content { max-width: 80rem; margin-left: auto; margin-right: auto; padding-left: 0.75rem; padding-right: 0.75rem; padding-bottom: 5rem; }
-    @media (min-width: 640px) {
-      #main-content { padding-left: 1.25rem; padding-right: 1.25rem; }
+
+    body.ready {
+      opacity: 1;
     }
+
+    .font-serif {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+    }
+
+    /* STRUCTURAL LAYOUTS */
+    #main-content {
+      max-width: 80rem;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+      padding-bottom: 5rem;
+    }
+
+    @media (min-width: 640px) {
+      #main-content {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+    }
+
     /* BOOK COVER ASPECT RATIO */
-    .book-cover-wrap { aspect-ratio: 3 / 4; background-color: #f8fafc; border-radius: 0.75rem; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 0.5rem; border: 1px solid #f1f5f9; position: relative; }
-    .book-cover-img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    .book-cover-wrap {
+      aspect-ratio: 3 / 4;
+      background-color: #f8fafc;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      border: 1px solid #f1f5f9;
+      position: relative;
+    }
+
+    .book-cover-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
     /* REVEAL-ON-SCROLL ANIMATIONS */
-    .reveal-on-scroll { opacity: 0; transform: translateY(35px) scale(0.98); filter: blur(8px); transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s cubic-bezier(0.16, 1, 0.3, 1); will-change: opacity, transform, filter; }
-    .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); }
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(35px) scale(0.98);
+      filter: blur(8px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform, filter;
+    }
+
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0px);
+    }
+
     /* OVERLAY MODALS */
-    .full-page-overlay { position: fixed; inset: 0; z-index: 4000; background: white; display: flex; flex-direction: column; width: 100%; max-width: 100vw; height: 100%; overflow: hidden; opacity: 0; animation: overlayOpen 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards; will-change: transform, opacity; }
-    @keyframes overlayOpen { 0% { opacity: 0; transform: translateY(30px) scale(0.96); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+    .full-page-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 4000;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 100vw;
+      height: 100%;
+      overflow: hidden;
+      opacity: 0;
+      animation: overlayOpen 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      will-change: transform, opacity;
+    }
+
+    @keyframes overlayOpen {
+      0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.96);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
     /* HEADER STYLES (to prevent FOUC */
-    header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; height: 56px; }
-    @media (max-width: 640px) { body { padding-top: 50px; } header { height: 50px; } }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      height: 56px;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding-top: 50px;
+      }
+
+      header {
+        height: 50px;
+      }
+    }
+
     /* Font Awesome font-display: swap override */
     @font-face {
       font-family: 'FontAwesome6Brands-Regular';
       font-display: swap;
     }
+
     @font-face {
       font-family: 'FontAwesome6Free-Solid';
       font-display: swap;
     }
+
     /* Critical Tailwind CSS for above-the-fold content */
-    .relative { position: relative; }
-    .absolute { position: absolute; }
-    .fixed { position: fixed; }
-    .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
-    .z-20 { z-index: 20; }
-    .z-50 { z-index: 50; }
-    .w-full { width: 100%; }
-    .h-full { height: 100%; }
-    .overflow-hidden { overflow: hidden; }
-    .mt-2 { margin-top: 0.5rem; }
-    .mt-8 { margin-top: 2rem; }
-    .mb-3 { margin-bottom: 0.75rem; }
-    .mb-5 { margin-bottom: 1.25rem; }
-    .flex { display: flex; }
-    .flex-col { flex-direction: column; }
-    .items-center { align-items: center; }
-    .justify-center { justify-content: center; }
-    .justify-between { justify-content: space-between; }
-    .gap-4 { gap: 1rem; }
-    .gap-6 { gap: 1.5rem; }
-    .grid { display: grid; }
-    .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .p-4 { padding: 1rem; }
-    .px-4 { padding-left: 1rem; padding-right: 1rem; }
-    .pl-6 { padding-left: 1.5rem; }
-    .pr-4 { padding-right: 1rem; }
-    .py-2\.5 { padding-top: 0.625rem; padding-bottom: 0.625rem; }
-    .text-center { text-align: center; }
-    .text-2xl { font-size: 1.5rem; line-height: 2rem; }
-    .text-xs { font-size: 0.75rem; line-height: 1rem; }
-    .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
-    .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
-    .font-bold { font-weight: 700; }
-    .font-semibold { font-weight: 600; }
-    .font-serif { font-family: 'Playfair Display', serif; font-style: italic; }
-    .text-gray-500 { color: rgb(107 114 128); }
-    .text-gray-600 { color: rgb(75 85 99); }
-    .text-gray-900 { color: rgb(17 24 39); }
-    .bg-white { background-color: rgb(255 255 255); }
-    .bg-gray-50\/70 { background-color: rgba(249 250 251 / 0.7); }
-    .bg-\[\#F3F0FF\] { background-color: #F3F0FF; }
-    .rounded-full { border-radius: 9999px; }
-    .shadow-lg { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
-    .inline-flex { display: inline-flex; }
-    .pointer-events-none { pointer-events: none; }
-    .tracking-tighter { letter-spacing: -0.05em; }
-    .transition-transform { transition-property: transform; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
-    .hover\:scale-105:hover { transform: scale(1.05); }
-    @media (min-width: 640px) {
-      .sm\:flex-row { flex-direction: row; }
-      .sm\:text-left { text-align: left; }
-      .sm\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
-      .sm\:text-base { font-size: 1rem; line-height: 1.5rem; }
-      .sm\:px-10 { padding-left: 2.5rem; padding-right: 2.5rem; }
-      .sm\:py-14 { padding-top: 3.5rem; padding-bottom: 3.5rem; }
-      .sm\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-      .sm\:h-\[480px\] { height: 480px; }
-      .sm\:rounded-3xl { border-radius: 1.5rem; }
-      .sm\:gap-5 { gap: 1.25rem; }
+    .relative {
+      position: relative;
     }
+
+    .absolute {
+      position: absolute;
+    }
+
+    .fixed {
+      position: fixed;
+    }
+
+    .inset-0 {
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    .z-20 {
+      z-index: 20;
+    }
+
+    .z-50 {
+      z-index: 50;
+    }
+
+    .w-full {
+      width: 100%;
+    }
+
+    .h-full {
+      height: 100%;
+    }
+
+    .overflow-hidden {
+      overflow: hidden;
+    }
+
+    .mt-2 {
+      margin-top: 0.5rem;
+    }
+
+    .mt-8 {
+      margin-top: 2rem;
+    }
+
+    .mb-3 {
+      margin-bottom: 0.75rem;
+    }
+
+    .mb-5 {
+      margin-bottom: 1.25rem;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .flex-col {
+      flex-direction: column;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .justify-center {
+      justify-content: center;
+    }
+
+    .justify-between {
+      justify-content: space-between;
+    }
+
+    .gap-4 {
+      gap: 1rem;
+    }
+
+    .gap-6 {
+      gap: 1.5rem;
+    }
+
+    .grid {
+      display: grid;
+    }
+
+    .grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .p-4 {
+      padding: 1rem;
+    }
+
+    .px-4 {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .pl-6 {
+      padding-left: 1.5rem;
+    }
+
+    .pr-4 {
+      padding-right: 1rem;
+    }
+
+    .py-2\.5 {
+      padding-top: 0.625rem;
+      padding-bottom: 0.625rem;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .text-2xl {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+
+    .text-xs {
+      font-size: 0.75rem;
+      line-height: 1rem;
+    }
+
+    .text-sm {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
+
+    .text-lg {
+      font-size: 1.125rem;
+      line-height: 1.75rem;
+    }
+
+    .font-bold {
+      font-weight: 700;
+    }
+
+    .font-semibold {
+      font-weight: 600;
+    }
+
+    .font-serif {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+    }
+
+    .text-gray-500 {
+      color: rgb(107 114 128);
+    }
+
+    .text-gray-600 {
+      color: rgb(75 85 99);
+    }
+
+    .text-gray-900 {
+      color: rgb(17 24 39);
+    }
+
+    .bg-white {
+      background-color: rgb(255 255 255);
+    }
+
+    .bg-gray-50\/70 {
+      background-color: rgba(249 250 251 / 0.7);
+    }
+
+    .bg-\[\#F3F0FF\] {
+      background-color: #F3F0FF;
+    }
+
+    .rounded-full {
+      border-radius: 9999px;
+    }
+
+    .shadow-lg {
+      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    }
+
+    .inline-flex {
+      display: inline-flex;
+    }
+
+    .pointer-events-none {
+      pointer-events: none;
+    }
+
+    .tracking-tighter {
+      letter-spacing: -0.05em;
+    }
+
+    .transition-transform {
+      transition-property: transform;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 150ms;
+    }
+
+    .hover\:scale-105:hover {
+      transform: scale(1.05);
+    }
+
+    @media (min-width: 640px) {
+      .sm\:flex-row {
+        flex-direction: row;
+      }
+
+      .sm\:text-left {
+        text-align: left;
+      }
+
+      .sm\:text-4xl {
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+      }
+
+      .sm\:text-base {
+        font-size: 1rem;
+        line-height: 1.5rem;
+      }
+
+      .sm\:px-10 {
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+      }
+
+      .sm\:py-14 {
+        padding-top: 3.5rem;
+        padding-bottom: 3.5rem;
+      }
+
+      .sm\:grid-cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .sm\:h-\[480px\] {
+        height: 480px;
+      }
+
+      .sm\:rounded-3xl {
+        border-radius: 1.5rem;
+      }
+
+      .sm\:gap-5 {
+        gap: 1.25rem;
+      }
+    }
+
     @media (min-width: 1024px) {
-      .lg\:text-5xl { font-size: 3rem; line-height: 1; }
-      .lg\:h-\[580px\] { height: 580px; }
+      .lg\:text-5xl {
+        font-size: 3rem;
+        line-height: 1;
+      }
+
+      .lg\:h-\[580px\] {
+        height: 580px;
+      }
     }
   </style>
   <link rel="stylesheet" href="style.css">
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://www.gstatic.com">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <!-- Preload Google Fonts with font-display: swap -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=Playfair+Display:ital,wght@1,600&display=swap&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=Playfair+Display:ital,wght@1,600&display=swap&display=swap" rel="stylesheet">
+  <link rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=Playfair+Display:ital,wght@1,600&display=swap&display=swap"
+    as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=Playfair+Display:ital,wght@1,600&display=swap&display=swap"
+    rel="stylesheet">
   <!-- Optimize Font Awesome with font-display: swap -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.onload=null;this.media='all'">
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print"
+    onload="this.onload=null;this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  </noscript>
+
   <!-- Three.js and GLTFLoader Integrations for Instant 3D Load - Disabled for now -->
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js" defer></script> -->
-  
+
   <style>
-    * { box-sizing: border-box; }
-    html, body { max-width: 100vw; overflow-x: hidden; position: relative; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      max-width: 100vw;
+      overflow-x: hidden;
+      position: relative;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
@@ -151,38 +468,53 @@
       width: 100%;
       overflow-x: hidden;
     }
-    .font-serif { font-family: 'Playfair Display', serif; font-style: italic; }
+
+    .font-serif {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+    }
 
     .reveal-on-scroll {
       opacity: 0;
       transform: translateY(35px) scale(0.98);
       filter: blur(8px);
-      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
-                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
-                  filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
     .reveal-on-scroll.is-visible {
       opacity: 1;
       transform: translateY(0) scale(1);
       filter: blur(0px);
     }
 
-    a, button, input, select, textarea, .group, .cat-tab {
-      transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
-                  transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
-                  background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
-                  border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
-                  box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    .group,
+    .cat-tab {
+      transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+        background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    button:active, .cat-tab:active {
+
+    button:active,
+    .cat-tab:active {
       transform: scale(0.96) !important;
     }
+
     .hover-lift {
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
     .hover-lift:hover {
       transform: translateY(-6px) scale(1.015);
-      box-shadow: 0 12px 28px -10px rgba(0,0,0,0.07);
+      box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.07);
     }
 
     /* BOOK COVER ASPECT RATIO (3:4) & AUTO IMAGE RENDER SYSTEM */
@@ -198,12 +530,15 @@
       border: 1px solid #f1f5f9;
       position: relative;
     }
+
     .book-cover-img {
       max-width: 100%;
       max-height: 100%;
-      object-fit: contain; /* Preserves natural image scale/ratio without cropping */
+      object-fit: contain;
+      /* Preserves natural image scale/ratio without cropping */
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
     .book-cover-wrap:hover .book-cover-img {
       transform: scale(1.04);
     }
@@ -218,32 +553,51 @@
       justify-content: center;
       cursor: pointer;
       border-radius: 35% 65% 55% 45% / 50% 40% 60% 50% !important;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       animation: floatBubble 3.5s ease-in-out infinite;
     }
-    .social-bubble:nth-child(1) { animation-delay: 0s; }
-    .social-bubble:nth-child(2) { animation-delay: 0.6s; }
-    .social-bubble:nth-child(3) { animation-delay: 1.2s; }
-    .social-bubble:nth-child(4) { animation-delay: 1.8s; }
-    .social-bubble:nth-child(5) { animation-delay: 2.4s; }
+
+    .social-bubble:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    .social-bubble:nth-child(2) {
+      animation-delay: 0.6s;
+    }
+
+    .social-bubble:nth-child(3) {
+      animation-delay: 1.2s;
+    }
+
+    .social-bubble:nth-child(4) {
+      animation-delay: 1.8s;
+    }
+
+    .social-bubble:nth-child(5) {
+      animation-delay: 2.4s;
+    }
 
     .social-bubble-facebook {
       border: 2.5px solid #00E5FF !important;
       box-shadow: 0 0 14px rgba(0, 229, 255, 0.5) !important;
     }
+
     .social-bubble-instagram {
       border: 2.5px solid #9C27B0 !important;
       box-shadow: 0 0 14px rgba(156, 39, 176, 0.5) !important;
     }
+
     .social-bubble-twitter {
       border: 2.5px solid #00E676 !important;
       box-shadow: 0 0 14px rgba(0, 230, 118, 0.5) !important;
     }
+
     .social-bubble-linkedin {
       border: 2.5px solid #FF5722 !important;
       box-shadow: 0 0 14px rgba(255, 87, 34, 0.5) !important;
     }
+
     .social-bubble-telegram {
       border: 2.5px solid #FF007F !important;
       box-shadow: 0 0 14px rgba(255, 0, 127, 0.5) !important;
@@ -257,8 +611,8 @@
     }
 
     .custom-cart-wish-img {
-      width: 50px; 
-      height: 66px; 
+      width: 50px;
+      height: 66px;
       object-fit: contain;
       background: #f8fafc;
       border-radius: 0.5rem;
@@ -273,37 +627,69 @@
 
     /* OVERLAY TRANSITION SYSTEM */
     @keyframes overlayOpen {
-      0% { opacity: 0; transform: translateY(30px) scale(0.96); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
+      0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.96);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
+
     @keyframes overlayClose {
-      0% { opacity: 1; transform: translateY(0) scale(1); }
-      100% { opacity: 0; transform: translateY(30px) scale(0.96); }
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.96);
+      }
     }
+
     @keyframes alertOpen {
-      0% { opacity: 0; transform: scale(0.9) translateY(12px); }
-      100% { opacity: 1; transform: scale(1) translateY(0); }
+      0% {
+        opacity: 0;
+        transform: scale(0.9) translateY(12px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
     }
+
     @keyframes alertClose {
-      0% { opacity: 1; transform: scale(1) translateY(0); }
-      100% { opacity: 0; transform: scale(0.9) translateY(12px); }
+      0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+
+      100% {
+        opacity: 0;
+        transform: scale(0.9) translateY(12px);
+      }
     }
 
     .full-page-overlay {
-      position: fixed; 
-      inset: 0; 
-      z-index: 4000; 
-      background: white; 
-      display: flex; 
-      flex-direction: column; 
-      width: 100%; 
-      max-width: 100vw; 
+      position: fixed;
+      inset: 0;
+      z-index: 4000;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 100vw;
       height: 100%;
       overflow: hidden;
       opacity: 0;
       animation: overlayOpen 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       will-change: transform, opacity;
     }
+
     .full-page-overlay.closing {
       animation: overlayClose 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
     }
@@ -316,6 +702,7 @@
       justify-content: center;
       z-index: 10000;
     }
+
     .alert-modal-bg {
       position: fixed;
       inset: 0;
@@ -324,9 +711,11 @@
       opacity: 0;
       transition: opacity 0.28s ease-out;
     }
+
     .alert-modal-bg.active {
       opacity: 1;
     }
+
     .alert-modal-content {
       background: white;
       border-radius: 1.5rem;
@@ -340,321 +729,350 @@
       opacity: 0;
       animation: alertOpen 0.36s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
+
     .alert-modal-content.closing {
       animation: alertClose 0.26s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
     }
 
     .full-page-overlay .overlay-scroll {
-      flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch;
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
+
     .close-btn {
-      padding: 6px 14px; background: #ef4444; color: white; border-radius: 9999px;
-      font-size: 0.75rem; font-weight: 600; border: none; cursor: pointer;
-      box-shadow: 0 4px 12px rgba(239,68,68,0.25);
+      padding: 6px 14px;
+      background: #ef4444;
+      color: white;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
     }
-    .floating { 
-      animation: floatSubtle 4s ease-in-out infinite; 
+
+    .floating {
+      animation: floatSubtle 4s ease-in-out infinite;
       will-change: transform;
     }
+
     .cat-tab {
-      padding: 5px 12px; border-radius: 9999px; font-size: 0.75rem; font-weight: 500;
-      cursor: pointer; background: #f3f4f6; color: #4b5563; white-space: nowrap;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      cursor: pointer;
+      background: #f3f4f6;
+      color: #4b5563;
+      white-space: nowrap;
     }
-    .cat-tab.active { background: #1f2937; color: white; }
+
+    .cat-tab.active {
+      background: #1f2937;
+      color: white;
+    }
 
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
+
     .no-scrollbar {
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
 
     @media (max-width: 640px) {
-      body { padding-top: 82px; }
-      header { height: 50px; }
+      body {
+        padding-top: 82px;
+      }
+
+      header {
+        height: 50px;
+      }
     }
   </style>
 </head>
+
 <body class="bg-white text-gray-900">
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { initializeFirestore, persistentLocalCache, persistentMultipleTabManager, collection, getDocs, addDoc, doc, setDoc, getDoc, updateDoc, query, orderBy, where, serverTimestamp, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { initializeFirestore, persistentLocalCache, persistentMultipleTabManager, collection, getDocs, addDoc, doc, setDoc, getDoc, updateDoc, query, orderBy, where, serverTimestamp, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-// Firebase Config
-const firebaseConfig = {
-  apiKey: "AIzaSyDFiZTWSkxQLXHIz_vqvKpAu0uIoGUbJe8",
-  authDomain: "client-7-517cc.firebaseapp.com",
-  projectId: "client-7-517cc",
-  storageBucket: "client-7-517cc.firebasestorage.app",
-  messagingSenderId: "1019499384063",
-  appId: "1:1019499384063:web:b5fde3666fdb02ee8510ca",
-  measurementId: "G-TCEMXK3RFH"
-};
-const app = initializeApp(firebaseConfig);
-const db = initializeFirestore(app, {
-  localCache: persistentLocalCache({
-    tabManager: persistentMultipleTabManager()
-  })
-});
-const auth = getAuth(app);
-
-// ⚠️ IMPORTANT: Replace with your actual OpenRouter API key. Keep it secure!
-const CHAT_API_KEY = "YOUR_API_KEY"; // Insert your key here
-// Free model from OpenRouter (100% free, unlimited usage)
-const CHAT_MODEL = "openrouter/free"; // Correct free model ID
-
-let products = [], categories = [], categoryMap = {}, activeCategory = 'all';
-let cart = JSON.parse(localStorage.getItem('shobdotori_cart') || '[]');
-let wishlist = JSON.parse(localStorage.getItem('shobdotori_wishlist') || '[]');
-let currentUser = null, userDocRef = null, chatUnsubscribe = null;
-let revealObserver = null;
-
-const $ = (s) => document.querySelector(s);
-const $$ = (s) => document.querySelectorAll(s);
-
-async function saveCartToFirebase() { if (!userDocRef) return; await setDoc(userDocRef, { cart }, { merge: true }); }
-async function saveWishlistToFirebase() { if (!userDocRef) return; await setDoc(userDocRef, { wishlist }, { merge: true }); }
-function saveCart() { localStorage.setItem('shobdotori_cart', JSON.stringify(cart)); updateCartBadge(); if (currentUser) saveCartToFirebase(); }
-function saveWishlist() { localStorage.setItem('shobdotori_wishlist', JSON.stringify(wishlist)); updateWishlistBadge(); if (currentUser) saveWishlistToFirebase(); }
-
-async function loadUserData() {
-  if (!currentUser) return;
-  userDocRef = doc(db, 'users', currentUser.uid);
-  const snap = await getDoc(userDocRef);
-  if (snap.exists()) { 
-    const d = snap.data(); 
-    if (d.cart) cart = d.cart; 
-    if (d.wishlist) wishlist = d.wishlist; 
-  } else { 
-    await setDoc(userDocRef, { cart, wishlist, email: currentUser.email, name: currentUser.displayName || 'Guest User' }); 
-  }
-  saveCart(); saveWishlist();
-  updateProfileUI();
-}
-
-function formatPrice(p) { return '$' + Number(p).toFixed(2); }
-function discountPercent(o,c) { if(!o||o<=c) return null; return Math.round(((o-c)/o)*100); }
-
-function getStockDisplay(stock) {
-  if (stock === undefined || stock === null || stock === '' || stock === 0) {
-    return '∞';
-  }
-  return stock;
-}
-
-async function fetchCollection(colName) { 
-  try {
-    const snap = await getDocs(collection(db, colName)); 
-    const docs = snap.docs.map(d=>({id:d.id,...d.data()}));
-    return docs.sort((a, b) => {
-      const tA = a.createdAt ? (a.createdAt.toMillis ? a.createdAt.toMillis() : new Date(a.createdAt).getTime()) : 0;
-      const tB = b.createdAt ? (b.createdAt.toMillis ? b.createdAt.toMillis() : new Date(b.createdAt).getTime()) : 0;
-      return tB - tA;
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyDFiZTWSkxQLXHIz_vqvKpAu0uIoGUbJe8",
+      authDomain: "client-7-517cc.firebaseapp.com",
+      projectId: "client-7-517cc",
+      storageBucket: "client-7-517cc.firebasestorage.app",
+      messagingSenderId: "1019499384063",
+      appId: "1:1019499384063:web:b5fde3666fdb02ee8510ca",
+      measurementId: "G-TCEMXK3RFH"
+    };
+    const app = initializeApp(firebaseConfig);
+    const db = initializeFirestore(app, {
+      localCache: persistentLocalCache({
+        tabManager: persistentMultipleTabManager()
+      })
     });
-  } catch (err) {
-    console.warn("Fetch failed, attempting fallback query without sorting:", err);
-    const snap = await getDocs(collection(db, colName));
-    return snap.docs.map(d=>({id:d.id,...d.data()}));
-  }
-}
+    const auth = getAuth(app);
 
-async function seedDemoData() {
-  const demoCategories = [
-    { id: 'fiction', name: 'Fiction' },
-    { id: 'self-help', name: 'Self Help' },
-    { id: 'sci-fi', name: 'Sci-Fi' },
-    { id: 'biography', name: 'Biography' }
-  ];
-  
-  const demoProducts = [
-    {
-      name: "The Midnight Library",
-      author: "Matt Haig",
-      price: 12.99,
-      originalPrice: 16.99,
-      image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=600&auto=format&fit=crop",
-      badge: "Bestseller",
-      desc: "Between life and death there is a library, and within that library, the shelves go on forever. Every book provides a chance to try another life you could have lived.",
-      category: "fiction",
-      stock: 45,
-      createdAt: serverTimestamp()
-    },
-    {
-      name: "Atomic Habits",
-      author: "James Clear",
-      price: 15.00,
-      originalPrice: 21.99,
-      image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=600&auto=format&fit=crop",
-      badge: "Must Read",
-      desc: "No matter your goals, Atomic Habits offers a proven framework for improving every day, written by one of the world's leading experts on habit formation.",
-      category: "self-help",
-      stock: 120,
-      createdAt: serverTimestamp()
-    },
-    {
-      name: "Dune",
-      author: "Frank Herbert",
-      price: 9.99,
-      originalPrice: 14.99,
-      image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=600&auto=format&fit=crop",
-      badge: "Classic",
-      desc: "Set on the desert planet Arrakis, Dune is the story of the boy Paul Atreides, who would become the mysterious man known as Muad'Dib.",
-      category: "sci-fi",
-      stock: 30,
-      createdAt: serverTimestamp()
-    },
-    {
-      name: "Educated",
-      author: "Tara Westover",
-      price: 11.50,
-      originalPrice: 11.50,
-      image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=600&auto=format&fit=crop",
-      badge: "Trending",
-      desc: "An unforgettable memoir about a young girl who, kept out of school, leaves her survivalist family and goes on to earn a PhD from Cambridge University.",
-      category: "biography",
-      stock: 18,
-      createdAt: serverTimestamp()
-    }
-  ];
+    // ⚠️ IMPORTANT: Replace with your actual OpenRouter API key. Keep it secure!
+    const CHAT_API_KEY = "YOUR_API_KEY"; // Insert your key here
+    // Free model from OpenRouter (100% free, unlimited usage)
+    const CHAT_MODEL = "openrouter/free"; // Correct free model ID
 
-  try {
-    for (const cat of demoCategories) {
-      await setDoc(doc(db, 'categories', cat.id), { name: cat.name, createdAt: serverTimestamp() });
-    }
-    for (const prod of demoProducts) {
-      await addDoc(collection(db, 'products'), prod);
-    }
-    console.log("Demo data successfully seeded to Firestore!");
-  } catch (err) {
-    console.error("Error seeding demo data:", err);
-  }
-}
+    let products = [], categories = [], categoryMap = {}, activeCategory = 'all';
+    let cart = JSON.parse(localStorage.getItem('shobdotori_cart') || '[]');
+    let wishlist = JSON.parse(localStorage.getItem('shobdotori_wishlist') || '[]');
+    let currentUser = null, userDocRef = null, chatUnsubscribe = null;
+    let revealObserver = null;
 
-async function loadAllData() {
-  // 1. Try loading from LocalStorage cache immediately for near-zero ms paint
-  const cachedProducts = localStorage.getItem('shobdotori_cached_products');
-  const cachedCategories = localStorage.getItem('shobdotori_cached_categories');
-  
-  if (cachedProducts && cachedCategories) {
-    try {
-      products = JSON.parse(cachedProducts);
-      categories = JSON.parse(cachedCategories);
-      categories.forEach(cat => categoryMap[cat.id] = cat.name);
-      document.body.classList.add('ready');
-      renderMainView();
-      observeReveal();
-      updateCartBadge(); 
-      updateWishlistBadge();
-    } catch(err) {
-      console.warn("Failed to parse cached products/categories:", err);
-    }
-  }
+    const $ = (s) => document.querySelector(s);
+    const $$ = (s) => document.querySelectorAll(s);
 
-  // 2. Fetch fresh data in the background (will load instantly from Firestore offline cache if available)
-  try {
-    let p = await fetchCollection('products');
-    let c = await fetchCollection('categories');
-    
-    // Seed demo products if not already present
-    const hasDemo = p.some(prod => prod.name === "The Midnight Library");
-    if (!hasDemo) {
-      console.log("Demo products not found in Firestore. Seeding...");
-      await seedDemoData();
-      p = await fetchCollection('products');
-      c = await fetchCollection('categories');
-    }
-    
-    // Check if the data has actually changed before triggering a DOM update
-    const dataChanged = JSON.stringify(p) !== JSON.stringify(products) || JSON.stringify(c) !== JSON.stringify(categories);
-    
-    products = p; 
-    categories = c;
-    categories.forEach(cat => categoryMap[cat.id] = cat.name);
-    
-    // Cache the fresh data
-    localStorage.setItem('shobdotori_cached_products', JSON.stringify(p));
-    localStorage.setItem('shobdotori_cached_categories', JSON.stringify(c));
-    
-    loadFooterSocials();
+    async function saveCartToFirebase() { if (!userDocRef) return; await setDoc(userDocRef, { cart }, { merge: true }); }
+    async function saveWishlistToFirebase() { if (!userDocRef) return; await setDoc(userDocRef, { wishlist }, { merge: true }); }
+    function saveCart() { localStorage.setItem('shobdotori_cart', JSON.stringify(cart)); updateCartBadge(); if (currentUser) saveCartToFirebase(); }
+    function saveWishlist() { localStorage.setItem('shobdotori_wishlist', JSON.stringify(wishlist)); updateWishlistBadge(); if (currentUser) saveWishlistToFirebase(); }
 
-    if (dataChanged || !cachedProducts) {
-      document.body.classList.add('ready');
-      renderMainView();
-      observeReveal();
-      updateCartBadge(); 
-      updateWishlistBadge();
-    }
-  } catch(e) { 
-    console.error("Failed to load products and categories: ", e); 
-  }
-}
-
-async function loadFooterSocials() {
-  const container = $('#footer-social-container');
-  if (!container) return;
-  try {
-    const sSnap = await getDoc(doc(db, 'settings', 'socials'));
-    if (sSnap.exists()) {
-      const data = sSnap.data();
-      let html = '';
-      if (data.facebook) {
-        html += `<a href="${data.facebook}" target="_blank" class="social-bubble social-bubble-facebook" aria-label="Facebook"><i class="fab fa-facebook-f text-black"></i></a>`;
+    async function loadUserData() {
+      if (!currentUser) return;
+      userDocRef = doc(db, 'users', currentUser.uid);
+      const snap = await getDoc(userDocRef);
+      if (snap.exists()) {
+        const d = snap.data();
+        if (d.cart) cart = d.cart;
+        if (d.wishlist) wishlist = d.wishlist;
+      } else {
+        await setDoc(userDocRef, { cart, wishlist, email: currentUser.email, name: currentUser.displayName || 'Guest User' });
       }
-      if (data.instagram) {
-        html += `<a href="${data.instagram}" target="_blank" class="social-bubble social-bubble-instagram" aria-label="Instagram"><i class="fab fa-instagram text-black"></i></a>`;
-      }
-      if (data.twitter) {
-        html += `<a href="${data.twitter}" target="_blank" class="social-bubble social-bubble-twitter" aria-label="Twitter"><i class="fab fa-twitter-x text-black"></i></a>`;
-      }
-      if (data.linkedin) {
-        html += `<a href="${data.linkedin}" target="_blank" class="social-bubble social-bubble-linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-black"></i></a>`;
-      }
-      if (data.telegram) {
-        html += `<a href="${data.telegram}" target="_blank" class="social-bubble social-bubble-telegram" aria-label="Telegram"><i class="fab fa-telegram-plane text-black"></i></a>`;
-      }
-      container.innerHTML = html;
+      saveCart(); saveWishlist();
+      updateProfileUI();
     }
-  } catch (err) {
-    console.error('Error rendering socials: ', err);
-  }
-}
 
-window.closeOverlay = function(overlayElement) {
-  if (!overlayElement) return;
-  overlayElement.classList.add('closing');
-  const onAnimationEnd = (e) => {
-    if (e.target === overlayElement) {
-      overlayElement.remove();
-      if (!document.querySelector('.full-page-overlay:not(.closing)')) {
-        document.body.style.overflow = '';
+    function formatPrice(p) { return '$' + Number(p).toFixed(2); }
+    function discountPercent(o, c) { if (!o || o <= c) return null; return Math.round(((o - c) / o) * 100); }
+
+    function getStockDisplay(stock) {
+      if (stock === undefined || stock === null || stock === '' || stock === 0) {
+        return '∞';
       }
-      overlayElement.removeEventListener('animationend', onAnimationEnd);
+      return stock;
     }
-  };
-  overlayElement.addEventListener('animationend', onAnimationEnd);
-  setTimeout(() => {
-    if (overlayElement.parentNode) {
-      overlayElement.remove();
-      if (!document.querySelector('.full-page-overlay:not(.closing)')) {
-        document.body.style.overflow = '';
+
+    async function fetchCollection(colName) {
+      try {
+        const snap = await getDocs(collection(db, colName));
+        const docs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        return docs.sort((a, b) => {
+          const tA = a.createdAt ? (a.createdAt.toMillis ? a.createdAt.toMillis() : new Date(a.createdAt).getTime()) : 0;
+          const tB = b.createdAt ? (b.createdAt.toMillis ? b.createdAt.toMillis() : new Date(b.createdAt).getTime()) : 0;
+          return tB - tA;
+        });
+      } catch (err) {
+        console.warn("Fetch failed, attempting fallback query without sorting:", err);
+        const snap = await getDocs(collection(db, colName));
+        return snap.docs.map(d => ({ id: d.id, ...d.data() }));
       }
     }
-  }, 360);
-};
 
-function productCard(product, idx) {
-  const disc = discountPercent(product.originalPrice, product.price);
-  // Eager-load first 4 items to improve LCP
-  const isAboveFold = idx !== undefined && idx < 4;
-  const imageAttrs = isAboveFold ? 'fetchpriority="high"' : 'loading="lazy"';
-  return `
+    async function seedDemoData() {
+      const demoCategories = [
+        { id: 'fiction', name: 'Fiction' },
+        { id: 'self-help', name: 'Self Help' },
+        { id: 'sci-fi', name: 'Sci-Fi' },
+        { id: 'biography', name: 'Biography' }
+      ];
+
+      const demoProducts = [
+        {
+          name: "The Midnight Library",
+          author: "Matt Haig",
+          price: 12.99,
+          originalPrice: 16.99,
+          image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=600&auto=format&fit=crop",
+          badge: "Bestseller",
+          desc: "Between life and death there is a library, and within that library, the shelves go on forever. Every book provides a chance to try another life you could have lived.",
+          category: "fiction",
+          stock: 45,
+          createdAt: serverTimestamp()
+        },
+        {
+          name: "Atomic Habits",
+          author: "James Clear",
+          price: 15.00,
+          originalPrice: 21.99,
+          image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=600&auto=format&fit=crop",
+          badge: "Must Read",
+          desc: "No matter your goals, Atomic Habits offers a proven framework for improving every day, written by one of the world's leading experts on habit formation.",
+          category: "self-help",
+          stock: 120,
+          createdAt: serverTimestamp()
+        },
+        {
+          name: "Dune",
+          author: "Frank Herbert",
+          price: 9.99,
+          originalPrice: 14.99,
+          image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=600&auto=format&fit=crop",
+          badge: "Classic",
+          desc: "Set on the desert planet Arrakis, Dune is the story of the boy Paul Atreides, who would become the mysterious man known as Muad'Dib.",
+          category: "sci-fi",
+          stock: 30,
+          createdAt: serverTimestamp()
+        },
+        {
+          name: "Educated",
+          author: "Tara Westover",
+          price: 11.50,
+          originalPrice: 11.50,
+          image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=600&auto=format&fit=crop",
+          badge: "Trending",
+          desc: "An unforgettable memoir about a young girl who, kept out of school, leaves her survivalist family and goes on to earn a PhD from Cambridge University.",
+          category: "biography",
+          stock: 18,
+          createdAt: serverTimestamp()
+        }
+      ];
+
+      try {
+        for (const cat of demoCategories) {
+          await setDoc(doc(db, 'categories', cat.id), { name: cat.name, createdAt: serverTimestamp() });
+        }
+        for (const prod of demoProducts) {
+          await addDoc(collection(db, 'products'), prod);
+        }
+        console.log("Demo data successfully seeded to Firestore!");
+      } catch (err) {
+        console.error("Error seeding demo data:", err);
+      }
+    }
+
+    async function loadAllData() {
+      // 1. Try loading from LocalStorage cache immediately for near-zero ms paint
+      const cachedProducts = localStorage.getItem('shobdotori_cached_products');
+      const cachedCategories = localStorage.getItem('shobdotori_cached_categories');
+
+      if (cachedProducts && cachedCategories) {
+        try {
+          products = JSON.parse(cachedProducts);
+          categories = JSON.parse(cachedCategories);
+          categories.forEach(cat => categoryMap[cat.id] = cat.name);
+          document.body.classList.add('ready');
+          renderMainView();
+          observeReveal();
+          updateCartBadge();
+          updateWishlistBadge();
+        } catch (err) {
+          console.warn("Failed to parse cached products/categories:", err);
+        }
+      }
+
+      // 2. Fetch fresh data in the background (will load instantly from Firestore offline cache if available)
+      try {
+        let p = await fetchCollection('products');
+        let c = await fetchCollection('categories');
+
+        // Seed demo products if not already present
+        const hasDemo = p.some(prod => prod.name === "The Midnight Library");
+        if (!hasDemo) {
+          console.log("Demo products not found in Firestore. Seeding...");
+          await seedDemoData();
+          p = await fetchCollection('products');
+          c = await fetchCollection('categories');
+        }
+
+        // Check if the data has actually changed before triggering a DOM update
+        const dataChanged = JSON.stringify(p) !== JSON.stringify(products) || JSON.stringify(c) !== JSON.stringify(categories);
+
+        products = p;
+        categories = c;
+        categories.forEach(cat => categoryMap[cat.id] = cat.name);
+
+        // Cache the fresh data
+        localStorage.setItem('shobdotori_cached_products', JSON.stringify(p));
+        localStorage.setItem('shobdotori_cached_categories', JSON.stringify(c));
+
+        loadFooterSocials();
+
+        if (dataChanged || !cachedProducts) {
+          document.body.classList.add('ready');
+          renderMainView();
+          observeReveal();
+          updateCartBadge();
+          updateWishlistBadge();
+        }
+      } catch (e) {
+        console.error("Failed to load products and categories: ", e);
+      }
+    }
+
+    async function loadFooterSocials() {
+      const container = $('#footer-social-container');
+      if (!container) return;
+      try {
+        const sSnap = await getDoc(doc(db, 'settings', 'socials'));
+        if (sSnap.exists()) {
+          const data = sSnap.data();
+          let html = '';
+          if (data.facebook) {
+            html += `<a href="${data.facebook}" target="_blank" class="social-bubble social-bubble-facebook" aria-label="Facebook"><i class="fab fa-facebook-f text-black"></i></a>`;
+          }
+          if (data.instagram) {
+            html += `<a href="${data.instagram}" target="_blank" class="social-bubble social-bubble-instagram" aria-label="Instagram"><i class="fab fa-instagram text-black"></i></a>`;
+          }
+          if (data.twitter) {
+            html += `<a href="${data.twitter}" target="_blank" class="social-bubble social-bubble-twitter" aria-label="Twitter"><i class="fab fa-twitter-x text-black"></i></a>`;
+          }
+          if (data.linkedin) {
+            html += `<a href="${data.linkedin}" target="_blank" class="social-bubble social-bubble-linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-black"></i></a>`;
+          }
+          if (data.telegram) {
+            html += `<a href="${data.telegram}" target="_blank" class="social-bubble social-bubble-telegram" aria-label="Telegram"><i class="fab fa-telegram-plane text-black"></i></a>`;
+          }
+          container.innerHTML = html;
+        }
+      } catch (err) {
+        console.error('Error rendering socials: ', err);
+      }
+    }
+
+    window.closeOverlay = function (overlayElement) {
+      if (!overlayElement) return;
+      overlayElement.classList.add('closing');
+      const onAnimationEnd = (e) => {
+        if (e.target === overlayElement) {
+          overlayElement.remove();
+          if (!document.querySelector('.full-page-overlay:not(.closing)')) {
+            document.body.style.overflow = '';
+          }
+          overlayElement.removeEventListener('animationend', onAnimationEnd);
+        }
+      };
+      overlayElement.addEventListener('animationend', onAnimationEnd);
+      setTimeout(() => {
+        if (overlayElement.parentNode) {
+          overlayElement.remove();
+          if (!document.querySelector('.full-page-overlay:not(.closing)')) {
+            document.body.style.overflow = '';
+          }
+        }
+      }, 360);
+    };
+
+    function productCard(product, idx) {
+      const disc = discountPercent(product.originalPrice, product.price);
+      // Eager-load first 4 items to improve LCP
+      const isAboveFold = idx !== undefined && idx < 4;
+      const imageAttrs = isAboveFold ? 'fetchpriority="high"' : 'loading="lazy"';
+      return `
   <div class="group cursor-pointer reveal-on-scroll hover-lift text-center" onclick="window.goToProductDetail('${product.id}')">
     <div class="book-cover-wrap mb-1.5 shadow-sm">
-      <img src="${product.image||''}" alt="${product.name}" class="book-cover-img" onerror="this.style.display='none';this.parentElement.style.background='#F3F0FF';" ${imageAttrs}>
-      ${product.badge?`<span class="absolute top-1 left-1 px-1 py-0.5 rounded-full bg-white/90 backdrop-blur-sm text-[7px] font-bold uppercase text-gray-900">${product.badge}</span>`:''}
+      <img src="${product.image || ''}" alt="${product.name}" class="book-cover-img" onerror="this.style.display='none';this.parentElement.style.background='#F3F0FF';" ${imageAttrs}>
+      ${product.badge ? `<span class="absolute top-1 left-1 px-1 py-0.5 rounded-full bg-white/90 backdrop-blur-sm text-[7px] font-bold uppercase text-gray-900">${product.badge}</span>` : ''}
       ${disc ? `<span class="absolute top-1 right-1 px-1 py-0.5 rounded-full bg-red-500 text-white text-[7px] font-bold">-${disc}%</span>` : ''}
     </div>
     <div class="space-y-0.5 px-0.5">
@@ -668,181 +1086,181 @@ function productCard(product, idx) {
       <span class="btn-text">Add to Cart</span>
     </button>
   </div>`;
-}
+    }
 
-function attachListeners() {
-  $$('.add-to-cart-btn').forEach(b => b.onclick = (e) => {
-    e.stopPropagation();
-    const id = String(b.dataset.id);
-    const existing = cart.find(i => String(i.id) === id);
-    if (existing) existing.qty++; else cart.push({ id, qty: 1 });
-    saveCart();
-    b.classList.add('animate-add-success');
-    b.innerHTML = `
+    function attachListeners() {
+      $$('.add-to-cart-btn').forEach(b => b.onclick = (e) => {
+        e.stopPropagation();
+        const id = String(b.dataset.id);
+        const existing = cart.find(i => String(i.id) === id);
+        if (existing) existing.qty++; else cart.push({ id, qty: 1 });
+        saveCart();
+        b.classList.add('animate-add-success');
+        b.innerHTML = `
       <svg class="w-3.5 h-3.5 text-white animate-check-pop" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
       </svg> Added`;
-    setTimeout(() => {
-      b.classList.remove('animate-add-success');
-      b.innerHTML = '<span class="btn-text">Add to Cart</span>';
-    }, 1400);
-  });
-}
-
-function applyStaggerDelay() {
-  const items = document.querySelectorAll('.reveal-on-scroll:not(.is-visible)');
-  items.forEach((el, index) => {
-    el.style.transitionDelay = (index * 0.08) + 's';
-  });
-}
-
-function filterProducts(catId) {
-  activeCategory = catId;
-  const grid = $('#products-grid'); if (!grid) return;
-  
-  let filtered = catId === 'all' ? products : products.filter(p => p.category === catId);
-
-  const sorted = [...filtered].sort((a,b) => (b.reviews||0) - (a.reviews||0));
-  grid.innerHTML = sorted.length ? sorted.map((p, idx) => productCard(p, idx)).join('') : '<p class="col-span-full text-center text-gray-400 py-8 text-sm">No products found</p>';
-  attachListeners();
-  applyStaggerDelay();
-  observeReveal();
-}
-
-// ── THREE.JS HERO DRONE CONTROLLER (CONFLIT-FREE SMOOTH ROAMING) ──
-let heroDroneGroup = null;
-let heroDrone = null;
-let heroMixer = null;
-let heroPropellers = [];
-
-function initHeroDrone() {
-  const container = document.getElementById('drone-hero-canvas-container');
-  if (!container) return;
-
-  const scene = new THREE.Scene();
-  
-  const camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 1000);
-  camera.position.set(0, 0, 10);
-
-  const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-  renderer.setSize(container.clientWidth, container.clientHeight);
-  container.innerHTML = '';
-  container.appendChild(renderer.domElement);
-
-  const ambientLight = new THREE.AmbientLight(0xffffff, 1.3);
-  scene.add(ambientLight);
-
-  const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
-  dirLight.position.set(5, 10, 7);
-  scene.add(dirLight);
-
-  // Parent Group to avoid AnimationMixer clashing/stuttering
-  heroDroneGroup = new THREE.Group();
-  scene.add(heroDroneGroup);
-
-  const loader = new THREE.GLTFLoader();
-  
-  loader.load('drone.glb', function(gltf) {
-    heroDrone = gltf.scene;
-    
-    // Add drone model inside the parent group
-    heroDroneGroup.add(heroDrone);
-
-    // Initial scale and settings
-    heroDrone.scale.set(1.4, 1.4, 1.4);
-    if (window.innerWidth < 768) {
-      heroDrone.scale.set(0.7, 0.7, 0.7);
-    }
-    // Grab propellers
-    heroPropellers = [];
-    heroDrone.traverse((child) => {
-      if (child.isMesh && (
-        child.name.toLowerCase().includes('propeller') || 
-        child.name.toLowerCase().includes('rotor') || 
-        child.name.toLowerCase().includes('fan') ||
-        child.name.toLowerCase().includes('blade') ||
-        child.name.toLowerCase().includes('wing')
-      )) {
-        heroPropellers.push(child);
-      }
-    });
-
-    // Run custom GLTF animations if bundled (propeller spins, etc)
-    if (gltf.animations && gltf.animations.length > 0) {
-      heroMixer = new THREE.AnimationMixer(heroDrone);
-      gltf.animations.forEach((clip) => {
-        heroMixer.clipAction(clip).play();
+        setTimeout(() => {
+          b.classList.remove('animate-add-success');
+          b.innerHTML = '<span class="btn-text">Add to Cart</span>';
+        }, 1400);
       });
     }
-  }, undefined, function(error) {
-    console.warn('Hero drone load skipped or file missing:', error);
-  });
 
-  const clock = new THREE.Clock();
-  let isHeroSceneVisible = true;
-  const observer = new IntersectionObserver(entries => {
-    isHeroSceneVisible = entries[0].isIntersecting;
-  });
-  observer.observe(container);
-
-  function animate() {
-    requestAnimationFrame(animate);
-    if (!isHeroSceneVisible) return;
-
-    const delta = clock.getDelta();
-    const time = clock.getElapsedTime();
-
-    // Local keyframe update
-    if (heroMixer) heroMixer.update(delta);
-
-    // Manual high speed propeller rotations
-    heroPropellers.forEach(prop => {
-      prop.rotation.y += 0.35;
-    });
-
-    // Parent group transformations for smooth, conflict-free roaming
-    if (heroDroneGroup && heroDrone) {
-      const isMobile = window.innerWidth < 768;
-      
-      const basePosX = isMobile ? 0 : 2.2;
-      const basePosY = isMobile ? -0.9 : 0.4;
-      const basePosZ = isMobile ? -1.5 : 0;
-
-      // Smooth flying/roaming translations
-      const targetX = basePosX + Math.sin(time * 0.4) * (isMobile ? 1.0 : 2.2);
-      const targetY = basePosY + Math.cos(time * 0.6) * (isMobile ? 0.3 : 0.5);
-      const targetZ = basePosZ + Math.sin(time * 0.3) * (isMobile ? 0.4 : 0.8);
-
-      // Interpolate with Lerp
-      heroDroneGroup.position.x = THREE.MathUtils.lerp(heroDroneGroup.position.x, targetX, 0.05);
-      heroDroneGroup.position.y = THREE.MathUtils.lerp(heroDroneGroup.position.y, targetY, 0.05);
-      heroDroneGroup.position.z = THREE.MathUtils.lerp(heroDroneGroup.position.z, targetZ, 0.05);
-
-      // Continuous 360 degree rotation on Y-axis
-      heroDroneGroup.rotation.y = (time * 0.25);
-      
-      // Aerodynamic tilting (banking/flying animations)
-      heroDroneGroup.rotation.x = Math.sin(time * 0.6) * 0.12;
-      heroDroneGroup.rotation.z = Math.cos(time * 0.6) * 0.12;
+    function applyStaggerDelay() {
+      const items = document.querySelectorAll('.reveal-on-scroll:not(.is-visible)');
+      items.forEach((el, index) => {
+        el.style.transitionDelay = (index * 0.08) + 's';
+      });
     }
 
-    renderer.render(scene, camera);
-  }
-  animate();
+    function filterProducts(catId) {
+      activeCategory = catId;
+      const grid = $('#products-grid'); if (!grid) return;
 
-  const resizeObserver = new ResizeObserver(() => {
-    if (container.clientWidth === 0 || container.clientHeight === 0) return;
-    camera.aspect = container.clientWidth / container.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(container.clientWidth, container.clientHeight);
-  });
-  resizeObserver.observe(container);
-}
+      let filtered = catId === 'all' ? products : products.filter(p => p.category === catId);
 
-function renderMainView() {
-  const main = $('#main-content');
-  main.innerHTML = `
+      const sorted = [...filtered].sort((a, b) => (b.reviews || 0) - (a.reviews || 0));
+      grid.innerHTML = sorted.length ? sorted.map((p, idx) => productCard(p, idx)).join('') : '<p class="col-span-full text-center text-gray-400 py-8 text-sm">No products found</p>';
+      attachListeners();
+      applyStaggerDelay();
+      observeReveal();
+    }
+
+    // ── THREE.JS HERO DRONE CONTROLLER (CONFLIT-FREE SMOOTH ROAMING) ──
+    let heroDroneGroup = null;
+    let heroDrone = null;
+    let heroMixer = null;
+    let heroPropellers = [];
+
+    function initHeroDrone() {
+      const container = document.getElementById('drone-hero-canvas-container');
+      if (!container) return;
+
+      const scene = new THREE.Scene();
+
+      const camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 1000);
+      camera.position.set(0, 0, 10);
+
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'high-performance' });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      container.innerHTML = '';
+      container.appendChild(renderer.domElement);
+
+      const ambientLight = new THREE.AmbientLight(0xffffff, 1.3);
+      scene.add(ambientLight);
+
+      const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
+      dirLight.position.set(5, 10, 7);
+      scene.add(dirLight);
+
+      // Parent Group to avoid AnimationMixer clashing/stuttering
+      heroDroneGroup = new THREE.Group();
+      scene.add(heroDroneGroup);
+
+      const loader = new THREE.GLTFLoader();
+
+      loader.load('drone.glb', function (gltf) {
+        heroDrone = gltf.scene;
+
+        // Add drone model inside the parent group
+        heroDroneGroup.add(heroDrone);
+
+        // Initial scale and settings
+        heroDrone.scale.set(1.4, 1.4, 1.4);
+        if (window.innerWidth < 768) {
+          heroDrone.scale.set(0.7, 0.7, 0.7);
+        }
+        // Grab propellers
+        heroPropellers = [];
+        heroDrone.traverse((child) => {
+          if (child.isMesh && (
+            child.name.toLowerCase().includes('propeller') ||
+            child.name.toLowerCase().includes('rotor') ||
+            child.name.toLowerCase().includes('fan') ||
+            child.name.toLowerCase().includes('blade') ||
+            child.name.toLowerCase().includes('wing')
+          )) {
+            heroPropellers.push(child);
+          }
+        });
+
+        // Run custom GLTF animations if bundled (propeller spins, etc)
+        if (gltf.animations && gltf.animations.length > 0) {
+          heroMixer = new THREE.AnimationMixer(heroDrone);
+          gltf.animations.forEach((clip) => {
+            heroMixer.clipAction(clip).play();
+          });
+        }
+      }, undefined, function (error) {
+        console.warn('Hero drone load skipped or file missing:', error);
+      });
+
+      const clock = new THREE.Clock();
+      let isHeroSceneVisible = true;
+      const observer = new IntersectionObserver(entries => {
+        isHeroSceneVisible = entries[0].isIntersecting;
+      });
+      observer.observe(container);
+
+      function animate() {
+        requestAnimationFrame(animate);
+        if (!isHeroSceneVisible) return;
+
+        const delta = clock.getDelta();
+        const time = clock.getElapsedTime();
+
+        // Local keyframe update
+        if (heroMixer) heroMixer.update(delta);
+
+        // Manual high speed propeller rotations
+        heroPropellers.forEach(prop => {
+          prop.rotation.y += 0.35;
+        });
+
+        // Parent group transformations for smooth, conflict-free roaming
+        if (heroDroneGroup && heroDrone) {
+          const isMobile = window.innerWidth < 768;
+
+          const basePosX = isMobile ? 0 : 2.2;
+          const basePosY = isMobile ? -0.9 : 0.4;
+          const basePosZ = isMobile ? -1.5 : 0;
+
+          // Smooth flying/roaming translations
+          const targetX = basePosX + Math.sin(time * 0.4) * (isMobile ? 1.0 : 2.2);
+          const targetY = basePosY + Math.cos(time * 0.6) * (isMobile ? 0.3 : 0.5);
+          const targetZ = basePosZ + Math.sin(time * 0.3) * (isMobile ? 0.4 : 0.8);
+
+          // Interpolate with Lerp
+          heroDroneGroup.position.x = THREE.MathUtils.lerp(heroDroneGroup.position.x, targetX, 0.05);
+          heroDroneGroup.position.y = THREE.MathUtils.lerp(heroDroneGroup.position.y, targetY, 0.05);
+          heroDroneGroup.position.z = THREE.MathUtils.lerp(heroDroneGroup.position.z, targetZ, 0.05);
+
+          // Continuous 360 degree rotation on Y-axis
+          heroDroneGroup.rotation.y = (time * 0.25);
+
+          // Aerodynamic tilting (banking/flying animations)
+          heroDroneGroup.rotation.x = Math.sin(time * 0.6) * 0.12;
+          heroDroneGroup.rotation.z = Math.cos(time * 0.6) * 0.12;
+        }
+
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      const resizeObserver = new ResizeObserver(() => {
+        if (container.clientWidth === 0 || container.clientHeight === 0) return;
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(container.clientWidth, container.clientHeight);
+      });
+      resizeObserver.observe(container);
+    }
+
+    function renderMainView() {
+      const main = $('#main-content');
+      main.innerHTML = `
   <!-- ORIGINAL ASPECT HERO SECTION RESTORED -->
   <section class="relative w-full rounded-2xl sm:rounded-3xl h-[280px] sm:h-[480px] lg:h-[580px] overflow-hidden mt-2 shadow-lg ring-1 ring-black/5 isolate">
     <div class="absolute inset-0 bg-[#F3F0FF] overflow-hidden">
@@ -937,8 +1355,8 @@ function renderMainView() {
       <div class="min-w-[200px] sm:min-w-[240px] bg-slate-50/50 hover:bg-white border border-gray-100 hover:border-purple-100 rounded-2xl p-3 shadow-sm hover:shadow-md transition-all duration-300 snap-start flex flex-col justify-between group cursor-pointer" onclick="window.goToProductDetail('${p.id}')">
         <div>
           <div class="aspect-[3/4] rounded-xl overflow-hidden bg-white shadow-sm border border-gray-100/50 relative mb-3">
-            <img src="${p.image||''}" alt="${p.name}" class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300" loading="lazy">
-            ${p.badge?`<span class="absolute top-2 left-2 px-1.5 py-0.5 rounded-full bg-purple-600 text-white text-[8px] font-bold uppercase tracking-wider">${p.badge}</span>`:''}
+            <img src="${p.image || ''}" alt="${p.name}" class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300" loading="lazy">
+            ${p.badge ? `<span class="absolute top-2 left-2 px-1.5 py-0.5 rounded-full bg-purple-600 text-white text-[8px] font-bold uppercase tracking-wider">${p.badge}</span>` : ''}
           </div>
           <h3 class="text-xs font-bold text-gray-900 line-clamp-1 group-hover:text-purple-600 transition-colors">${p.name}</h3>
           <p class="text-[10px] text-gray-500 mt-0.5 line-clamp-1">by ${p.author || 'Unknown'}</p>
@@ -1039,69 +1457,69 @@ function renderMainView() {
     </div>
   </section>`;
 
-  $$('.cat-tab').forEach(tab => {
-    tab.onclick = () => {
-      $$('.cat-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      filterProducts(tab.dataset.cat);
-    };
-  });
+      $$('.cat-tab').forEach(tab => {
+        tab.onclick = () => {
+          $$('.cat-tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          filterProducts(tab.dataset.cat);
+        };
+      });
 
-  // Attach Spotlight Carousel Navigation Listeners
-  const spotlightContainer = $('#spotlight-container');
-  const prevBtn = $('#spotlight-prev');
-  const nextBtn = $('#spotlight-next');
-  if (spotlightContainer && prevBtn && nextBtn) {
-    prevBtn.onclick = () => spotlightContainer.scrollBy({ left: -260, behavior: 'smooth' });
-    nextBtn.onclick = () => spotlightContainer.scrollBy({ left: 260, behavior: 'smooth' });
-  }
+      // Attach Spotlight Carousel Navigation Listeners
+      const spotlightContainer = $('#spotlight-container');
+      const prevBtn = $('#spotlight-prev');
+      const nextBtn = $('#spotlight-next');
+      if (spotlightContainer && prevBtn && nextBtn) {
+        prevBtn.onclick = () => spotlightContainer.scrollBy({ left: -260, behavior: 'smooth' });
+        nextBtn.onclick = () => spotlightContainer.scrollBy({ left: 260, behavior: 'smooth' });
+      }
 
-  // Attach Spotlight Cart Button Listeners
-  $$('.add-to-cart-btn-spotlight').forEach(b => b.onclick = (e) => {
-    e.stopPropagation();
-    const id = String(b.dataset.id);
-    const existing = cart.find(i => String(i.id) === id);
-    if (existing) existing.qty++; else cart.push({ id, qty: 1 });
-    saveCart();
-    b.classList.add('bg-green-600');
-    b.innerHTML = '<i class="fa-solid fa-check text-[10px]"></i>';
-    setTimeout(() => {
-      b.classList.remove('bg-green-600');
-      b.innerHTML = '<i class="fa-solid fa-plus text-[10px]"></i>';
-    }, 1400);
-  });
+      // Attach Spotlight Cart Button Listeners
+      $$('.add-to-cart-btn-spotlight').forEach(b => b.onclick = (e) => {
+        e.stopPropagation();
+        const id = String(b.dataset.id);
+        const existing = cart.find(i => String(i.id) === id);
+        if (existing) existing.qty++; else cart.push({ id, qty: 1 });
+        saveCart();
+        b.classList.add('bg-green-600');
+        b.innerHTML = '<i class="fa-solid fa-check text-[10px]"></i>';
+        setTimeout(() => {
+          b.classList.remove('bg-green-600');
+          b.innerHTML = '<i class="fa-solid fa-plus text-[10px]"></i>';
+        }, 1400);
+      });
 
-  const searchInput = $('#product-search');
-  if (searchInput) {
-    searchInput.onclick = (e) => {
-      e.preventDefault();
-      window.openSearchOverlay();
-    };
-    searchInput.onfocus = (e) => {
-      e.preventDefault();
-      searchInput.blur();
-      window.openSearchOverlay();
-    };
-  }
+      const searchInput = $('#product-search');
+      if (searchInput) {
+        searchInput.onclick = (e) => {
+          e.preventDefault();
+          window.openSearchOverlay();
+        };
+        searchInput.onfocus = (e) => {
+          e.preventDefault();
+          searchInput.blur();
+          window.openSearchOverlay();
+        };
+      }
 
 
-  filterProducts('all');
-  observeReveal();
-  
-  // Launch Three.js Drone asynchronously once the main thread is idle - Disabled for now
-  // if (window.requestIdleCallback) {
-  //   requestIdleCallback(() => initHeroDrone());
-  // } else {
-  //   setTimeout(initHeroDrone, 100);
-  // }
-}
+      filterProducts('all');
+      observeReveal();
 
-// ── SEARCH OVERLAY ──
-window.openSearchOverlay = function() {
-  const existing = document.querySelector('#search-overlay-page'); if (existing) existing.remove();
-  const overlay = document.createElement('div'); overlay.id = 'search-overlay-page'; overlay.className = 'full-page-overlay';
-  
-  overlay.innerHTML = `
+      // Launch Three.js Drone asynchronously once the main thread is idle - Disabled for now
+      // if (window.requestIdleCallback) {
+      //   requestIdleCallback(() => initHeroDrone());
+      // } else {
+      //   setTimeout(initHeroDrone, 100);
+      // }
+    }
+
+    // ── SEARCH OVERLAY ──
+    window.openSearchOverlay = function () {
+      const existing = document.querySelector('#search-overlay-page'); if (existing) existing.remove();
+      const overlay = document.createElement('div'); overlay.id = 'search-overlay-page'; overlay.className = 'full-page-overlay';
+
+      overlay.innerHTML = `
   <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
     <div class="flex items-center gap-3 px-5 py-4 border-b bg-white sticky top-0 z-10">
       <div class="relative flex-1">
@@ -1119,39 +1537,39 @@ window.openSearchOverlay = function() {
       <div id="overlay-search-results-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
     </div>
   </div>`;
-  
-  document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-  
-  const closeBtn = overlay.querySelector('#close-search-overlay');
-  closeBtn.onclick = () => { window.closeOverlay(overlay); };
-  
-  const input = overlay.querySelector('#overlay-search-input');
-  const grid = overlay.querySelector('#overlay-search-results-grid');
-  
-  input.focus();
-  
-  input.oninput = () => {
-    const queryStr = input.value.trim().toLowerCase();
-    if (!queryStr) {
-      grid.innerHTML = '';
-      return;
-    }
-    const filtered = products.filter(p => 
-      (p.name && p.name.toLowerCase().includes(queryStr)) ||
-      (p.author && p.author.toLowerCase().includes(queryStr)) ||
-      (p.desc && p.desc.toLowerCase().includes(queryStr))
-    );
-    
-    if (filtered.length === 0) {
-      grid.innerHTML = `<p class="col-span-full text-center text-gray-400 py-8 text-xs">No matching books found</p>`;
-    } else {
-      grid.innerHTML = filtered.map(p => {
-        const disc = discountPercent(p.originalPrice, p.price);
-        return `
+
+      document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
+
+      const closeBtn = overlay.querySelector('#close-search-overlay');
+      closeBtn.onclick = () => { window.closeOverlay(overlay); };
+
+      const input = overlay.querySelector('#overlay-search-input');
+      const grid = overlay.querySelector('#overlay-search-results-grid');
+
+      input.focus();
+
+      input.oninput = () => {
+        const queryStr = input.value.trim().toLowerCase();
+        if (!queryStr) {
+          grid.innerHTML = '';
+          return;
+        }
+        const filtered = products.filter(p =>
+          (p.name && p.name.toLowerCase().includes(queryStr)) ||
+          (p.author && p.author.toLowerCase().includes(queryStr)) ||
+          (p.desc && p.desc.toLowerCase().includes(queryStr))
+        );
+
+        if (filtered.length === 0) {
+          grid.innerHTML = `<p class="col-span-full text-center text-gray-400 py-8 text-xs">No matching books found</p>`;
+        } else {
+          grid.innerHTML = filtered.map(p => {
+            const disc = discountPercent(p.originalPrice, p.price);
+            return `
         <div class="group cursor-pointer hover-lift text-center opacity-0 animate-fade-in-up" onclick="window.goToProductDetail('${p.id}')">
           <div class="book-cover-wrap mb-1.5 shadow-sm">
-            <img src="${p.image||''}" alt="${p.name}" class="book-cover-img" onerror="this.style.display='none';this.parentElement.style.background='#F3F0FF';" loading="lazy">
-            ${p.badge?`<span class="absolute top-1 left-1 px-1 py-0.5 rounded-full bg-white/90 backdrop-blur-sm text-[7px] font-bold uppercase text-gray-900">${product.badge}</span>`:''}
+            <img src="${p.image || ''}" alt="${p.name}" class="book-cover-img" onerror="this.style.display='none';this.parentElement.style.background='#F3F0FF';" loading="lazy">
+            ${p.badge ? `<span class="absolute top-1 left-1 px-1 py-0.5 rounded-full bg-white/90 backdrop-blur-sm text-[7px] font-bold uppercase text-gray-900">${product.badge}</span>` : ''}
             ${disc ? `<span class="absolute top-1 right-1 px-1 py-0.5 rounded-full bg-red-500 text-white text-[7px] font-bold">-${disc}%</span>` : ''}
           </div>
           <div class="space-y-0.5 px-0.5">
@@ -1161,31 +1579,31 @@ window.openSearchOverlay = function() {
             </div>
           </div>
         </div>`;
-      }).join('');
-    }
-  };
-  
-  input.onkeydown = (e) => {
-    if (e.key === 'Enter') {
-      const queryStr = input.value.trim().toLowerCase();
-      if (!queryStr) return;
-      openSearchResultsPage(queryStr);
-      overlay.remove();
-    }
-  };
-};
+          }).join('');
+        }
+      };
 
-window.openSearchResultsPage = function(queryStr) {
-  const existing = document.querySelector('#search-results-page'); if (existing) existing.remove();
-  const overlay = document.createElement('div'); overlay.id = 'search-results-page'; overlay.className = 'full-page-overlay';
-  
-  const filtered = products.filter(p => 
-    (p.name && p.name.toLowerCase().includes(queryStr)) ||
-    (p.author && p.author.toLowerCase().includes(queryStr)) ||
-    (p.desc && p.desc.toLowerCase().includes(queryStr))
-  );
-  
-  overlay.innerHTML = `
+      input.onkeydown = (e) => {
+        if (e.key === 'Enter') {
+          const queryStr = input.value.trim().toLowerCase();
+          if (!queryStr) return;
+          openSearchResultsPage(queryStr);
+          overlay.remove();
+        }
+      };
+    };
+
+    window.openSearchResultsPage = function (queryStr) {
+      const existing = document.querySelector('#search-results-page'); if (existing) existing.remove();
+      const overlay = document.createElement('div'); overlay.id = 'search-results-page'; overlay.className = 'full-page-overlay';
+
+      const filtered = products.filter(p =>
+        (p.name && p.name.toLowerCase().includes(queryStr)) ||
+        (p.author && p.author.toLowerCase().includes(queryStr)) ||
+        (p.desc && p.desc.toLowerCase().includes(queryStr))
+      );
+
+      overlay.innerHTML = `
   <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
     <div class="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
       <h2 class="text-xs font-bold uppercase text-gray-400 tracking-wider">Search Results for: "${queryStr}"</h2>
@@ -1194,12 +1612,12 @@ window.openSearchResultsPage = function(queryStr) {
     <div class="overlay-scroll p-5">
       <div id="results-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-3">
         ${filtered.length ? filtered.map(p => {
-          const disc = discountPercent(p.originalPrice, p.price);
-          return `
+        const disc = discountPercent(p.originalPrice, p.price);
+        return `
           <div class="group cursor-pointer hover-lift text-center" onclick="window.goToProductDetail('${p.id}')">
             <div class="book-cover-wrap mb-1.5 shadow-sm">
-              <img src="${p.image||''}" alt="${p.name}" class="book-cover-img" onerror="this.style.display='none';this.parentElement.style.background='#F3F0FF';" loading="lazy">
-              ${p.badge?`<span class="absolute top-1 left-1 px-1 py-0.5 rounded-full bg-white/90 backdrop-blur-sm text-[7px] font-bold uppercase text-gray-900">${p.badge}</span>`:''}
+              <img src="${p.image || ''}" alt="${p.name}" class="book-cover-img" onerror="this.style.display='none';this.parentElement.style.background='#F3F0FF';" loading="lazy">
+              ${p.badge ? `<span class="absolute top-1 left-1 px-1 py-0.5 rounded-full bg-white/90 backdrop-blur-sm text-[7px] font-bold uppercase text-gray-900">${p.badge}</span>` : ''}
               ${disc ? `<span class="absolute top-1 right-1 px-1 py-0.5 rounded-full bg-red-500 text-white text-[7px] font-bold">-${disc}%</span>` : ''}
             </div>
             <div class="space-y-0.5 px-0.5">
@@ -1213,41 +1631,41 @@ window.openSearchResultsPage = function(queryStr) {
               <span class="btn-text">Add to Cart</span>
             </button>
           </div>`;
-        }).join('') : '<p class="col-span-full text-center text-gray-400 py-12 text-xs">No matching books found</p>'}
+      }).join('') : '<p class="col-span-full text-center text-gray-400 py-12 text-xs">No matching books found</p>'}
       </div>
     </div>
   </div>`;
-  
-  document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-  overlay.querySelector('#close-results-overlay').onclick = () => { window.closeOverlay(overlay); };
-  
-  overlay.querySelectorAll('.add-to-cart-btn').forEach(b => b.onclick = (e) => {
-    e.stopPropagation();
-    const id = String(b.dataset.id);
-    const existing = cart.find(i => String(i.id) === id);
-    if (existing) existing.qty++; else cart.push({ id, qty: 1 });
-    saveCart();
-    b.classList.add('animate-add-success');
-    b.innerHTML = `
+
+      document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
+      overlay.querySelector('#close-results-overlay').onclick = () => { window.closeOverlay(overlay); };
+
+      overlay.querySelectorAll('.add-to-cart-btn').forEach(b => b.onclick = (e) => {
+        e.stopPropagation();
+        const id = String(b.dataset.id);
+        const existing = cart.find(i => String(i.id) === id);
+        if (existing) existing.qty++; else cart.push({ id, qty: 1 });
+        saveCart();
+        b.classList.add('animate-add-success');
+        b.innerHTML = `
       <svg class="w-3.5 h-3.5 text-white animate-check-pop" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
       </svg> Added`;
-    setTimeout(() => {
-      b.classList.remove('animate-add-success');
-      b.innerHTML = '<span class="btn-text">Add to Cart</span>';
-    }, 1400);
-  });
-};
+        setTimeout(() => {
+          b.classList.remove('animate-add-success');
+          b.innerHTML = '<span class="btn-text">Add to Cart</span>';
+        }, 1400);
+      });
+    };
 
-// Product Details Overlay
-window.goToProductDetail = function(id) {
-  const product = products.find(p => p.id === id); if (!product) return;
-  const disc = discountPercent(product.originalPrice, product.price);
-  const isWish = wishlist.includes(product.id);
-  const existing = document.querySelector('.full-page-overlay'); if (existing) existing.remove();
-  const overlay = document.createElement('div'); overlay.className = 'full-page-overlay';
-  
-  overlay.innerHTML = `
+    // Product Details Overlay
+    window.goToProductDetail = function (id) {
+      const product = products.find(p => p.id === id); if (!product) return;
+      const disc = discountPercent(product.originalPrice, product.price);
+      const isWish = wishlist.includes(product.id);
+      const existing = document.querySelector('.full-page-overlay'); if (existing) existing.remove();
+      const overlay = document.createElement('div'); overlay.className = 'full-page-overlay';
+
+      overlay.innerHTML = `
   <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
     <div class="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
       <h2 class="text-base font-bold text-gray-900">Product Details</h2>
@@ -1256,14 +1674,14 @@ window.goToProductDetail = function(id) {
     <div class="overlay-scroll pb-10">
       <div class="max-w-[280px] sm:max-w-[340px] mx-auto mt-6">
         <div class="book-cover-wrap shadow-md border border-gray-100/50">
-          <img src="${product.image||''}" alt="${product.name}" class="book-cover-img" loading="lazy">
+          <img src="${product.image || ''}" alt="${product.name}" class="book-cover-img" loading="lazy">
         </div>
       </div>
       <div class="px-6 py-6 space-y-5 text-left">
         <div class="flex items-start justify-between">
           <h1 class="text-xl sm:text-2xl font-serif font-bold text-gray-900 leading-snug">${product.name}</h1>
-          <button id="overlay-wishlist" class="w-10 h-10 rounded-full flex items-center justify-center transition-all active:scale-90 ml-3 flex-shrink-0 ${isWish?'bg-red-50':'bg-gray-100'}">
-            <svg class="w-5 h-5 ${isWish?'text-red-500 fill-current':'text-gray-600'}" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <button id="overlay-wishlist" class="w-10 h-10 rounded-full flex items-center justify-center transition-all active:scale-90 ml-3 flex-shrink-0 ${isWish ? 'bg-red-50' : 'bg-gray-100'}">
+            <svg class="w-5 h-5 ${isWish ? 'text-red-500 fill-current' : 'text-gray-600'}" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
             </svg>
           </button>
@@ -1285,7 +1703,7 @@ window.goToProductDetail = function(id) {
         </div>
         <div class="border-t pt-4">
           <p class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Description</p>
-          <p class="text-xs text-gray-600 leading-relaxed">${product.desc||'No details available.'}</p>
+          <p class="text-xs text-gray-600 leading-relaxed">${product.desc || 'No details available.'}</p>
         </div>
 
       </div>
@@ -1299,66 +1717,66 @@ window.goToProductDetail = function(id) {
       <button class="flex-1 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-semibold text-xs buy-now-btn active:scale-95 transition-all" data-id="${product.id}">Buy Now</button>
     </div>
   </div>`;
-  
-  document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-  overlay.querySelector('#close-product-overlay').onclick = () => { window.closeOverlay(overlay); };
-  
+
+      document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
+      overlay.querySelector('#close-product-overlay').onclick = () => { window.closeOverlay(overlay); };
 
 
-  const addBtn = overlay.querySelector('.add-to-cart-btn');
-  if (addBtn) addBtn.onclick = (e) => {
-    e.stopPropagation();
-    const pid = String(addBtn.dataset.id);
-    const ex = cart.find(i => String(i.id) === pid);
-    if (ex) ex.qty++; else cart.push({ id: pid, qty: 1 });
-    saveCart();
-    addBtn.classList.add('animate-add-success');
-    addBtn.innerHTML = `
+
+      const addBtn = overlay.querySelector('.add-to-cart-btn');
+      if (addBtn) addBtn.onclick = (e) => {
+        e.stopPropagation();
+        const pid = String(addBtn.dataset.id);
+        const ex = cart.find(i => String(i.id) === pid);
+        if (ex) ex.qty++; else cart.push({ id: pid, qty: 1 });
+        saveCart();
+        addBtn.classList.add('animate-add-success');
+        addBtn.innerHTML = `
       <svg class="w-4 h-4 text-white animate-check-pop" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
       </svg> Added`;
-    setTimeout(() => {
-      addBtn.classList.remove('animate-add-success');
-      addBtn.innerHTML = `
+        setTimeout(() => {
+          addBtn.classList.remove('animate-add-success');
+          addBtn.innerHTML = `
         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
         </svg> Add to Cart`;
-    }, 1400);
-  };
-  const wishBtn = overlay.querySelector('#overlay-wishlist');
-  if (wishBtn) wishBtn.onclick = () => {
-    const idx = wishlist.indexOf(product.id);
-    if (idx > -1) {
-      wishlist.splice(idx,1);
-      wishBtn.innerHTML = `
+        }, 1400);
+      };
+      const wishBtn = overlay.querySelector('#overlay-wishlist');
+      if (wishBtn) wishBtn.onclick = () => {
+        const idx = wishlist.indexOf(product.id);
+        if (idx > -1) {
+          wishlist.splice(idx, 1);
+          wishBtn.innerHTML = `
         <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
         </svg>`;
-      wishBtn.classList.remove('bg-red-50');
-    } else {
-      wishlist.push(product.id);
-      wishBtn.innerHTML = `
+          wishBtn.classList.remove('bg-red-50');
+        } else {
+          wishlist.push(product.id);
+          wishBtn.innerHTML = `
         <svg class="w-5 h-5 text-red-500 fill-current" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
         </svg>`;
-      wishBtn.classList.add('bg-red-50');
-    }
-    saveWishlist();
-  };
-  const buyBtn = overlay.querySelector('.buy-now-btn');
-  if (buyBtn) buyBtn.onclick = () => openCheckout([{ id: product.id, qty: 1 }], product.price);
-};
+          wishBtn.classList.add('bg-red-50');
+        }
+        saveWishlist();
+      };
+      const buyBtn = overlay.querySelector('.buy-now-btn');
+      if (buyBtn) buyBtn.onclick = () => openCheckout([{ id: product.id, qty: 1 }], product.price);
+    };
 
-// Checkout
-window.openCheckout = async function(items, subtotal) {
-  const existing = document.querySelector('.full-page-overlay'); if (existing) existing.remove();
-  const overlay = document.createElement('div'); overlay.className = 'full-page-overlay';
-  let itemsHtml = '';
-  items.forEach(item => {
-    const prod = products.find(p => p.id === item.id);
-    if (prod) itemsHtml += `
+    // Checkout
+    window.openCheckout = async function (items, subtotal) {
+      const existing = document.querySelector('.full-page-overlay'); if (existing) existing.remove();
+      const overlay = document.createElement('div'); overlay.className = 'full-page-overlay';
+      let itemsHtml = '';
+      items.forEach(item => {
+        const prod = products.find(p => p.id === item.id);
+        if (prod) itemsHtml += `
     <div class="flex gap-3 items-center bg-gray-50 rounded-xl p-3" data-id="${prod.id}" data-price="${prod.price}">
-      <img src="${prod.image||''}" class="custom-cart-wish-img" loading="lazy">
+      <img src="${prod.image || ''}" class="custom-cart-wish-img" loading="lazy">
       <div class="flex-1"><p class="text-xs font-medium text-gray-900">${prod.name}</p>
         <div class="flex items-center gap-2 mt-1.5"><span class="text-[10px] text-gray-500">Qty:</span>
           <button class="w-6 h-6 rounded-full border bg-white flex items-center justify-center text-xs qty-dec">-</button>
@@ -1366,25 +1784,25 @@ window.openCheckout = async function(items, subtotal) {
           <button class="w-6 h-6 rounded-full border bg-white flex items-center justify-center text-xs qty-inc">+</button>
         </div>
       </div>
-      <p class="text-xs font-bold text-gray-900 item-total">${formatPrice(prod.price*item.qty)}</p>
+      <p class="text-xs font-bold text-gray-900 item-total">${formatPrice(prod.price * item.qty)}</p>
     </div>`;
-  });
-  
-  let prefillName = '', prefillPhone = '', prefillAddress = '', prefillCity = '', prefillZip = '';
-  if (currentUser) {
-    const uSnap = await getDoc(doc(db, 'users', currentUser.uid));
-    if (uSnap.exists()) {
-      const uData = uSnap.data();
-      prefillName = uData.name || '';
-      prefillPhone = uData.phone || '';
-      prefillAddress = uData.address || '';
-      prefillCity = uData.city || '';
-      prefillZip = uData.zip || '';
-    }
-  }
-  const userEmail = currentUser ? currentUser.email : '';
-  
-  overlay.innerHTML = `
+      });
+
+      let prefillName = '', prefillPhone = '', prefillAddress = '', prefillCity = '', prefillZip = '';
+      if (currentUser) {
+        const uSnap = await getDoc(doc(db, 'users', currentUser.uid));
+        if (uSnap.exists()) {
+          const uData = uSnap.data();
+          prefillName = uData.name || '';
+          prefillPhone = uData.phone || '';
+          prefillAddress = uData.address || '';
+          prefillCity = uData.city || '';
+          prefillZip = uData.zip || '';
+        }
+      }
+      const userEmail = currentUser ? currentUser.email : '';
+
+      overlay.innerHTML = `
   <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
     <div class="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
       <h2 class="text-base font-bold text-gray-900">Checkout</h2>
@@ -1395,7 +1813,7 @@ window.openCheckout = async function(items, subtotal) {
       <div class="space-y-3 pt-3 border-t">
         <p class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Billing & Shipping Details</p>
         <input id="ch-name" placeholder="Full Name" value="${prefillName}" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs focus:ring-1 focus:ring-purple-500 outline-none">
-        <input id="ch-email" type="email" placeholder="Email" value="${userEmail}" ${currentUser?'readonly':''} class="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs ${currentUser?'bg-gray-50 text-gray-500':''} focus:ring-1 focus:ring-purple-500 outline-none">
+        <input id="ch-email" type="email" placeholder="Email" value="${userEmail}" ${currentUser ? 'readonly' : ''} class="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs ${currentUser ? 'bg-gray-50 text-gray-500' : ''} focus:ring-1 focus:ring-purple-500 outline-none">
         <input id="ch-mobile" type="tel" placeholder="Mobile Number" value="${prefillPhone}" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs focus:ring-1 focus:ring-purple-500 outline-none">
         <input id="ch-address" placeholder="Address" value="${prefillAddress}" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs focus:ring-1 focus:ring-purple-500 outline-none">
         <div class="flex gap-2">
@@ -1420,52 +1838,52 @@ window.openCheckout = async function(items, subtotal) {
       <button id="confirm-order" class="w-full py-3.5 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-bold text-xs shadow-lg shadow-purple-600/25 transition-all">Confirm & Place Order</button>
     </div>
   </div>`;
-  
-  document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-  let discVal = 0;
-  const updateTotals = () => {
-    let ns = 0;
-    overlay.querySelectorAll('.bg-gray-50').forEach(el => {
-      const pr = parseFloat(el.dataset.price);
-      const q = parseInt(el.querySelector('.qty-val').textContent);
-      ns += pr * q;
-      el.querySelector('.item-total').textContent = formatPrice(pr*q);
-    });
-    overlay.querySelector('#order-subtotal').textContent = formatPrice(ns);
-    overlay.querySelector('#order-total').textContent = formatPrice(ns*(1-discVal/100));
-  };
-  overlay.querySelectorAll('.qty-inc').forEach(b => b.onclick = () => { const el = b.closest('.bg-gray-50'); const v = el.querySelector('.qty-val'); let q = parseInt(v.textContent); q++; v.textContent = q; updateTotals(); });
-  overlay.querySelectorAll('.qty-dec').forEach(b => b.onclick = () => { const el = b.closest('.bg-gray-50'); const v = el.querySelector('.qty-val'); let q = parseInt(v.textContent); if (q>1) { q--; v.textContent = q; updateTotals(); } });
-  overlay.querySelector('#cancel-checkout').onclick = () => { window.closeOverlay(overlay); };
-  overlay.querySelector('#apply-coupon').onclick = () => { const code = overlay.querySelector('#coupon-input').value.trim().toUpperCase(); const msg = overlay.querySelector('#coupon-msg'); if (code==='LUXE20') { discVal=20; msg.textContent='Coupon applied! 20% Discount Activated.'; msg.classList.remove('hidden'); } else { discVal=0; msg.textContent='Invalid coupon code'; msg.classList.remove('hidden'); } updateTotals(); };
-  overlay.querySelector('#confirm-order').onclick = async () => {
-    const name = overlay.querySelector('#ch-name').value.trim();
-    const email = overlay.querySelector('#ch-email').value.trim();
-    const mobile = overlay.querySelector('#ch-mobile').value.trim();
-    const address = overlay.querySelector('#ch-address').value.trim();
-    if (!name || !email || !address || !mobile) return showAlert('Please fill out all billing details');
-    const updatedItems = [];
-    overlay.querySelectorAll('.bg-gray-50').forEach(el => updatedItems.push({ id: el.dataset.id, qty: parseInt(el.querySelector('.qty-val').textContent) }));
-    const finalSubtotal = parseFloat(overlay.querySelector('#order-subtotal').textContent.replace('$',''));
-    const finalTotal = finalSubtotal * (1 - discVal/100);
-    await addDoc(collection(db,'orders'), {
-      customer: { name, email, mobile, address, city: overlay.querySelector('#ch-city').value, zip: overlay.querySelector('#ch-zip').value },
-      items: updatedItems, subtotal: finalSubtotal, discount: discVal, total: finalTotal, status: 'pending', createdAt: serverTimestamp()
-    });
-    updatedItems.forEach(it => { cart = cart.filter(c => String(c.id) !== String(it.id)); });
-    saveCart();
-    overlay.remove();
-    document.body.style.overflow = '';
-    showAlert('Order placed successfully!');
-  };
-};
 
-// Tracking
-window.openTracking = function() {
-  if (!currentUser) { openProfileOverlay(); return; }
-  const existing = document.querySelector('.full-page-overlay'); if (existing) existing.remove();
-  const overlay = document.createElement('div'); overlay.className = 'full-page-overlay';
-  overlay.innerHTML = `
+      document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
+      let discVal = 0;
+      const updateTotals = () => {
+        let ns = 0;
+        overlay.querySelectorAll('.bg-gray-50').forEach(el => {
+          const pr = parseFloat(el.dataset.price);
+          const q = parseInt(el.querySelector('.qty-val').textContent);
+          ns += pr * q;
+          el.querySelector('.item-total').textContent = formatPrice(pr * q);
+        });
+        overlay.querySelector('#order-subtotal').textContent = formatPrice(ns);
+        overlay.querySelector('#order-total').textContent = formatPrice(ns * (1 - discVal / 100));
+      };
+      overlay.querySelectorAll('.qty-inc').forEach(b => b.onclick = () => { const el = b.closest('.bg-gray-50'); const v = el.querySelector('.qty-val'); let q = parseInt(v.textContent); q++; v.textContent = q; updateTotals(); });
+      overlay.querySelectorAll('.qty-dec').forEach(b => b.onclick = () => { const el = b.closest('.bg-gray-50'); const v = el.querySelector('.qty-val'); let q = parseInt(v.textContent); if (q > 1) { q--; v.textContent = q; updateTotals(); } });
+      overlay.querySelector('#cancel-checkout').onclick = () => { window.closeOverlay(overlay); };
+      overlay.querySelector('#apply-coupon').onclick = () => { const code = overlay.querySelector('#coupon-input').value.trim().toUpperCase(); const msg = overlay.querySelector('#coupon-msg'); if (code === 'LUXE20') { discVal = 20; msg.textContent = 'Coupon applied! 20% Discount Activated.'; msg.classList.remove('hidden'); } else { discVal = 0; msg.textContent = 'Invalid coupon code'; msg.classList.remove('hidden'); } updateTotals(); };
+      overlay.querySelector('#confirm-order').onclick = async () => {
+        const name = overlay.querySelector('#ch-name').value.trim();
+        const email = overlay.querySelector('#ch-email').value.trim();
+        const mobile = overlay.querySelector('#ch-mobile').value.trim();
+        const address = overlay.querySelector('#ch-address').value.trim();
+        if (!name || !email || !address || !mobile) return showAlert('Please fill out all billing details');
+        const updatedItems = [];
+        overlay.querySelectorAll('.bg-gray-50').forEach(el => updatedItems.push({ id: el.dataset.id, qty: parseInt(el.querySelector('.qty-val').textContent) }));
+        const finalSubtotal = parseFloat(overlay.querySelector('#order-subtotal').textContent.replace('$', ''));
+        const finalTotal = finalSubtotal * (1 - discVal / 100);
+        await addDoc(collection(db, 'orders'), {
+          customer: { name, email, mobile, address, city: overlay.querySelector('#ch-city').value, zip: overlay.querySelector('#ch-zip').value },
+          items: updatedItems, subtotal: finalSubtotal, discount: discVal, total: finalTotal, status: 'pending', createdAt: serverTimestamp()
+        });
+        updatedItems.forEach(it => { cart = cart.filter(c => String(c.id) !== String(it.id)); });
+        saveCart();
+        overlay.remove();
+        document.body.style.overflow = '';
+        showAlert('Order placed successfully!');
+      };
+    };
+
+    // Tracking
+    window.openTracking = function () {
+      if (!currentUser) { openProfileOverlay(); return; }
+      const existing = document.querySelector('.full-page-overlay'); if (existing) existing.remove();
+      const overlay = document.createElement('div'); overlay.className = 'full-page-overlay';
+      overlay.innerHTML = `
   <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
     <div class="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
       <h2 class="text-base font-bold text-gray-900">My Orders & Tracking</h2>
@@ -1498,52 +1916,52 @@ window.openTracking = function() {
       </div>
     </div>
   </div>`;
-  
-  document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-  overlay.querySelector('#close-tracking').onclick = () => { window.closeOverlay(overlay); };
-  overlay.querySelector('#fetch-orders').onclick = async () => {
-    const list = overlay.querySelector('#orders-list'); 
-    list.innerHTML = `
+
+      document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
+      overlay.querySelector('#close-tracking').onclick = () => { window.closeOverlay(overlay); };
+      overlay.querySelector('#fetch-orders').onclick = async () => {
+        const list = overlay.querySelector('#orders-list');
+        list.innerHTML = `
       <div class="text-center py-8">
         <svg class="w-8 h-8 text-purple-600 animate-spin mx-auto" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"></path>
         </svg>
       </div>`;
-    
-    const q = query(collection(db,'orders'), where('customer.email','==',currentUser.email), orderBy('createdAt','desc'));
-    const snap = await getDocs(q);
-    list.innerHTML = '';
-    
-    if (snap.empty) { 
-      list.innerHTML = `
+
+        const q = query(collection(db, 'orders'), where('customer.email', '==', currentUser.email), orderBy('createdAt', 'desc'));
+        const snap = await getDocs(q);
+        list.innerHTML = '';
+
+        if (snap.empty) {
+          list.innerHTML = `
         <div class="text-center py-12 text-gray-400">
           <svg class="w-12 h-12 text-gray-300 mx-auto mb-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
           </svg>
           <p class="text-xs">No orders placed from this account yet</p>
-        </div>`; 
-      return; 
-    }
-    
-    snap.forEach(doc => {
-      const o = doc.data();
-      const status = o.status || 'pending';
-      
-      const step1 = 'bg-purple-600 text-white';
-      const step2 = (status === 'processing' || status === 'completed') ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-400';
-      const step3 = (status === 'completed') ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-400';
-      
-      const line1 = (status === 'processing' || status === 'completed') ? 'bg-purple-600' : 'bg-gray-100';
-      const line2 = (status === 'completed') ? 'bg-purple-600' : 'bg-gray-100';
-      
-      list.innerHTML += `
+        </div>`;
+          return;
+        }
+
+        snap.forEach(doc => {
+          const o = doc.data();
+          const status = o.status || 'pending';
+
+          const step1 = 'bg-purple-600 text-white';
+          const step2 = (status === 'processing' || status === 'completed') ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-400';
+          const step3 = (status === 'completed') ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-400';
+
+          const line1 = (status === 'processing' || status === 'completed') ? 'bg-purple-600' : 'bg-gray-100';
+          const line2 = (status === 'completed') ? 'bg-purple-600' : 'bg-gray-100';
+
+          list.innerHTML += `
       <div class="border border-gray-100 rounded-2xl p-4 bg-white shadow-sm space-y-4">
         <div class="flex justify-between items-center pb-2 border-b border-gray-50">
           <div>
             <p class="font-bold text-xs text-gray-900">#${doc.id.slice(-6).toUpperCase()}</p>
             <p class="text-[10px] text-gray-400">${o.items ? o.items.length : 0} items · ${formatPrice(o.total)}</p>
           </div>
-          <span class="text-[9px] font-bold px-2 py-1 rounded-full uppercase tracking-wider ${status==='completed'?'bg-green-50 text-green-600':status==='processing'?'bg-blue-50 text-blue-600':'bg-yellow-50 text-yellow-600'}">${status}</span>
+          <span class="text-[9px] font-bold px-2 py-1 rounded-full uppercase tracking-wider ${status === 'completed' ? 'bg-green-50 text-green-600' : status === 'processing' ? 'bg-blue-50 text-blue-600' : 'bg-yellow-50 text-yellow-600'}">${status}</span>
         </div>
         
         <div class="relative flex items-center justify-between px-2">
@@ -1576,15 +1994,15 @@ window.openTracking = function() {
           </div>
         </div>
       </div>`;
-    });
-  };
-};
+        });
+      };
+    };
 
-// Cart overlay
-function renderCartOverlay() {
-  const existing = document.querySelector('#cart-overlay-page'); if (existing) existing.remove();
-  const overlay = document.createElement('div'); overlay.id = 'cart-overlay-page'; overlay.className = 'full-page-overlay';
-  overlay.innerHTML = `
+    // Cart overlay
+    function renderCartOverlay() {
+      const existing = document.querySelector('#cart-overlay-page'); if (existing) existing.remove();
+      const overlay = document.createElement('div'); overlay.id = 'cart-overlay-page'; overlay.className = 'full-page-overlay';
+      overlay.innerHTML = `
   <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
     <div class="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
       <h2 class="text-base font-bold text-gray-900">Add to Cart</h2>
@@ -1599,14 +2017,14 @@ function renderCartOverlay() {
       <button id="cart-checkout-all" class="w-full py-3.5 bg-black hover:bg-gray-800 text-white rounded-xl font-bold text-xs transition-colors">Checkout Entire Bag</button>
     </div>
   </div>`;
-  
-  document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-  overlay.querySelector('#cart-close-overlay').onclick = () => { window.closeOverlay(overlay); };
-  const container = overlay.querySelector('#cart-items-list');
-  const validCart = cart.filter(item => products.some(p => String(p.id) === String(item.id)));
-  
-  if (validCart.length === 0) {
-    container.innerHTML = `
+
+      document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
+      overlay.querySelector('#cart-close-overlay').onclick = () => { window.closeOverlay(overlay); };
+      const container = overlay.querySelector('#cart-items-list');
+      const validCart = cart.filter(item => products.some(p => String(p.id) === String(item.id)));
+
+      if (validCart.length === 0) {
+        container.innerHTML = `
     <div class="flex flex-col items-center justify-center h-full text-gray-400 py-16">
       <div class="w-14 h-14 rounded-full bg-gray-50 flex items-center justify-center mb-3">
         <svg class="w-6 h-6 text-gray-400 opacity-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -1615,13 +2033,13 @@ function renderCartOverlay() {
       </div>
       <p class="text-xs">Your bag is empty.</p>
     </div>`;
-    overlay.querySelector('#cart-checkout-all').style.display = 'none';
-  } else {
-    container.innerHTML = validCart.map(item => {
-      const p = products.find(pr => String(pr.id) === String(item.id));
-      return `
+        overlay.querySelector('#cart-checkout-all').style.display = 'none';
+      } else {
+        container.innerHTML = validCart.map(item => {
+          const p = products.find(pr => String(pr.id) === String(item.id));
+          return `
       <div class="flex gap-4 items-center bg-gray-50 rounded-2xl p-3 border border-gray-100">
-        <img src="${p.image||''}" class="custom-cart-wish-img" loading="lazy">
+        <img src="${p.image || ''}" class="custom-cart-wish-img" loading="lazy">
         <div class="flex-1 min-w-0">
           <p class="text-xs font-bold text-gray-900 truncate">${p.name}</p>
           <p class="text-[10px] text-gray-500 mt-0.5">${formatPrice(p.price)} &times; ${item.qty}</p>
@@ -1635,41 +2053,41 @@ function renderCartOverlay() {
           <button class="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-[10px] font-bold buy-cart-item transition-colors" data-id="${item.id}" data-qty="${item.qty}">Buy</button>
         </div>
       </div>`;
-    }).join('');
-    
-    container.querySelectorAll('.remove-cart-item').forEach(b => b.onclick = () => {
-      cart = cart.filter(i => String(i.id) !== b.dataset.id); saveCart(); renderCartOverlay();
-    });
-    container.querySelectorAll('.buy-cart-item').forEach(b => b.onclick = () => {
-      const pid = b.dataset.id; const qty = parseInt(b.dataset.qty);
-      const product = products.find(p => String(p.id) === pid);
-      if (!product) return;
-      window.closeOverlay(overlay);
-      openCheckout([{ id: pid, qty }], product.price * qty);
-    });
-    
-    overlay.querySelector('#cart-checkout-all').onclick = () => {
-      window.closeOverlay(overlay);
-      const finalSubtotal = validCart.reduce((s, i) => {
+        }).join('');
+
+        container.querySelectorAll('.remove-cart-item').forEach(b => b.onclick = () => {
+          cart = cart.filter(i => String(i.id) !== b.dataset.id); saveCart(); renderCartOverlay();
+        });
+        container.querySelectorAll('.buy-cart-item').forEach(b => b.onclick = () => {
+          const pid = b.dataset.id; const qty = parseInt(b.dataset.qty);
+          const product = products.find(p => String(p.id) === pid);
+          if (!product) return;
+          window.closeOverlay(overlay);
+          openCheckout([{ id: pid, qty }], product.price * qty);
+        });
+
+        overlay.querySelector('#cart-checkout-all').onclick = () => {
+          window.closeOverlay(overlay);
+          const finalSubtotal = validCart.reduce((s, i) => {
+            const p = products.find(pr => String(pr.id) === String(i.id));
+            return s + (p ? p.price * i.qty : 0);
+          }, 0);
+          openCheckout(validCart, finalSubtotal);
+        };
+      }
+      const subtotal = validCart.reduce((s, i) => {
         const p = products.find(pr => String(pr.id) === String(i.id));
         return s + (p ? p.price * i.qty : 0);
       }, 0);
-      openCheckout(validCart, finalSubtotal);
-    };
-  }
-  const subtotal = validCart.reduce((s, i) => {
-    const p = products.find(pr => String(pr.id) === String(i.id));
-    return s + (p ? p.price * i.qty : 0);
-  }, 0);
-  overlay.querySelector('#cart-subtotal-overlay').textContent = formatPrice(subtotal);
-}
+      overlay.querySelector('#cart-subtotal-overlay').textContent = formatPrice(subtotal);
+    }
 
-// Wishlist overlay
-function renderWishlistOverlay() {
-  const validWishlist = wishlist.filter(id => products.some(p => String(p.id) === String(id)));
-  const existing = document.querySelector('#wishlist-overlay-page'); if (existing) existing.remove();
-  const overlay = document.createElement('div'); overlay.id = 'wishlist-overlay-page'; overlay.className = 'full-page-overlay';
-  overlay.innerHTML = `
+    // Wishlist overlay
+    function renderWishlistOverlay() {
+      const validWishlist = wishlist.filter(id => products.some(p => String(p.id) === String(id)));
+      const existing = document.querySelector('#wishlist-overlay-page'); if (existing) existing.remove();
+      const overlay = document.createElement('div'); overlay.id = 'wishlist-overlay-page'; overlay.className = 'full-page-overlay';
+      overlay.innerHTML = `
   <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
     <div class="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
       <h2 class="text-base font-bold text-gray-900">Your Wishlist</h2>
@@ -1677,13 +2095,13 @@ function renderWishlistOverlay() {
     </div>
     <div id="wl-items-list" class="flex-1 overflow-y-auto p-5 space-y-3"></div>
   </div>`;
-  
-  document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-  overlay.querySelector('#wl-close-overlay').onclick = () => { window.closeOverlay(overlay); };
-  const container = overlay.querySelector('#wl-items-list');
-  
-  if (validWishlist.length === 0) {
-    container.innerHTML = `
+
+      document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
+      overlay.querySelector('#wl-close-overlay').onclick = () => { window.closeOverlay(overlay); };
+      const container = overlay.querySelector('#wl-items-list');
+
+      if (validWishlist.length === 0) {
+        container.innerHTML = `
     <div class="flex flex-col items-center justify-center h-full text-gray-400 py-16">
       <div class="w-14 h-14 rounded-full bg-gray-50 flex items-center justify-center mb-3">
         <svg class="w-6 h-6 text-gray-400 opacity-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -1692,11 +2110,11 @@ function renderWishlistOverlay() {
       </div>
       <p class="text-xs">Your wishlist is empty.</p>
     </div>`;
-  } else {
-    const wishProds = products.filter(p => validWishlist.includes(p.id));
-    container.innerHTML = wishProds.map(p => `
+      } else {
+        const wishProds = products.filter(p => validWishlist.includes(p.id));
+        container.innerHTML = wishProds.map(p => `
     <div class="flex gap-4 items-center bg-gray-50 rounded-2xl p-3 border border-gray-100">
-      <img src="${p.image||''}" class="custom-cart-wish-img" loading="lazy">
+      <img src="${p.image || ''}" class="custom-cart-wish-img" loading="lazy">
       <div class="flex-1 min-w-0">
         <p class="text-xs font-bold text-gray-900 truncate">${p.name}</p>
         <p class="text-[10px] text-gray-500 mt-0.5">${formatPrice(p.price)}</p>
@@ -1710,31 +2128,31 @@ function renderWishlistOverlay() {
         <button class="px-3 py-1.5 bg-black hover:bg-gray-800 text-white rounded-lg text-[10px] font-bold move-to-cart-btn transition-colors" data-id="${p.id}">Add</button>
       </div>
     </div>`).join('');
-    
-    container.querySelectorAll('.remove-wish-item').forEach(b => b.onclick = () => {
-      wishlist = wishlist.filter(i => i !== b.dataset.id); saveWishlist(); renderWishlistOverlay();
-    });
-    container.querySelectorAll('.move-to-cart-btn').forEach(b => b.onclick = () => {
-      const pid = b.dataset.id;
-      const ex = cart.find(i => String(i.id) === pid);
-      if (ex) ex.qty++; else cart.push({ id: pid, qty: 1 });
-      saveCart();
-      wishlist = wishlist.filter(i => i !== pid); saveWishlist();
-      renderWishlistOverlay();
-      showAlert('Product added to bag!');
-    });
-  }
-}
 
-// ═══ CHAT OVERLAY (FIXED AI API) ═══
-function openChatOverlay() {
-  const existing = document.querySelector('#chat-overlay-page');
-  if (existing) {
-    if (chatUnsubscribe) { chatUnsubscribe(); chatUnsubscribe = null; }
-    existing.remove();
-  }
-  const overlay = document.createElement('div'); overlay.id = 'chat-overlay-page'; overlay.className = 'full-page-overlay';
-  overlay.innerHTML = `
+        container.querySelectorAll('.remove-wish-item').forEach(b => b.onclick = () => {
+          wishlist = wishlist.filter(i => i !== b.dataset.id); saveWishlist(); renderWishlistOverlay();
+        });
+        container.querySelectorAll('.move-to-cart-btn').forEach(b => b.onclick = () => {
+          const pid = b.dataset.id;
+          const ex = cart.find(i => String(i.id) === pid);
+          if (ex) ex.qty++; else cart.push({ id: pid, qty: 1 });
+          saveCart();
+          wishlist = wishlist.filter(i => i !== pid); saveWishlist();
+          renderWishlistOverlay();
+          showAlert('Product added to bag!');
+        });
+      }
+    }
+
+    // ═══ CHAT OVERLAY (FIXED AI API) ═══
+    function openChatOverlay() {
+      const existing = document.querySelector('#chat-overlay-page');
+      if (existing) {
+        if (chatUnsubscribe) { chatUnsubscribe(); chatUnsubscribe = null; }
+        existing.remove();
+      }
+      const overlay = document.createElement('div'); overlay.id = 'chat-overlay-page'; overlay.className = 'full-page-overlay';
+      overlay.innerHTML = `
   <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
     <div class="flex flex-col gap-3 px-5 py-4 border-b bg-white sticky top-0 z-10 shadow-sm">
       <div class="flex items-center justify-between w-full">
@@ -1781,234 +2199,234 @@ function openChatOverlay() {
       </div>
     </div>
   </div>`;
-  
-  document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-  overlay.querySelector('#chat-close-overlay').onclick = () => {
-    window.closeOverlay(overlay);
-    if (chatUnsubscribe) { chatUnsubscribe(); chatUnsubscribe = null; }
-  };
-  
-  const cont = overlay.querySelector('#chat-messages-area');
-  const tabAdmin = overlay.querySelector('#chat-tab-admin');
-  const tabAi = overlay.querySelector('#chat-tab-ai');
-  
-  let currentMode = 'ai'; // start with AI
-  let aiChatHistory = [];
 
-  const renderAiChat = () => {
-    cont.innerHTML = '';
-    aiChatHistory.forEach(msg => {
-      const isAI = msg.role === 'assistant';
-      cont.innerHTML += `
+      document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
+      overlay.querySelector('#chat-close-overlay').onclick = () => {
+        window.closeOverlay(overlay);
+        if (chatUnsubscribe) { chatUnsubscribe(); chatUnsubscribe = null; }
+      };
+
+      const cont = overlay.querySelector('#chat-messages-area');
+      const tabAdmin = overlay.querySelector('#chat-tab-admin');
+      const tabAi = overlay.querySelector('#chat-tab-ai');
+
+      let currentMode = 'ai'; // start with AI
+      let aiChatHistory = [];
+
+      const renderAiChat = () => {
+        cont.innerHTML = '';
+        aiChatHistory.forEach(msg => {
+          const isAI = msg.role === 'assistant';
+          cont.innerHTML += `
         <div class="flex ${isAI ? 'justify-start' : 'justify-end'} animate-fade-in-up">
           <div class="max-w-[80%] px-4 py-3 rounded-2xl text-xs leading-relaxed ${isAI ? 'bg-white text-gray-800 rounded-tl-none border border-gray-100 shadow-sm' : 'bg-purple-600 text-white rounded-tr-none shadow-sm shadow-purple-600/10'}">
             ${msg.content}
           </div>
         </div>`;
-    });
-    cont.scrollTop = cont.scrollHeight;
-  };
+        });
+        cont.scrollTop = cont.scrollHeight;
+      };
 
-  const setChatMode = (mode) => {
-    if (mode === 'admin') {
-      if (!currentUser) {
-        showAlert("Please log in to chat with Admin.");
-        openProfileOverlay();
-        return; 
-      }
-    }
+      const setChatMode = (mode) => {
+        if (mode === 'admin') {
+          if (!currentUser) {
+            showAlert("Please log in to chat with Admin.");
+            openProfileOverlay();
+            return;
+          }
+        }
 
-    currentMode = mode;
-    if (chatUnsubscribe) { chatUnsubscribe(); chatUnsubscribe = null; }
-    
-    if (mode === 'ai') {
-      $('#chat-header-title').textContent = "AI Book Assistant";
-      tabAi.className = "flex-1 py-2.5 text-xs font-bold rounded-xl transition-all focus:outline-none bg-purple-600 text-white shadow-sm";
-      tabAdmin.className = "flex-1 py-2.5 text-xs font-bold rounded-xl transition-all focus:outline-none bg-transparent text-gray-500 hover:text-gray-800";
-      renderAiChat();
-    } else {
-      $('#chat-header-title').textContent = "Chat With Admin";
-      tabAdmin.className = "flex-1 py-2.5 text-xs font-bold rounded-xl transition-all focus:outline-none bg-purple-600 text-white shadow-sm";
-      tabAi.className = "flex-1 py-2.5 text-xs font-bold rounded-xl transition-all focus:outline-none bg-transparent text-gray-500 hover:text-gray-800";
-      subscribeToLiveChat();
-    }
-  };
+        currentMode = mode;
+        if (chatUnsubscribe) { chatUnsubscribe(); chatUnsubscribe = null; }
 
-  tabAdmin.onclick = () => setChatMode('admin');
-  tabAi.onclick = () => setChatMode('ai');
+        if (mode === 'ai') {
+          $('#chat-header-title').textContent = "AI Book Assistant";
+          tabAi.className = "flex-1 py-2.5 text-xs font-bold rounded-xl transition-all focus:outline-none bg-purple-600 text-white shadow-sm";
+          tabAdmin.className = "flex-1 py-2.5 text-xs font-bold rounded-xl transition-all focus:outline-none bg-transparent text-gray-500 hover:text-gray-800";
+          renderAiChat();
+        } else {
+          $('#chat-header-title').textContent = "Chat With Admin";
+          tabAdmin.className = "flex-1 py-2.5 text-xs font-bold rounded-xl transition-all focus:outline-none bg-purple-600 text-white shadow-sm";
+          tabAi.className = "flex-1 py-2.5 text-xs font-bold rounded-xl transition-all focus:outline-none bg-transparent text-gray-500 hover:text-gray-800";
+          subscribeToLiveChat();
+        }
+      };
 
-  const subscribeToLiveChat = () => {
-    if (!currentUser) return;
-    const q = query(collection(db, `chats/${currentUser.uid}/messages`), orderBy('timestamp','asc'));
-    chatUnsubscribe = onSnapshot(q, snap => {
-      cont.innerHTML = ``; 
-      snap.forEach(doc => {
-        const msg = doc.data();
-        cont.innerHTML += `
-        <div class="flex ${msg.sender==='admin'?'justify-start':'justify-end'} animate-fade-in-up">
-          <div class="max-w-[80%] px-4 py-3 rounded-2xl text-xs leading-relaxed ${msg.sender==='admin'?'bg-white text-gray-800 rounded-tl-none border border-gray-100 shadow-sm':'bg-purple-600 text-white rounded-tr-none shadow-sm shadow-purple-600/10'}">
+      tabAdmin.onclick = () => setChatMode('admin');
+      tabAi.onclick = () => setChatMode('ai');
+
+      const subscribeToLiveChat = () => {
+        if (!currentUser) return;
+        const q = query(collection(db, `chats/${currentUser.uid}/messages`), orderBy('timestamp', 'asc'));
+        chatUnsubscribe = onSnapshot(q, snap => {
+          cont.innerHTML = ``;
+          snap.forEach(doc => {
+            const msg = doc.data();
+            cont.innerHTML += `
+        <div class="flex ${msg.sender === 'admin' ? 'justify-start' : 'justify-end'} animate-fade-in-up">
+          <div class="max-w-[80%] px-4 py-3 rounded-2xl text-xs leading-relaxed ${msg.sender === 'admin' ? 'bg-white text-gray-800 rounded-tl-none border border-gray-100 shadow-sm' : 'bg-purple-600 text-white rounded-tr-none shadow-sm shadow-purple-600/10'}">
             ${msg.text}
           </div>
         </div>`;
-      });
-      cont.scrollTop = cont.scrollHeight;
-    });
-  };
+          });
+          cont.scrollTop = cont.scrollHeight;
+        });
+      };
 
-  const callOpenRouterAPI = async (userText) => {
-    if (!CHAT_API_KEY) {
-      aiChatHistory.push({ role: "assistant", content: "Error: AI chatbot key is not configured." });
-      renderAiChat();
-      return;
-    }
-    // typing indicator
-    const loaderEl = document.createElement('div');
-    loaderEl.className = "flex justify-start animate-fade-in-up";
-    loaderEl.innerHTML = `
+      const callOpenRouterAPI = async (userText) => {
+        if (!CHAT_API_KEY) {
+          aiChatHistory.push({ role: "assistant", content: "Error: AI chatbot key is not configured." });
+          renderAiChat();
+          return;
+        }
+        // typing indicator
+        const loaderEl = document.createElement('div');
+        loaderEl.className = "flex justify-start animate-fade-in-up";
+        loaderEl.innerHTML = `
       <div class="max-w-[80%] px-4 py-3 rounded-2xl text-xs bg-white text-gray-400 rounded-tl-none border border-gray-100 shadow-sm flex items-center gap-1.5">
         <span class="animate-bounce h-1.5 w-1.5 bg-gray-400 rounded-full"></span>
         <span class="animate-bounce h-1.5 w-1.5 bg-gray-400 rounded-full" style="animation-delay:0.1s"></span>
         <span class="animate-bounce h-1.5 w-1.5 bg-gray-400 rounded-full" style="animation-delay:0.2s"></span>
       </div>`;
-    cont.appendChild(loaderEl);
-    cont.scrollTop = cont.scrollHeight;
-    
-    try {
-      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${CHAT_API_KEY}`,
-          "Content-Type": "application/json",
-          "HTTP-Referer": window.location.origin, // Optional but recommended by OpenRouter
-          "X-Title": "Shobdotori Bookstore"
-        },
-        body: JSON.stringify({
-          model: CHAT_MODEL,
-          messages: [
-            { role: "system", content: "You are Shobdotori Bookstore AI Assistant. Answer questions beautifully, help pick books based on author or name, and keep responses short and friendly in English." },
-            ...aiChatHistory.filter(h => h.role !== 'assistant' || (h.content && !h.content.includes("Error")))
-          ]
-        })
-      });
-      
-      const data = await response.json();
-      // remove loader
-      if (loaderEl.parentNode) loaderEl.remove();
+        cont.appendChild(loaderEl);
+        cont.scrollTop = cont.scrollHeight;
 
-      // proper error handling for OpenRouter API response
-      if (data && data.choices && data.choices.length > 0 && data.choices[0].message) {
-        const botResponse = data.choices[0].message.content;
-        aiChatHistory.push({ role: "assistant", content: botResponse });
-      } else if (data && data.error) {
-        aiChatHistory.push({ role: "assistant", content: `Error from AI: ${data.error.message || 'Unknown error'}` });
-      } else {
-        aiChatHistory.push({ role: "assistant", content: "Sorry, I received an invalid response. Please check the API key or model ID." });
-      }
-    } catch (err) {
-      console.error(err);
-      if (loaderEl.parentNode) loaderEl.remove();
-      aiChatHistory.push({ role: "assistant", content: "Sorry, I am facing connectivity issues. Please try again later." });
-    } finally {
-      renderAiChat();
+        try {
+          const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+            method: "POST",
+            headers: {
+              "Authorization": `Bearer ${CHAT_API_KEY}`,
+              "Content-Type": "application/json",
+              "HTTP-Referer": window.location.origin, // Optional but recommended by OpenRouter
+              "X-Title": "Shobdotori Bookstore"
+            },
+            body: JSON.stringify({
+              model: CHAT_MODEL,
+              messages: [
+                { role: "system", content: "You are Shobdotori Bookstore AI Assistant. Answer questions beautifully, help pick books based on author or name, and keep responses short and friendly in English." },
+                ...aiChatHistory.filter(h => h.role !== 'assistant' || (h.content && !h.content.includes("Error")))
+              ]
+            })
+          });
+
+          const data = await response.json();
+          // remove loader
+          if (loaderEl.parentNode) loaderEl.remove();
+
+          // proper error handling for OpenRouter API response
+          if (data && data.choices && data.choices.length > 0 && data.choices[0].message) {
+            const botResponse = data.choices[0].message.content;
+            aiChatHistory.push({ role: "assistant", content: botResponse });
+          } else if (data && data.error) {
+            aiChatHistory.push({ role: "assistant", content: `Error from AI: ${data.error.message || 'Unknown error'}` });
+          } else {
+            aiChatHistory.push({ role: "assistant", content: "Sorry, I received an invalid response. Please check the API key or model ID." });
+          }
+        } catch (err) {
+          console.error(err);
+          if (loaderEl.parentNode) loaderEl.remove();
+          aiChatHistory.push({ role: "assistant", content: "Sorry, I am facing connectivity issues. Please try again later." });
+        } finally {
+          renderAiChat();
+        }
+      };
+
+      const sendMessage = async () => {
+        const text = overlay.querySelector('#chat-input-overlay').value.trim();
+        if (!text) return;
+        overlay.querySelector('#chat-input-overlay').value = '';
+
+        if (currentMode === 'ai') {
+          aiChatHistory.push({ role: "user", content: text });
+          renderAiChat();
+          await callOpenRouterAPI(text);
+        } else {
+          await addDoc(collection(db, `chats/${currentUser.uid}/messages`), { text, sender: 'user', timestamp: serverTimestamp() });
+        }
+      };
+
+      overlay.querySelector('#send-msg-overlay').onclick = sendMessage;
+      overlay.querySelector('#chat-input-overlay').onkeydown = (e) => { if (e.key === 'Enter') sendMessage(); };
+
+      // Start with AI assistant tab active
+      setChatMode('ai');
     }
-  };
 
-  const sendMessage = async () => {
-    const text = overlay.querySelector('#chat-input-overlay').value.trim();
-    if (!text) return;
-    overlay.querySelector('#chat-input-overlay').value = '';
+    function showAlert(msg) {
+      const existing = document.querySelector('.alert-modal-container'); if (existing) existing.remove();
 
-    if (currentMode === 'ai') {
-      aiChatHistory.push({ role: "user", content: text });
-      renderAiChat();
-      await callOpenRouterAPI(text);
-    } else {
-      await addDoc(collection(db, `chats/${currentUser.uid}/messages`), { text, sender: 'user', timestamp: serverTimestamp() });
-    }
-  };
-  
-  overlay.querySelector('#send-msg-overlay').onclick = sendMessage;
-  overlay.querySelector('#chat-input-overlay').onkeydown = (e) => { if (e.key === 'Enter') sendMessage(); };
-  
-  // Start with AI assistant tab active
-  setChatMode('ai');
-}
+      const container = document.createElement('div');
+      container.className = 'alert-modal-container';
 
-function showAlert(msg) {
-  const existing = document.querySelector('.alert-modal-container'); if (existing) existing.remove();
-  
-  const container = document.createElement('div');
-  container.className = 'alert-modal-container';
-  
-  container.innerHTML = `
+      container.innerHTML = `
     <div class="alert-modal-bg"></div>
     <div class="alert-modal-content">
       <p class="text-sm mb-4 font-semibold text-gray-800">${msg}</p>
       <button class="close-btn close-alert">Dismiss</button>
     </div>`;
-    
-  document.body.appendChild(container);
-  
-  const bg = container.querySelector('.alert-modal-bg');
-  setTimeout(() => bg.classList.add('active'), 10);
-  
-  const closeAlert = () => {
-    const content = container.querySelector('.alert-modal-content');
-    content.classList.add('closing');
-    bg.classList.remove('active');
-    content.addEventListener('animationend', () => {
-      container.remove();
-    });
-    setTimeout(() => container.remove(), 260);
-  };
-  
-  container.querySelector('.close-alert').onclick = closeAlert;
-  container.querySelector('.alert-modal-bg').onclick = closeAlert;
-}
 
-function observeReveal() {
-  if (revealObserver) revealObserver.disconnect();
-  revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
-}
+      document.body.appendChild(container);
 
-function updateCartBadge() {
-  const c = $('#cart-count'); if (!c) return;
-  const validCount = cart.filter(item => products.some(p => String(p.id) === String(item.id))).length;
-  c.textContent = validCount;
-  c.style.display = validCount ? 'flex' : 'none';
-}
-function updateWishlistBadge() {
-  const c = $('#wishlist-count'); if (!c) return;
-  const validCount = wishlist.filter(id => products.some(p => String(p.id) === String(id))).length;
-  c.textContent = validCount;
-  c.style.display = validCount ? 'flex' : 'none';
-}
+      const bg = container.querySelector('.alert-modal-bg');
+      setTimeout(() => bg.classList.add('active'), 10);
 
-function authErrorMsg(code) { 
-  const map = { 
-    'auth/invalid-email':'Invalid Email format',
-    'auth/wrong-password':'Wrong Password entered',
-    'auth/user-not-found':'Account does not exist',
-    'auth/email-already-in-use':'Email already registered',
-    'auth/weak-password':'Password must be at least 6 characters' 
-  }; 
-  return map[code] || 'Authentication error occurred.'; 
-}
+      const closeAlert = () => {
+        const content = container.querySelector('.alert-modal-content');
+        content.classList.add('closing');
+        bg.classList.remove('active');
+        content.addEventListener('animationend', () => {
+          container.remove();
+        });
+        setTimeout(() => container.remove(), 260);
+      };
 
-window.openProfileOverlay = function() {
-  const existing = document.querySelector('.full-page-overlay'); if (existing) existing.remove();
-  const overlay = document.createElement('div'); overlay.className = 'full-page-overlay';
-  
-  if (currentUser) {
-    overlay.innerHTML = `
+      container.querySelector('.close-alert').onclick = closeAlert;
+      container.querySelector('.alert-modal-bg').onclick = closeAlert;
+    }
+
+    function observeReveal() {
+      if (revealObserver) revealObserver.disconnect();
+      revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
+    }
+
+    function updateCartBadge() {
+      const c = $('#cart-count'); if (!c) return;
+      const validCount = cart.filter(item => products.some(p => String(p.id) === String(item.id))).length;
+      c.textContent = validCount;
+      c.style.display = validCount ? 'flex' : 'none';
+    }
+    function updateWishlistBadge() {
+      const c = $('#wishlist-count'); if (!c) return;
+      const validCount = wishlist.filter(id => products.some(p => String(p.id) === String(id))).length;
+      c.textContent = validCount;
+      c.style.display = validCount ? 'flex' : 'none';
+    }
+
+    function authErrorMsg(code) {
+      const map = {
+        'auth/invalid-email': 'Invalid Email format',
+        'auth/wrong-password': 'Wrong Password entered',
+        'auth/user-not-found': 'Account does not exist',
+        'auth/email-already-in-use': 'Email already registered',
+        'auth/weak-password': 'Password must be at least 6 characters'
+      };
+      return map[code] || 'Authentication error occurred.';
+    }
+
+    window.openProfileOverlay = function () {
+      const existing = document.querySelector('.full-page-overlay'); if (existing) existing.remove();
+      const overlay = document.createElement('div'); overlay.className = 'full-page-overlay';
+
+      if (currentUser) {
+        overlay.innerHTML = `
     <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
       <div class="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
         <h2 class="text-base font-bold text-gray-900 font-serif">My Account Panel</h2>
@@ -2061,50 +2479,50 @@ window.openProfileOverlay = function() {
       </div>
     </div>`;
 
-    document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-    overlay.querySelector('#close-profile').onclick = () => { window.closeOverlay(overlay); };
-    
-    const getProfileDetails = async () => {
-      const snap = await getDoc(userDocRef);
-      if (snap.exists()) {
-        const uData = snap.data();
-        overlay.querySelector('#profile-display-name').textContent = uData.name || 'Shobdotori Member';
-        overlay.querySelector('#prof-name').value = uData.name || '';
-        overlay.querySelector('#prof-phone').value = uData.phone || '';
-        overlay.querySelector('#prof-address').value = uData.address || '';
-        overlay.querySelector('#prof-city').value = uData.city || '';
-        overlay.querySelector('#prof-zip').value = uData.zip || '';
-      }
-    };
-    getProfileDetails();
+        document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
+        overlay.querySelector('#close-profile').onclick = () => { window.closeOverlay(overlay); };
 
-    overlay.querySelector('#profile-update-form').onsubmit = async (e) => {
-      e.preventDefault();
-      const updatedName = overlay.querySelector('#prof-name').value.trim();
-      const updatedPhone = overlay.querySelector('#prof-phone').value.trim();
-      const updatedAddress = overlay.querySelector('#prof-address').value.trim();
-      const updatedCity = overlay.querySelector('#prof-city').value.trim();
-      const updatedZip = overlay.querySelector('#prof-zip').value.trim();
+        const getProfileDetails = async () => {
+          const snap = await getDoc(userDocRef);
+          if (snap.exists()) {
+            const uData = snap.data();
+            overlay.querySelector('#profile-display-name').textContent = uData.name || 'Shobdotori Member';
+            overlay.querySelector('#prof-name').value = uData.name || '';
+            overlay.querySelector('#prof-phone').value = uData.phone || '';
+            overlay.querySelector('#prof-address').value = uData.address || '';
+            overlay.querySelector('#prof-city').value = uData.city || '';
+            overlay.querySelector('#prof-zip').value = uData.zip || '';
+          }
+        };
+        getProfileDetails();
 
-      await updateDoc(userDocRef, {
-        name: updatedName,
-        phone: updatedPhone,
-        address: updatedAddress,
-        city: updatedCity,
-        zip: updatedZip
-      });
-      overlay.querySelector('#profile-display-name').textContent = updatedName;
-      showAlert('Profile details updated successfully!');
-    };
+        overlay.querySelector('#profile-update-form').onsubmit = async (e) => {
+          e.preventDefault();
+          const updatedName = overlay.querySelector('#prof-name').value.trim();
+          const updatedPhone = overlay.querySelector('#prof-phone').value.trim();
+          const updatedAddress = overlay.querySelector('#prof-address').value.trim();
+          const updatedCity = overlay.querySelector('#prof-city').value.trim();
+          const updatedZip = overlay.querySelector('#prof-zip').value.trim();
 
-    overlay.querySelector('#do-logout').onclick = async () => {
-      await signOut(auth);
-      window.closeOverlay(overlay);
-      showAlert('Logged out successfully.');
-    };
+          await updateDoc(userDocRef, {
+            name: updatedName,
+            phone: updatedPhone,
+            address: updatedAddress,
+            city: updatedCity,
+            zip: updatedZip
+          });
+          overlay.querySelector('#profile-display-name').textContent = updatedName;
+          showAlert('Profile details updated successfully!');
+        };
 
-  } else {
-    overlay.innerHTML = `
+        overlay.querySelector('#do-logout').onclick = async () => {
+          await signOut(auth);
+          window.closeOverlay(overlay);
+          showAlert('Logged out successfully.');
+        };
+
+      } else {
+        overlay.innerHTML = `
     <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
       <div class="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
         <h2 class="text-base font-bold text-gray-900">Login to Shobdotori</h2>
@@ -2127,31 +2545,31 @@ window.openProfileOverlay = function() {
       </div>
     </div>`;
 
-    document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-    overlay.querySelector('#close-profile-overlay').onclick = () => { window.closeOverlay(overlay); };
-    
-    overlay.querySelector('#do-login').onclick = async () => {
-      const email = overlay.querySelector('#login-email').value.trim();
-      const pass = overlay.querySelector('#login-pass').value.trim();
-      if (!email || !pass) return showAlert('Please fill out all fields');
-      try {
-        await signInWithEmailAndPassword(auth, email, pass);
-        window.closeOverlay(overlay);
-        showAlert('Logged in successfully!');
-      } catch(err) {
-        showAlert(authErrorMsg(err.code));
+        document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
+        overlay.querySelector('#close-profile-overlay').onclick = () => { window.closeOverlay(overlay); };
+
+        overlay.querySelector('#do-login').onclick = async () => {
+          const email = overlay.querySelector('#login-email').value.trim();
+          const pass = overlay.querySelector('#login-pass').value.trim();
+          if (!email || !pass) return showAlert('Please fill out all fields');
+          try {
+            await signInWithEmailAndPassword(auth, email, pass);
+            window.closeOverlay(overlay);
+            showAlert('Logged in successfully!');
+          } catch (err) {
+            showAlert(authErrorMsg(err.code));
+          }
+        };
+
+        overlay.querySelector('#forgot-link').onclick = () => { window.closeOverlay(overlay); openForgotOverlay(); };
+        overlay.querySelector('#signup-link').onclick = () => { window.closeOverlay(overlay); openSignupOverlay(); };
       }
     };
-    
-    overlay.querySelector('#forgot-link').onclick = () => { window.closeOverlay(overlay); openForgotOverlay(); };
-    overlay.querySelector('#signup-link').onclick = () => { window.closeOverlay(overlay); openSignupOverlay(); };
-  }
-};
 
-window.openSignupOverlay = function() {
-  const existing = document.querySelector('.full-page-overlay'); if (existing) existing.remove();
-  const overlay = document.createElement('div'); overlay.className = 'full-page-overlay';
-  overlay.innerHTML = `
+    window.openSignupOverlay = function () {
+      const existing = document.querySelector('.full-page-overlay'); if (existing) existing.remove();
+      const overlay = document.createElement('div'); overlay.className = 'full-page-overlay';
+      overlay.innerHTML = `
   <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
     <div class="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
       <h2 class="text-base font-bold text-gray-900">Create Shobdotori Account</h2>
@@ -2174,32 +2592,32 @@ window.openSignupOverlay = function() {
       <p class="text-xs text-center text-gray-500">I have account? <button id="login-link" class="underline hover:text-black font-semibold">Login</button></p>
     </div>
   </div>`;
-  
-  document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-  overlay.querySelector('#close-signup').onclick = () => { window.closeOverlay(overlay); };
-  
-  overlay.querySelector('#do-signup').onclick = async () => {
-    const name = overlay.querySelector('#su-name').value.trim();
-    const email = overlay.querySelector('#su-email').value.trim();
-    const pass = overlay.querySelector('#su-pass').value.trim();
-    if (!name || !email || !pass) return showAlert('Please fill out all fields');
-    
-    try {
-      const cred = await createUserWithEmailAndPassword(auth, email, pass);
-      await setDoc(doc(db, 'users', cred.user.uid), { name, email, cart, wishlist });
-      window.closeOverlay(overlay);
-      showAlert('Shobdotori account created successfully!');
-    } catch(err) {
-      showAlert(authErrorMsg(err.code));
-    }
-  };
-  overlay.querySelector('#login-link').onclick = () => { window.closeOverlay(overlay); openProfileOverlay(); };
-};
 
-window.openForgotOverlay = function() {
-  const existing = document.querySelector('.full-page-overlay'); if (existing) existing.remove();
-  const overlay = document.createElement('div'); overlay.className = 'full-page-overlay';
-  overlay.innerHTML = `
+      document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
+      overlay.querySelector('#close-signup').onclick = () => { window.closeOverlay(overlay); };
+
+      overlay.querySelector('#do-signup').onclick = async () => {
+        const name = overlay.querySelector('#su-name').value.trim();
+        const email = overlay.querySelector('#su-email').value.trim();
+        const pass = overlay.querySelector('#su-pass').value.trim();
+        if (!name || !email || !pass) return showAlert('Please fill out all fields');
+
+        try {
+          const cred = await createUserWithEmailAndPassword(auth, email, pass);
+          await setDoc(doc(db, 'users', cred.user.uid), { name, email, cart, wishlist });
+          window.closeOverlay(overlay);
+          showAlert('Shobdotori account created successfully!');
+        } catch (err) {
+          showAlert(authErrorMsg(err.code));
+        }
+      };
+      overlay.querySelector('#login-link').onclick = () => { window.closeOverlay(overlay); openProfileOverlay(); };
+    };
+
+    window.openForgotOverlay = function () {
+      const existing = document.querySelector('.full-page-overlay'); if (existing) existing.remove();
+      const overlay = document.createElement('div'); overlay.className = 'full-page-overlay';
+      overlay.innerHTML = `
   <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
     <div class="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
       <h2 class="text-base font-bold text-gray-900">Reset Password</h2>
@@ -2213,182 +2631,199 @@ window.openForgotOverlay = function() {
       <button id="do-reset" class="w-full py-3 bg-black hover:bg-gray-800 text-white rounded-xl text-xs font-semibold transition-colors">Send Reset Link</button>
     </div>
   </div>`;
-  
-  document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-  overlay.querySelector('#close-forgot').onclick = () => { window.closeOverlay(overlay); };
-  overlay.querySelector('#do-reset').onclick = async () => {
-    const email = overlay.querySelector('#fp-email').value.trim();
-    if (!email) return showAlert('Please enter your email.');
-    try {
-      await sendPasswordResetEmail(auth, email);
-      window.closeOverlay(overlay);
-      showAlert('Password reset link has been sent to your email.');
-    } catch(err) {
-      showAlert(authErrorMsg(err.code));
+
+      document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
+      overlay.querySelector('#close-forgot').onclick = () => { window.closeOverlay(overlay); };
+      overlay.querySelector('#do-reset').onclick = async () => {
+        const email = overlay.querySelector('#fp-email').value.trim();
+        if (!email) return showAlert('Please enter your email.');
+        try {
+          await sendPasswordResetEmail(auth, email);
+          window.closeOverlay(overlay);
+          showAlert('Password reset link has been sent to your email.');
+        } catch (err) {
+          showAlert(authErrorMsg(err.code));
+        }
+      };
+    };
+
+    function setupUI() {
+      $('#cart-btn').onclick = renderCartOverlay;
+      $('#wishlist-btn').onclick = renderWishlistOverlay;
+      $('#chat-btn').onclick = openChatOverlay;
+      $('#track-btn').onclick = window.openTracking;
+      $('#profile-btn').onclick = window.openProfileOverlay;
     }
-  };
-};
 
-function setupUI() {
-  $('#cart-btn').onclick = renderCartOverlay;
-  $('#wishlist-btn').onclick = renderWishlistOverlay;
-  $('#chat-btn').onclick = openChatOverlay;
-  $('#track-btn').onclick = window.openTracking;
-  $('#profile-btn').onclick = window.openProfileOverlay;
-}
-
-function updateProfileUI() {
-  const badge = $('#user-profile-badge');
-  if (currentUser && badge) {
-    badge.classList.remove('hidden');
-    badge.classList.add('flex');
-  } else if (badge) {
-    badge.classList.add('hidden');
-    badge.classList.remove('flex');
-  }
-}
-
-async function init() {
-  setupUI();
-  onAuthStateChanged(auth, async (user) => { 
-    currentUser = user; 
-    updateProfileUI();
-    if (user) { 
-      await loadUserData(); 
-    } else {
-      userDocRef = null;
+    function updateProfileUI() {
+      const badge = $('#user-profile-badge');
+      if (currentUser && badge) {
+        badge.classList.remove('hidden');
+        badge.classList.add('flex');
+      } else if (badge) {
+        badge.classList.add('hidden');
+        badge.classList.remove('flex');
+      }
     }
-  });
-  await loadAllData();
-}
-document.addEventListener('DOMContentLoaded', init);
-</script>
 
-<!-- PROMO BANNER -->
-<div class="fixed top-0 left-0 w-full h-8 bg-gradient-to-r from-purple-800 to-indigo-900 text-white text-center flex items-center justify-center text-[10px] sm:text-xs font-semibold z-50 tracking-wide">
-  <span>🎉 Flat 20% Off! Use code <span class="bg-white/20 px-2 py-0.5 rounded text-yellow-300 font-bold mx-1 select-all">LUXE20</span>. Free shipping on orders over $50.</span>
-</div>
+    async function init() {
+      setupUI();
+      onAuthStateChanged(auth, async (user) => {
+        currentUser = user;
+        updateProfileUI();
+        if (user) {
+          await loadUserData();
+        } else {
+          userDocRef = null;
+        }
+      });
+      await loadAllData();
+    }
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
 
-<!-- HEADER -->
-<header class="fixed top-8 left-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100 h-14 flex items-center">
-  <div class="max-w-7xl mx-auto px-3 sm:px-5 w-full flex items-center justify-between">
-    <a href="#" class="text-lg sm:text-xl font-semibold tracking-tight text-black font-serif">Shobdotori</a>
-    <div class="flex items-center gap-4 sm:gap-5">
-      
-      <!-- Wishlist -->
-      <button id="wishlist-btn" class="relative text-gray-700 hover:text-black transition-colors" aria-label="Wishlist">
-        <span id="wishlist-count" class="absolute -top-1 -right-1.5 h-4 w-4 items-center justify-center rounded-full bg-gray-800 text-white text-[9px] font-bold hidden">0</span>
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-        </svg>
-      </button>
-
-      <!-- Cart -->
-      <button id="cart-btn" class="relative text-gray-700 hover:text-black transition-colors" aria-label="Cart">
-        <span id="cart-count" class="absolute -top-1 -right-1.5 h-4 w-4 items-center justify-center rounded-full bg-gray-800 text-white text-[9px] font-bold hidden">0</span>
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-        </svg>
-      </button>
-
-      <!-- Tracking -->
-      <button id="track-btn" class="text-gray-700 hover:text-black transition-colors" aria-label="Track Order">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0zM13 11V7a1 1 0 00-1-1H3a1 1 0 00-1 1v7m11-3h3l3 3v2h-8m-4 0h6m-12 0h2"></path>
-        </svg>
-      </button>
-
-      <!-- Profile -->
-      <button id="profile-btn" class="relative text-gray-700 hover:text-black transition-colors focus:outline-none" aria-label="Profile">
-        <span id="user-profile-badge" class="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-purple-600 hidden"></span>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="w-5 h-5">
-            <circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" stroke-width="3"/>
-            <circle cx="32" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="3"/>
-            <path d="M16 50c0-8.8 7.2-16 16-16s16 7.2 16 16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-        </svg>
-      </button>
-
-    </div>
+  <!-- PROMO BANNER -->
+  <div
+    class="fixed top-0 left-0 w-full h-8 bg-gradient-to-r from-purple-800 to-indigo-900 text-white text-center flex items-center justify-center text-[10px] sm:text-xs font-semibold z-50 tracking-wide">
+    <span>🎉 Flat 20% Off! Use code <span
+        class="bg-white/20 px-2 py-0.5 rounded text-yellow-300 font-bold mx-1 select-all">LUXE20</span>. Free shipping
+      on orders over $50.</span>
   </div>
-</header>
 
-<!-- LOADING SKELETON -->
-<main id="main-content" class="max-w-7xl mx-auto px-3 sm:px-5 pb-20">
-  <div class="mt-2 space-y-4">
-    <div class="w-full h-[280px] sm:h-[480px] lg:h-[580px] skeleton-bg rounded-2xl sm:rounded-3xl"></div>
-    <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2">
-      <div class="bg-[#F7F5FF] rounded-2xl overflow-hidden p-2">
-        <div class="h-28 sm:h-32 skeleton-bg rounded-xl mb-2"></div>
-        <div class="space-y-1.5">
-          <div class="h-4 skeleton-bg rounded w-3/4"></div>
-          <div class="h-3 skeleton-bg rounded w-1/2"></div>
-        </div>
-        <div class="h-8 skeleton-bg rounded-lg mt-2"></div>
-      </div>
-      <div class="bg-[#F7F5FF] rounded-2xl overflow-hidden p-2">
-        <div class="h-28 sm:h-32 skeleton-bg rounded-xl mb-2"></div>
-        <div class="space-y-1.5">
-          <div class="h-4 skeleton-bg rounded w-3/4"></div>
-          <div class="h-3 skeleton-bg rounded w-1/2"></div>
-        </div>
-        <div class="h-8 skeleton-bg rounded-lg mt-2"></div>
-      </div>
-      <div class="bg-[#F7F5FF] rounded-2xl overflow-hidden p-2">
-        <div class="h-28 sm:h-32 skeleton-bg rounded-xl mb-2"></div>
-        <div class="space-y-1.5">
-          <div class="h-4 skeleton-bg rounded w-3/4"></div>
-          <div class="h-3 skeleton-bg rounded w-1/2"></div>
-        </div>
-        <div class="h-8 skeleton-bg rounded-lg mt-2"></div>
-      </div>
-      <div class="bg-[#F7F5FF] rounded-2xl overflow-hidden p-2">
-        <div class="h-28 sm:h-32 skeleton-bg rounded-xl mb-2"></div>
-        <div class="space-y-1.5">
-          <div class="h-4 skeleton-bg rounded w-3/4"></div>
-          <div class="h-3 skeleton-bg rounded w-1/2"></div>
-        </div>
-        <div class="h-8 skeleton-bg rounded-lg mt-2"></div>
+  <!-- HEADER -->
+  <header
+    class="fixed top-8 left-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100 h-14 flex items-center">
+    <div class="max-w-7xl mx-auto px-3 sm:px-5 w-full flex items-center justify-between">
+      <a href="#" class="text-lg sm:text-xl font-semibold tracking-tight text-black font-serif">Shobdotori</a>
+      <div class="flex items-center gap-4 sm:gap-5">
+
+        <!-- Wishlist -->
+        <button id="wishlist-btn" class="relative text-gray-700 hover:text-black transition-colors"
+          aria-label="Wishlist">
+          <span id="wishlist-count"
+            class="absolute -top-1 -right-1.5 h-4 w-4 items-center justify-center rounded-full bg-gray-800 text-white text-[9px] font-bold hidden">0</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+            </path>
+          </svg>
+        </button>
+
+        <!-- Cart -->
+        <button id="cart-btn" class="relative text-gray-700 hover:text-black transition-colors" aria-label="Cart">
+          <span id="cart-count"
+            class="absolute -top-1 -right-1.5 h-4 w-4 items-center justify-center rounded-full bg-gray-800 text-white text-[9px] font-bold hidden">0</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+          </svg>
+        </button>
+
+        <!-- Tracking -->
+        <button id="track-btn" class="text-gray-700 hover:text-black transition-colors" aria-label="Track Order">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0zM13 11V7a1 1 0 00-1-1H3a1 1 0 00-1 1v7m11-3h3l3 3v2h-8m-4 0h6m-12 0h2">
+            </path>
+          </svg>
+        </button>
+
+        <!-- Profile -->
+        <button id="profile-btn" class="relative text-gray-700 hover:text-black transition-colors focus:outline-none"
+          aria-label="Profile">
+          <span id="user-profile-badge"
+            class="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-purple-600 hidden"></span>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="w-5 h-5">
+            <circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" stroke-width="3" />
+            <circle cx="32" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="3" />
+            <path d="M16 50c0-8.8 7.2-16 16-16s16 7.2 16 16" fill="none" stroke="currentColor" stroke-width="3"
+              stroke-linecap="round" />
+          </svg>
+        </button>
+
       </div>
     </div>
-  </div>
-</main>
+  </header>
 
-<!-- FOOTER -->
-<footer class="relative mt-16 mb-8 px-3 sm:px-5">
-  <div class="relative bg-[#0A0A0B] rounded-2xl sm:rounded-3xl text-white px-6 sm:px-10 py-10 sm:py-14 animate-float-subtle text-center">
-    <div class="flex flex-col sm:flex-row justify-between items-center gap-6">
-      <div class="text-center sm:text-left">
-        <a href="#" class="text-xl font-semibold font-serif">Shobdotori</a>
-        <p class="text-xs text-gray-300 mt-2">Premium Curated Bookstore Experience.</p>
-      </div>
-      
-      <div class="flex gap-4 flex-wrap justify-center my-3" id="footer-social-container"></div>
-
-      <div class="flex gap-6 text-xs text-gray-300">
-        <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-        <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+  <!-- LOADING SKELETON -->
+  <main id="main-content" class="max-w-7xl mx-auto px-3 sm:px-5 pb-20">
+    <div class="mt-2 space-y-4">
+      <div class="w-full h-[280px] sm:h-[480px] lg:h-[580px] skeleton-bg rounded-2xl sm:rounded-3xl"></div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2">
+        <div class="bg-[#F7F5FF] rounded-2xl overflow-hidden p-2">
+          <div class="h-28 sm:h-32 skeleton-bg rounded-xl mb-2"></div>
+          <div class="space-y-1.5">
+            <div class="h-4 skeleton-bg rounded w-3/4"></div>
+            <div class="h-3 skeleton-bg rounded w-1/2"></div>
+          </div>
+          <div class="h-8 skeleton-bg rounded-lg mt-2"></div>
+        </div>
+        <div class="bg-[#F7F5FF] rounded-2xl overflow-hidden p-2">
+          <div class="h-28 sm:h-32 skeleton-bg rounded-xl mb-2"></div>
+          <div class="space-y-1.5">
+            <div class="h-4 skeleton-bg rounded w-3/4"></div>
+            <div class="h-3 skeleton-bg rounded w-1/2"></div>
+          </div>
+          <div class="h-8 skeleton-bg rounded-lg mt-2"></div>
+        </div>
+        <div class="bg-[#F7F5FF] rounded-2xl overflow-hidden p-2">
+          <div class="h-28 sm:h-32 skeleton-bg rounded-xl mb-2"></div>
+          <div class="space-y-1.5">
+            <div class="h-4 skeleton-bg rounded w-3/4"></div>
+            <div class="h-3 skeleton-bg rounded w-1/2"></div>
+          </div>
+          <div class="h-8 skeleton-bg rounded-lg mt-2"></div>
+        </div>
+        <div class="bg-[#F7F5FF] rounded-2xl overflow-hidden p-2">
+          <div class="h-28 sm:h-32 skeleton-bg rounded-xl mb-2"></div>
+          <div class="space-y-1.5">
+            <div class="h-4 skeleton-bg rounded w-3/4"></div>
+            <div class="h-3 skeleton-bg rounded w-1/2"></div>
+          </div>
+          <div class="h-8 skeleton-bg rounded-lg mt-2"></div>
+        </div>
       </div>
     </div>
-    <div class="mt-8 pt-5 border-t border-white/10 text-center text-[10px] text-gray-300">
-      <p>&copy; 2026 Shobdotori Store. All Rights Reserved.</p>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="relative mt-16 mb-8 px-3 sm:px-5">
+    <div
+      class="relative bg-[#0A0A0B] rounded-2xl sm:rounded-3xl text-white px-6 sm:px-10 py-10 sm:py-14 animate-float-subtle text-center">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-6">
+        <div class="text-center sm:text-left">
+          <a href="#" class="text-xl font-semibold font-serif">Shobdotori</a>
+          <p class="text-xs text-gray-300 mt-2">Premium Curated Bookstore Experience.</p>
+        </div>
+
+        <div class="flex gap-4 flex-wrap justify-center my-3" id="footer-social-container"></div>
+
+        <div class="flex gap-6 text-xs text-gray-300">
+          <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+        </div>
+      </div>
+      <div class="mt-8 pt-5 border-t border-white/10 text-center text-[10px] text-gray-300">
+        <p>&copy; 2026 Shobdotori Store. All Rights Reserved.</p>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-<!-- FLOATING CHAT BUTTON -->
-<button id="chat-btn" class="fixed bottom-10 right-6 z-40 w-14 h-14 bg-purple-600 hover:bg-purple-700 hover:scale-110 active:scale-95 text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300" aria-label="Chat with us">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-7 h-7 text-white" fill="none">
-    <path
-      d="M7 4C5.343 4 4 5.343 4 7V13C4 14.657 5.343 16 7 16H8V20L12.5 16H17C18.657 16 20 14.657 20 13V7C20 5.343 18.657 4 17 4H7Z"
-      fill="currentColor"
-    />
-    <rect x="8" y="8" width="8" height="1.5" rx="0.75" fill="white"/>
-    <rect x="8" y="11" width="6" height="1.5" rx="0.75" fill="white"/>
-  </svg>
-</button>
+  <!-- FLOATING CHAT BUTTON -->
+  <button id="chat-btn"
+    class="fixed bottom-10 right-6 z-40 w-14 h-14 bg-purple-600 hover:bg-purple-700 hover:scale-110 active:scale-95 text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300"
+    aria-label="Chat with us">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-7 h-7 text-white" fill="none">
+      <path
+        d="M7 4C5.343 4 4 5.343 4 7V13C4 14.657 5.343 16 7 16H8V20L12.5 16H17C18.657 16 20 14.657 20 13V7C20 5.343 18.657 4 17 4H7Z"
+        fill="currentColor" />
+      <rect x="8" y="8" width="8" height="1.5" rx="0.75" fill="white" />
+      <rect x="8" y="11" width="6" height="1.5" rx="0.75" fill="white" />
+    </svg>
+  </button>
 
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
 </body>
+
 </html>
