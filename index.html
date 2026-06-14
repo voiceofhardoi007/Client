@@ -431,11 +431,9 @@
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <!-- Preload Google Fonts with font-display: swap -->
   <link rel="preload"
-    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=Playfair+Display:ital,wght@1,600&display=swap&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=Playfair+Display:ital,wght@1,600&display=swap"
     as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=Playfair+Display:ital,wght@1,600&display=swap&display=swap"
-    rel="stylesheet">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet"></noscript>
   <!-- Optimize Font Awesome with font-display: swap -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print"
     onload="this.onload=null;this.media='all'">
@@ -1071,7 +1069,7 @@
       return `
   <div class="group cursor-pointer reveal-on-scroll hover-lift text-center" onclick="window.goToProductDetail('${product.id}')">
     <div class="book-cover-wrap mb-1.5 shadow-sm">
-      <img src="${product.image || ''}" alt="${product.name}" class="book-cover-img" onerror="this.style.display='none';this.parentElement.style.background='#F3F0FF';" ${imageAttrs}>
+      <img src="${product.image || ''}" alt="${product.name}" class="book-cover-img" width="150" height="200" onerror="this.style.display='none';this.parentElement.style.background='#F3F0FF';" ${imageAttrs}>
       ${product.badge ? `<span class="absolute top-1 left-1 px-1 py-0.5 rounded-full bg-white/90 backdrop-blur-sm text-[7px] font-bold uppercase text-gray-900">${product.badge}</span>` : ''}
       ${disc ? `<span class="absolute top-1 right-1 px-1 py-0.5 rounded-full bg-red-500 text-white text-[7px] font-bold">-${disc}%</span>` : ''}
     </div>
@@ -1355,7 +1353,7 @@
       <div class="min-w-[200px] sm:min-w-[240px] bg-slate-50/50 hover:bg-white border border-gray-100 hover:border-purple-100 rounded-2xl p-3 shadow-sm hover:shadow-md transition-all duration-300 snap-start flex flex-col justify-between group cursor-pointer" onclick="window.goToProductDetail('${p.id}')">
         <div>
           <div class="aspect-[3/4] rounded-xl overflow-hidden bg-white shadow-sm border border-gray-100/50 relative mb-3">
-            <img src="${p.image || ''}" alt="${p.name}" class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300" loading="lazy">
+            <img src="${p.image || ''}" alt="${p.name}" class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300" width="200" height="267" loading="lazy">
             ${p.badge ? `<span class="absolute top-2 left-2 px-1.5 py-0.5 rounded-full bg-purple-600 text-white text-[8px] font-bold uppercase tracking-wider">${p.badge}</span>` : ''}
           </div>
           <h3 class="text-xs font-bold text-gray-900 line-clamp-1 group-hover:text-purple-600 transition-colors">${p.name}</h3>
@@ -1568,7 +1566,7 @@
             return `
         <div class="group cursor-pointer hover-lift text-center opacity-0 animate-fade-in-up" onclick="window.goToProductDetail('${p.id}')">
           <div class="book-cover-wrap mb-1.5 shadow-sm">
-            <img src="${p.image || ''}" alt="${p.name}" class="book-cover-img" onerror="this.style.display='none';this.parentElement.style.background='#F3F0FF';" loading="lazy">
+            <img src="${p.image || ''}" alt="${p.name}" class="book-cover-img" width="150" height="200" onerror="this.style.display='none';this.parentElement.style.background='#F3F0FF';" loading="lazy">
             ${p.badge ? `<span class="absolute top-1 left-1 px-1 py-0.5 rounded-full bg-white/90 backdrop-blur-sm text-[7px] font-bold uppercase text-gray-900">${product.badge}</span>` : ''}
             ${disc ? `<span class="absolute top-1 right-1 px-1 py-0.5 rounded-full bg-red-500 text-white text-[7px] font-bold">-${disc}%</span>` : ''}
           </div>
@@ -1616,7 +1614,7 @@
         return `
           <div class="group cursor-pointer hover-lift text-center" onclick="window.goToProductDetail('${p.id}')">
             <div class="book-cover-wrap mb-1.5 shadow-sm">
-              <img src="${p.image || ''}" alt="${p.name}" class="book-cover-img" onerror="this.style.display='none';this.parentElement.style.background='#F3F0FF';" loading="lazy">
+              <img src="${p.image || ''}" alt="${p.name}" class="book-cover-img" width="150" height="200" onerror="this.style.display='none';this.parentElement.style.background='#F3F0FF';" loading="lazy">
               ${p.badge ? `<span class="absolute top-1 left-1 px-1 py-0.5 rounded-full bg-white/90 backdrop-blur-sm text-[7px] font-bold uppercase text-gray-900">${p.badge}</span>` : ''}
               ${disc ? `<span class="absolute top-1 right-1 px-1 py-0.5 rounded-full bg-red-500 text-white text-[7px] font-bold">-${disc}%</span>` : ''}
             </div>
@@ -1674,7 +1672,7 @@
     <div class="overlay-scroll pb-10">
       <div class="max-w-[280px] sm:max-w-[340px] mx-auto mt-6">
         <div class="book-cover-wrap shadow-md border border-gray-100/50">
-          <img src="${product.image || ''}" alt="${product.name}" class="book-cover-img" loading="lazy">
+          <img src="${product.image || ''}" alt="${product.name}" class="book-cover-img" width="280" height="373" loading="lazy">
         </div>
       </div>
       <div class="px-6 py-6 space-y-5 text-left">
@@ -1776,7 +1774,7 @@
         const prod = products.find(p => p.id === item.id);
         if (prod) itemsHtml += `
     <div class="flex gap-3 items-center bg-gray-50 rounded-xl p-3" data-id="${prod.id}" data-price="${prod.price}">
-      <img src="${prod.image || ''}" class="custom-cart-wish-img" loading="lazy">
+      <img src="${prod.image || ''}" class="custom-cart-wish-img" width="50" height="66" loading="lazy">
       <div class="flex-1"><p class="text-xs font-medium text-gray-900">${prod.name}</p>
         <div class="flex items-center gap-2 mt-1.5"><span class="text-[10px] text-gray-500">Qty:</span>
           <button class="w-6 h-6 rounded-full border bg-white flex items-center justify-center text-xs qty-dec">-</button>
@@ -2039,7 +2037,7 @@
           const p = products.find(pr => String(pr.id) === String(item.id));
           return `
       <div class="flex gap-4 items-center bg-gray-50 rounded-2xl p-3 border border-gray-100">
-        <img src="${p.image || ''}" class="custom-cart-wish-img" loading="lazy">
+        <img src="${p.image || ''}" class="custom-cart-wish-img" width="50" height="66" loading="lazy">
         <div class="flex-1 min-w-0">
           <p class="text-xs font-bold text-gray-900 truncate">${p.name}</p>
           <p class="text-[10px] text-gray-500 mt-0.5">${formatPrice(p.price)} &times; ${item.qty}</p>
@@ -2114,7 +2112,7 @@
         const wishProds = products.filter(p => validWishlist.includes(p.id));
         container.innerHTML = wishProds.map(p => `
     <div class="flex gap-4 items-center bg-gray-50 rounded-2xl p-3 border border-gray-100">
-      <img src="${p.image || ''}" class="custom-cart-wish-img" loading="lazy">
+      <img src="${p.image || ''}" class="custom-cart-wish-img" width="50" height="66" loading="lazy">
       <div class="flex-1 min-w-0">
         <p class="text-xs font-bold text-gray-900 truncate">${p.name}</p>
         <p class="text-[10px] text-gray-500 mt-0.5">${formatPrice(p.price)}</p>
@@ -2821,8 +2819,6 @@
     </svg>
   </button>
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
 
 </body>
 
