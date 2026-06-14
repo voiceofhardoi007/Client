@@ -11,15 +11,128 @@
   <meta property="og:description" content="Discover handpicked books at Shobdotori Premium Store.">
   <meta property="og:type" content="website">
   
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com" defer></script>
+
+  <!-- Inlined critical CSS -->
+  <style>
+    /* CSS RESET & FOUC PREVENTION */
+    * { box-sizing: border-box; }
+    html, body { max-width: 100vw; overflow-x: hidden; position: relative; }
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      touch-action: manipulation;
+      margin: 0;
+      padding-top: 56px;
+      width: 100%;
+      overflow-x: hidden;
+      opacity: 0;
+      transition: opacity 0.35s ease-out;
+    }
+    body.ready { opacity: 1; }
+    .font-serif { font-family: 'Playfair Display', serif; font-style: italic; }
+    /* STRUCTURAL LAYOUTS */
+    #main-content { max-width: 80rem; margin-left: auto; margin-right: auto; padding-left: 0.75rem; padding-right: 0.75rem; padding-bottom: 5rem; }
+    @media (min-width: 640px) {
+      #main-content { padding-left: 1.25rem; padding-right: 1.25rem; }
+    }
+    /* BOOK COVER ASPECT RATIO */
+    .book-cover-wrap { aspect-ratio: 3 / 4; background-color: #f8fafc; border-radius: 0.75rem; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 0.5rem; border: 1px solid #f1f5f9; position: relative; }
+    .book-cover-img { max-width: 100%; max-height: 100%; object-fit: contain; }
+    /* REVEAL-ON-SCROLL ANIMATIONS */
+    .reveal-on-scroll { opacity: 0; transform: translateY(35px) scale(0.98); filter: blur(8px); transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s cubic-bezier(0.16, 1, 0.3, 1); will-change: opacity, transform, filter; }
+    .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); }
+    /* OVERLAY MODALS */
+    .full-page-overlay { position: fixed; inset: 0; z-index: 4000; background: white; display: flex; flex-direction: column; width: 100%; max-width: 100vw; height: 100%; overflow: hidden; opacity: 0; animation: overlayOpen 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards; will-change: transform, opacity; }
+    @keyframes overlayOpen { 0% { opacity: 0; transform: translateY(30px) scale(0.96); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+    /* HEADER STYLES (to prevent FOUC */
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; height: 56px; }
+    @media (max-width: 640px) { body { padding-top: 50px; } header { height: 50px; } }
+    /* Font Awesome font-display: swap override */
+    @font-face {
+      font-family: 'FontAwesome6Brands-Regular';
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'FontAwesome6Free-Solid';
+      font-display: swap;
+    }
+    /* Critical Tailwind CSS for above-the-fold content */
+    .relative { position: relative; }
+    .absolute { position: absolute; }
+    .fixed { position: fixed; }
+    .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+    .z-20 { z-index: 20; }
+    .z-50 { z-index: 50; }
+    .w-full { width: 100%; }
+    .h-full { height: 100%; }
+    .overflow-hidden { overflow: hidden; }
+    .mt-2 { margin-top: 0.5rem; }
+    .mt-8 { margin-top: 2rem; }
+    .mb-3 { margin-bottom: 0.75rem; }
+    .mb-5 { margin-bottom: 1.25rem; }
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-center { justify-content: center; }
+    .justify-between { justify-content: space-between; }
+    .gap-4 { gap: 1rem; }
+    .gap-6 { gap: 1.5rem; }
+    .grid { display: grid; }
+    .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .p-4 { padding: 1rem; }
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .pl-6 { padding-left: 1.5rem; }
+    .pr-4 { padding-right: 1rem; }
+    .py-2\.5 { padding-top: 0.625rem; padding-bottom: 0.625rem; }
+    .text-center { text-align: center; }
+    .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+    .text-xs { font-size: 0.75rem; line-height: 1rem; }
+    .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+    .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+    .font-bold { font-weight: 700; }
+    .font-semibold { font-weight: 600; }
+    .font-serif { font-family: 'Playfair Display', serif; font-style: italic; }
+    .text-gray-500 { color: rgb(107 114 128); }
+    .text-gray-600 { color: rgb(75 85 99); }
+    .text-gray-900 { color: rgb(17 24 39); }
+    .bg-white { background-color: rgb(255 255 255); }
+    .bg-gray-50\/70 { background-color: rgba(249 250 251 / 0.7); }
+    .bg-\[\#F3F0FF\] { background-color: #F3F0FF; }
+    .rounded-full { border-radius: 9999px; }
+    .shadow-lg { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+    .inline-flex { display: inline-flex; }
+    .pointer-events-none { pointer-events: none; }
+    .tracking-tighter { letter-spacing: -0.05em; }
+    .transition-transform { transition-property: transform; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+    .hover\:scale-105:hover { transform: scale(1.05); }
+    @media (min-width: 640px) {
+      .sm\:flex-row { flex-direction: row; }
+      .sm\:text-left { text-align: left; }
+      .sm\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+      .sm\:text-base { font-size: 1rem; line-height: 1.5rem; }
+      .sm\:px-10 { padding-left: 2.5rem; padding-right: 2.5rem; }
+      .sm\:py-14 { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+      .sm\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .sm\:h-\[480px\] { height: 480px; }
+      .sm\:rounded-3xl { border-radius: 1.5rem; }
+      .sm\:gap-5 { gap: 1.25rem; }
+    }
+    @media (min-width: 1024px) {
+      .lg\:text-5xl { font-size: 3rem; line-height: 1; }
+      .lg\:h-\[580px\] { height: 580px; }
+    }
+  </style>
   <link rel="stylesheet" href="style.css">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://www.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.media='all'">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <!-- Preload Google Fonts with font-display: swap -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=Playfair+Display:ital,wght@1,600&display=swap&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=Playfair+Display:ital,wght@1,600&display=swap&display=swap" rel="stylesheet">
+  <!-- Optimize Font Awesome with font-display: swap -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print" onload="this.onload=null;this.media='all'">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"></noscript>
   
   <!-- Three.js and GLTFLoader Integrations for Instant 3D Load - Disabled for now -->
@@ -2273,6 +2386,9 @@ document.addEventListener('DOMContentLoaded', init);
     <rect x="8" y="11" width="6" height="1.5" rx="0.75" fill="white"/>
   </svg>
 </button>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
 
 </body>
 </html>
