@@ -1,2827 +1,446 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
-
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Shobdotori Premium Store - Your Premier Literary Haven</title>
-  <meta name="description"
-    content="Discover handpicked books at Shobdotori Premium Store. Fiction, non-fiction, and more with free shipping on orders over $50.">
-  <meta name="keywords" content="books, bookstore, fiction, non-fiction, premium books, Shobdotori">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shobdotori — Premium Curated Bookstore | Buy Books Online</title>
+  <meta name="description" content="Shobdotori is a premium curated bookstore offering 500+ handpicked books. Shop bestselling fiction, non-fiction, sci-fi, and self-help. Free shipping over $50.">
+  <meta name="keywords" content="buy books online, bookstore, curated books, premium books, fiction, non-fiction, bestsellers, Shobdotori">
   <meta name="author" content="Shobdotori">
-  <meta property="og:title" content="Shobdotori Premium Store - Your Premier Literary Haven">
-  <meta property="og:description" content="Discover handpicked books at Shobdotori Premium Store.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <link rel="canonical" href="https://shobdotori.com/">
   <meta property="og:type" content="website">
-
-
-  <!-- Inlined critical CSS -->
-  <style>
-    /* CSS RESET & FOUC PREVENTION */
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      max-width: 100vw;
-      overflow-x: hidden;
-      position: relative;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      -webkit-font-smoothing: antialiased;
-      touch-action: manipulation;
-      margin: 0;
-      padding-top: 56px;
-      width: 100%;
-      overflow-x: hidden;
-      opacity: 0;
-      transition: opacity 0.35s ease-out;
-    }
-
-    body.ready {
-      opacity: 1;
-    }
-
-    .font-serif {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-    }
-
-    /* STRUCTURAL LAYOUTS */
-    #main-content {
-      max-width: 80rem;
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 0.75rem;
-      padding-right: 0.75rem;
-      padding-bottom: 5rem;
-    }
-
-    @media (min-width: 640px) {
-      #main-content {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-      }
-    }
-
-    /* BOOK COVER ASPECT RATIO */
-    .book-cover-wrap {
-      aspect-ratio: 3 / 4;
-      background-color: #f8fafc;
-      border-radius: 0.75rem;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.5rem;
-      border: 1px solid #f1f5f9;
-      position: relative;
-    }
-
-    .book-cover-img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
-
-    /* REVEAL-ON-SCROLL ANIMATIONS */
-    .reveal-on-scroll {
-      opacity: 0;
-      transform: translateY(35px) scale(0.98);
-      filter: blur(8px);
-      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: opacity, transform, filter;
-    }
-
-    .reveal-on-scroll.is-visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      filter: blur(0px);
-    }
-
-    /* OVERLAY MODALS */
-    .full-page-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 4000;
-      background: white;
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      max-width: 100vw;
-      height: 100%;
-      overflow: hidden;
-      opacity: 0;
-      animation: overlayOpen 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      will-change: transform, opacity;
-    }
-
-    @keyframes overlayOpen {
-      0% {
-        opacity: 0;
-        transform: translateY(30px) scale(0.96);
-      }
-
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    /* HEADER STYLES (to prevent FOUC */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 50;
-      height: 56px;
-    }
-
-    @media (max-width: 640px) {
-      body {
-        padding-top: 50px;
-      }
-
-      header {
-        height: 50px;
-      }
-    }
-
-    /* Font Awesome font-display: swap override */
-    @font-face {
-      font-family: 'FontAwesome6Brands-Regular';
-      font-display: swap;
-    }
-
-    @font-face {
-      font-family: 'FontAwesome6Free-Solid';
-      font-display: swap;
-    }
-
-    /* Critical Tailwind CSS for above-the-fold content */
-    .relative {
-      position: relative;
-    }
-
-    .absolute {
-      position: absolute;
-    }
-
-    .fixed {
-      position: fixed;
-    }
-
-    .inset-0 {
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-    }
-
-    .z-20 {
-      z-index: 20;
-    }
-
-    .z-50 {
-      z-index: 50;
-    }
-
-    .w-full {
-      width: 100%;
-    }
-
-    .h-full {
-      height: 100%;
-    }
-
-    .overflow-hidden {
-      overflow: hidden;
-    }
-
-    .mt-2 {
-      margin-top: 0.5rem;
-    }
-
-    .mt-8 {
-      margin-top: 2rem;
-    }
-
-    .mb-3 {
-      margin-bottom: 0.75rem;
-    }
-
-    .mb-5 {
-      margin-bottom: 1.25rem;
-    }
-
-    .flex {
-      display: flex;
-    }
-
-    .flex-col {
-      flex-direction: column;
-    }
-
-    .items-center {
-      align-items: center;
-    }
-
-    .justify-center {
-      justify-content: center;
-    }
-
-    .justify-between {
-      justify-content: space-between;
-    }
-
-    .gap-4 {
-      gap: 1rem;
-    }
-
-    .gap-6 {
-      gap: 1.5rem;
-    }
-
-    .grid {
-      display: grid;
-    }
-
-    .grid-cols-2 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .p-4 {
-      padding: 1rem;
-    }
-
-    .px-4 {
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-
-    .pl-6 {
-      padding-left: 1.5rem;
-    }
-
-    .pr-4 {
-      padding-right: 1rem;
-    }
-
-    .py-2\.5 {
-      padding-top: 0.625rem;
-      padding-bottom: 0.625rem;
-    }
-
-    .text-center {
-      text-align: center;
-    }
-
-    .text-2xl {
-      font-size: 1.5rem;
-      line-height: 2rem;
-    }
-
-    .text-xs {
-      font-size: 0.75rem;
-      line-height: 1rem;
-    }
-
-    .text-sm {
-      font-size: 0.875rem;
-      line-height: 1.25rem;
-    }
-
-    .text-lg {
-      font-size: 1.125rem;
-      line-height: 1.75rem;
-    }
-
-    .font-bold {
-      font-weight: 700;
-    }
-
-    .font-semibold {
-      font-weight: 600;
-    }
-
-    .font-serif {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-    }
-
-    .text-gray-500 {
-      color: rgb(107 114 128);
-    }
-
-    .text-gray-600 {
-      color: rgb(75 85 99);
-    }
-
-    .text-gray-900 {
-      color: rgb(17 24 39);
-    }
-
-    .bg-white {
-      background-color: rgb(255 255 255);
-    }
-
-    .bg-gray-50\/70 {
-      background-color: rgba(249 250 251 / 0.7);
-    }
-
-    .bg-\[\#F3F0FF\] {
-      background-color: #F3F0FF;
-    }
-
-    .rounded-full {
-      border-radius: 9999px;
-    }
-
-    .shadow-lg {
-      box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    }
-
-    .inline-flex {
-      display: inline-flex;
-    }
-
-    .pointer-events-none {
-      pointer-events: none;
-    }
-
-    .tracking-tighter {
-      letter-spacing: -0.05em;
-    }
-
-    .transition-transform {
-      transition-property: transform;
-      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-      transition-duration: 150ms;
-    }
-
-    .hover\:scale-105:hover {
-      transform: scale(1.05);
-    }
-
-    @media (min-width: 640px) {
-      .sm\:flex-row {
-        flex-direction: row;
-      }
-
-      .sm\:text-left {
-        text-align: left;
-      }
-
-      .sm\:text-4xl {
-        font-size: 2.25rem;
-        line-height: 2.5rem;
-      }
-
-      .sm\:text-base {
-        font-size: 1rem;
-        line-height: 1.5rem;
-      }
-
-      .sm\:px-10 {
-        padding-left: 2.5rem;
-        padding-right: 2.5rem;
-      }
-
-      .sm\:py-14 {
-        padding-top: 3.5rem;
-        padding-bottom: 3.5rem;
-      }
-
-      .sm\:grid-cols-4 {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-
-      .sm\:h-\[480px\] {
-        height: 480px;
-      }
-
-      .sm\:rounded-3xl {
-        border-radius: 1.5rem;
-      }
-
-      .sm\:gap-5 {
-        gap: 1.25rem;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .lg\:text-5xl {
-        font-size: 3rem;
-        line-height: 1;
-      }
-
-      .lg\:h-\[580px\] {
-        height: 580px;
-      }
-    }
-  </style>
-  <!-- Tailwind CSS - loaded non-blocking after critical CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css">
-
+  <meta property="og:title" content="Shobdotori — Premium Curated Bookstore">
+  <meta property="og:description" content="Discover 500+ handpicked literary treasures. Shop bestselling fiction, non-fiction, sci-fi & more. Free shipping over $50.">
+  <meta property="og:url" content="https://shobdotori.com/">
+  <meta property="og:site_name" content="Shobdotori">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shobdotori — Premium Curated Bookstore">
+  <meta name="twitter:description" content="Discover 500+ handpicked literary treasures. Free shipping over $50.">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://www.gstatic.com">
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  <!-- Preload Google Fonts with font-display: swap -->
-  <link rel="preload"
-    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=Playfair+Display:ital,wght@1,600&display=swap"
-    as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet"></noscript>
-  <!-- Optimize Font Awesome with font-display: swap -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="print"
-    onload="this.onload=null;this.media='all'">
-  <noscript>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  </noscript>
-
-  <!-- Three.js and GLTFLoader Integrations for Instant 3D Load - Disabled for now -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js" defer></script> -->
-
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap"></noscript>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BookStore",
+    "name": "Shobdotori",
+    "description": "Premium curated bookstore with 500+ handpicked literary treasures.",
+    "url": "https://shobdotori.com",
+    "currenciesAccepted": "USD",
+    "priceRange": "$10 - $50",
+    "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "10342"},
+    "offers": {"@type": "AggregateOffer", "lowPrice": "10.99", "highPrice": "49.99", "priceCurrency": "USD", "offerCount": "500"}
+  }
+  </script>
   <style>
-    * {
-      box-sizing: border-box;
+    :root {
+      --bg: #ffffff;
+      --bg-warm: #faf8f5;
+      --bg-soft: #f5f3f0;
+      --bg-muted: #edeae6;
+      --border: #e8e5e0;
+      --border-light: #f0ede8;
+      --glass: rgba(255,255,255,.85);
+      --glass-border: rgba(0,0,0,.06);
+      --primary: #7c3aed;
+      --primary-light: #8b5cf6;
+      --primary-dark: #6d28d9;
+      --primary-soft: #f0ebff;
+      --primary-softer: #f8f5ff;
+      --secondary: #4f46e5;
+      --accent: #e11d48;
+      --accent-soft: #fff1f3;
+      --gold: #d97706;
+      --gold-light: #fbbf24;
+      --success: #059669;
+      --text: #1a1a2e;
+      --text-2: #52525b;
+      --text-3: #a1a1aa;
+      --r-sm: .375rem; --r-md: .625rem; --r-lg: 1rem; --r-xl: 1.25rem; --r-2xl: 1.5rem; --r-full: 9999px;
+      --ease: cubic-bezier(.16,1,.3,1);
+      --tf: 180ms var(--ease);
+      --tb: 350ms var(--ease);
     }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    body{font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;height:auto;display:block}
+    a{text-decoration:none;color:inherit}
+    button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+    ul,ol{list-style:none}
+    :focus-visible{outline:2px solid var(--primary);outline-offset:2px;border-radius:var(--r-sm)}
 
-    html,
-    body {
-      max-width: 100vw;
-      overflow-x: hidden;
-      position: relative;
-    }
+    .skip{position:absolute;top:-999px;left:1rem;background:var(--accent);color:#fff;padding:.75rem 1.5rem;border-radius:0 0 var(--r-md) var(--r-md);font-weight:700;z-index:9999;font-size:.9rem}
+    .skip:focus{top:0}
+    .wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 1rem}
+    @media(min-width:768px){.wrap{padding:0 1.5rem}}
 
-    body {
-      font-family: 'Inter', sans-serif;
-      -webkit-font-smoothing: antialiased;
-      touch-action: manipulation;
-      margin: 0;
-      padding-top: 88px;
-      width: 100%;
-      overflow-x: hidden;
-    }
+    /* === Promo === */
+    .promo{background:linear-gradient(90deg,var(--primary-dark),var(--secondary),var(--primary-dark));background-size:200% 100%;animation:shimmer 8s ease infinite;color:#fff;text-align:center;padding:.5rem 1rem;font-size:.78rem;font-weight:600;letter-spacing:.02em;position:relative;z-index:200}
+    .promo-code{background:rgba(255,255,255,.22);padding:.12rem .55rem;border-radius:var(--r-sm);font-weight:800;letter-spacing:.06em;margin:0 .3rem}
+    @keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 
-    .font-serif {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-    }
+    /* === Header === */
+    .hdr{position:sticky;top:0;z-index:150;background:var(--glass);backdrop-filter:blur(18px) saturate(1.6);-webkit-backdrop-filter:blur(18px) saturate(1.6);border-bottom:1px solid var(--glass-border);padding:.6rem 0}
+    .hdr-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:800;color:var(--text);letter-spacing:-.02em;display:flex;align-items:center;gap:.5rem}
+    .logo-icon{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:var(--r-md);background:linear-gradient(135deg,var(--primary),var(--accent));font-size:.9rem;color:#fff}
+    .nav-desk{display:none;align-items:center;gap:.15rem}
+    .nav-link{font-size:.88rem;font-weight:500;color:var(--text-2);padding:.45rem .9rem;border-radius:var(--r-full);transition:color var(--tf),background var(--tf)}
+    .nav-link:hover,.nav-link:focus-visible{color:var(--text);background:var(--bg-soft)}
+    .hdr-actions{display:flex;align-items:center;gap:.3rem}
+    .hdr-cta{display:none;align-items:center;gap:.4rem;padding:.5rem 1.2rem;border-radius:var(--r-full);background:var(--primary);color:#fff;font-weight:600;font-size:.85rem;transition:transform var(--tf),box-shadow var(--tf);box-shadow:0 2px 12px rgba(124,58,237,.25)}
+    .hdr-cta:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(124,58,237,.35)}
+    .hdr-cart{position:relative;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:var(--r-md);color:var(--text-2);transition:color var(--tf),background var(--tf)}
+    .hdr-cart:hover{color:var(--text);background:var(--bg-soft)}
+    .hdr-cart svg{width:22px;height:22px}
+    .cart-badge{position:absolute;top:2px;right:2px;width:17px;height:17px;border-radius:50%;background:var(--accent);color:#fff;font-size:.6rem;font-weight:800;display:none;align-items:center;justify-content:center}
+    .menu-btn{display:flex;flex-direction:column;justify-content:center;align-items:center;width:40px;height:40px;border-radius:var(--r-md);gap:5px;transition:background var(--tf)}
+    .menu-btn:hover{background:var(--bg-soft)}
+    .menu-btn span{display:block;width:20px;height:2px;background:var(--text);border-radius:2px;transition:transform var(--tb),opacity var(--tb)}
+    .menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+    .menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    @media(min-width:768px){.nav-desk{display:flex}.hdr-cta{display:inline-flex}.menu-btn{display:none}}
 
-    .reveal-on-scroll {
-      opacity: 0;
-      transform: translateY(35px) scale(0.98);
-      filter: blur(8px);
-      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-        filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+    /* === Mobile Nav === */
+    .mobile-nav{position:fixed;inset:0;background:rgba(255,255,255,.97);backdrop-filter:blur(24px);z-index:140;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:.75rem;opacity:0;pointer-events:none;transition:opacity var(--tb)}
+    .mobile-nav[aria-hidden="false"]{opacity:1;pointer-events:all}
+    .mobile-nav a{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:600;color:var(--text-2);padding:.6rem 2rem;border-radius:var(--r-lg);transition:color var(--tf),background var(--tf),transform var(--tb),opacity var(--tb);transform:translateY(15px);opacity:0}
+    .mobile-nav[aria-hidden="false"] a{transform:translateY(0);opacity:1}
+    .mobile-nav a:nth-child(1){transition-delay:50ms}.mobile-nav a:nth-child(2){transition-delay:100ms}.mobile-nav a:nth-child(3){transition-delay:150ms}.mobile-nav a:nth-child(4){transition-delay:200ms}.mobile-nav a:nth-child(5){transition-delay:250ms}
+    .mobile-nav a:hover{color:var(--primary);background:var(--primary-softer)}
 
-    .reveal-on-scroll.is-visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      filter: blur(0px);
-    }
+    /* === Hero === */
+    .hero{padding:2.5rem 0 3rem;position:relative;overflow:hidden;background:var(--bg-warm)}
+    .hero::before{content:'';position:absolute;top:-250px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(124,58,237,.06) 0%,transparent 70%);pointer-events:none}
+    .hero::after{content:'';position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(79,70,229,.04) 0%,transparent 70%);pointer-events:none}
+    .hero-grid{display:grid;grid-template-columns:1fr;gap:2.5rem;align-items:center;position:relative;z-index:1}
+    .hero-content{max-width:560px}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--primary);margin-bottom:1rem;padding:.4rem .9rem;background:var(--primary-soft);border:1px solid rgba(124,58,237,.12);border-radius:var(--r-full)}
+    .hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse-dot 2s ease-in-out infinite}
+    @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:1.25rem;color:var(--text)}
+    .hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-desc{font-size:1.05rem;color:var(--text-2);line-height:1.7;margin-bottom:2rem;max-width:480px}
+    .hero-btns{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:2rem}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.8rem 1.8rem;border-radius:var(--r-full);font-weight:600;font-size:.92rem;transition:transform var(--tf),box-shadow var(--tf)}
+    .btn-main{background:var(--primary);color:#fff;box-shadow:0 2px 16px rgba(124,58,237,.25)}
+    .btn-main:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(124,58,237,.35)}
+    .btn-outline{background:#fff;color:var(--text);border:1.5px solid var(--border);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+    .btn-outline:hover{border-color:var(--primary);color:var(--primary);transform:translateY(-2px);box-shadow:0 4px 16px rgba(124,58,237,.1)}
+    .hero-trust{display:flex;flex-wrap:wrap;gap:1.25rem;align-items:center}
+    .trust-item{display:flex;align-items:center;gap:.4rem;font-size:.8rem;color:var(--text-3);font-weight:500}
+    .trust-icon{font-size:1rem}
 
-    a,
-    button,
-    input,
-    select,
-    textarea,
-    .group,
-    .cat-tab {
-      transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-        transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-        background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-        border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-        box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+    /* Hero Showcase */
+    .hero-showcase{position:relative}
+    .showcase-main{position:relative;border-radius:var(--r-2xl);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.1);border:1px solid var(--border-light)}
+    .showcase-main img{width:100%;aspect-ratio:4/3;object-fit:cover}
+    .showcase-books{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:1rem}
+    .showcase-book{background:#fff;border:1px solid var(--border-light);border-radius:var(--r-xl);overflow:hidden;transition:transform var(--tb),box-shadow var(--tb);cursor:pointer}
+    .showcase-book:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(124,58,237,.1)}
+    .showcase-book img{width:100%;aspect-ratio:2/3;object-fit:cover}
+    .showcase-book-info{padding:.65rem}
+    .showcase-book-title{font-size:.75rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+    .showcase-book-price{font-size:.75rem;font-weight:700;color:var(--primary);margin-top:.15rem}
+    .showcase-float{position:absolute;background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:.75rem 1rem;box-shadow:0 8px 24px rgba(0,0,0,.08);animation:float 6s ease-in-out infinite;display:none}
+    @media(min-width:768px){.showcase-float{display:block}}
+    .showcase-float.pos-tr{top:-8px;right:-12px;animation-delay:-2s}
+    .showcase-float.pos-bl{bottom:60px;left:-12px}
+    .float-label{font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-3);margin-bottom:.15rem;font-weight:600}
+    .float-val{font-size:.95rem;font-weight:700;color:var(--text)}
+    .float-stars{color:var(--gold)}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    @media(min-width:768px){.hero{padding:3.5rem 0 4rem}.hero-grid{grid-template-columns:1fr 1fr;gap:3rem}}
+    @media(max-width:767px){.hero-btns{flex-direction:column}.btn{width:100%}}
 
-    button:active,
-    .cat-tab:active {
-      transform: scale(0.96) !important;
-    }
+    /* === Sections === */
+    .sec{padding:4rem 0;position:relative;z-index:1}
+    @media(min-width:768px){.sec{padding:5.5rem 0}}
+    .sec-hdr{text-align:center;margin-bottom:3rem}
+    .sec-label{display:inline-flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--primary);margin-bottom:.75rem}
+    .sec-label::before,.sec-label::after{content:'';width:20px;height:1px;background:var(--primary);opacity:.3}
+    .sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4.5vw,2.8rem);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:.75rem;color:var(--text)}
+    .sec-desc{color:var(--text-2);max-width:520px;margin:0 auto;font-size:.98rem;line-height:1.7}
+    .sec-alt{background:var(--bg-warm)}
 
-    .hover-lift {
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+    /* === Products Grid === */
+    .products-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+    @media(min-width:640px){.products-grid{grid-template-columns:repeat(3,1fr);gap:1.25rem}}
+    @media(min-width:1024px){.products-grid{grid-template-columns:repeat(4,1fr);gap:1.5rem}}
+    .product-card{background:#fff;border:1px solid var(--border-light);border-radius:var(--r-xl);overflow:hidden;transition:transform var(--tb),box-shadow var(--tb),border-color var(--tb)}
+    .product-card:hover{transform:translateY(-8px);box-shadow:0 16px 40px rgba(124,58,237,.08);border-color:rgba(124,58,237,.15)}
+    .product-img{aspect-ratio:3/4;overflow:hidden;position:relative;background:var(--bg-soft)}
+    .product-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+    .product-card:hover .product-img img{transform:scale(1.06)}
+    .product-tag{position:absolute;top:.6rem;left:.6rem;background:var(--accent);color:#fff;padding:.15rem .55rem;border-radius:var(--r-full);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;z-index:2}
+    .product-actions{position:absolute;bottom:0;left:0;right:0;padding:.6rem;display:flex;gap:.4rem;opacity:0;transform:translateY(6px);transition:opacity var(--tb),transform var(--tb);z-index:2}
+    .product-card:hover .product-actions{opacity:1;transform:translateY(0)}
+    .pa-btn{flex:1;padding:.55rem;border-radius:var(--r-md);font-size:.75rem;font-weight:700;text-align:center;backdrop-filter:blur(12px);transition:transform var(--tf)}
+    .pa-btn:hover{transform:translateY(-1px)}
+    .pa-cart{background:var(--primary);color:#fff;box-shadow:0 4px 14px rgba(124,58,237,.3)}
+    .pa-wish{background:rgba(255,255,255,.85);border:1px solid rgba(0,0,0,.08);color:var(--text)}
+    .product-body{padding:1rem}
+    .product-cat{font-size:.65rem;color:var(--primary);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.35rem}
+    .product-name{font-size:.92rem;font-weight:700;margin-bottom:.2rem;line-height:1.3;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .product-author{font-size:.78rem;color:var(--text-3);margin-bottom:.6rem}
+    .product-bottom{display:flex;align-items:center;justify-content:space-between}
+    .product-price{font-size:1rem;font-weight:800;color:var(--primary)}
+    .product-rating{display:flex;align-items:center;gap:.2rem;font-size:.72rem;color:var(--text-3)}
+    .product-rating .star{color:var(--gold)}
+    @media(max-width:767px){.product-actions{opacity:1;transform:translateY(0)}.product-body{padding:.75rem}.product-name{font-size:.82rem}}
 
-    .hover-lift:hover {
-      transform: translateY(-6px) scale(1.015);
-      box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.07);
-    }
+    /* === Categories === */
+    .cats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+    @media(min-width:768px){.cats-grid{grid-template-columns:repeat(4,1fr);gap:1.25rem}}
+    .cat-card{position:relative;border-radius:var(--r-xl);overflow:hidden;aspect-ratio:3/4;cursor:pointer;display:block;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+    .cat-card img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+    .cat-card:hover img{transform:scale(1.1)}
+    .cat-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(26,26,46,.88) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.25rem}
+    .cat-tag{display:inline-block;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);padding:.2rem .6rem;border-radius:var(--r-full);font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.9);margin-bottom:.5rem;width:fit-content}
+    .cat-name{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:#fff;margin-bottom:.15rem}
+    .cat-count{font-size:.78rem;color:rgba(255,255,255,.7)}
+    .cat-arrow{position:absolute;top:1rem;right:1rem;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.85rem;opacity:0;transform:translateX(-8px);transition:opacity var(--tb),transform var(--tb)}
+    .cat-card:hover .cat-arrow{opacity:1;transform:translateX(0)}
 
-    /* BOOK COVER ASPECT RATIO (3:4) & AUTO IMAGE RENDER SYSTEM */
-    .book-cover-wrap {
-      aspect-ratio: 3 / 4;
-      background-color: #f8fafc;
-      border-radius: 0.75rem;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.5rem;
-      border: 1px solid #f1f5f9;
-      position: relative;
-    }
+    /* === Features === */
+    .feat-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+    @media(min-width:640px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:1024px){.feat-grid{grid-template-columns:repeat(4,1fr)}}
+    .feat-card{background:#fff;border:1px solid var(--border-light);border-radius:var(--r-xl);padding:1.75rem;transition:transform var(--tb),box-shadow var(--tb),border-color var(--tb);position:relative;overflow:hidden}
+    .feat-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--secondary));transform:scaleX(0);transform-origin:left;transition:transform var(--tb)}
+    .feat-card:hover::after{transform:scaleX(1)}
+    .feat-card:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(124,58,237,.08);border-color:rgba(124,58,237,.12)}
+    .feat-icon{width:48px;height:48px;border-radius:var(--r-lg);background:var(--primary-soft);display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:1.1rem}
+    .feat-name{font-size:1rem;font-weight:700;margin-bottom:.35rem;color:var(--text)}
+    .feat-desc{font-size:.85rem;color:var(--text-2);line-height:1.6}
 
-    .book-cover-img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      /* Preserves natural image scale/ratio without cropping */
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
+    /* === Testimonials === */
+    .test-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+    @media(min-width:768px){.test-grid{grid-template-columns:repeat(3,1fr);gap:1.25rem}}
+    .test-card{background:#fff;border:1px solid var(--border-light);border-radius:var(--r-xl);padding:1.75rem}
+    .test-stars{color:var(--gold);font-size:.85rem;letter-spacing:.1em;margin-bottom:.75rem}
+    .test-quote{color:var(--text-2);font-size:.9rem;line-height:1.7;margin-bottom:1.25rem;font-style:italic}
+    .test-author{display:flex;align-items:center;gap:.6rem}
+    .test-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.75rem;color:#fff;flex-shrink:0}
+    .test-name{font-weight:600;font-size:.85rem;color:var(--text)}
+    .test-role{font-size:.7rem;color:var(--text-3)}
 
-    .book-cover-wrap:hover .book-cover-img {
-      transform: scale(1.04);
-    }
+    /* === CTA === */
+    .cta-box{background:linear-gradient(135deg,var(--primary-soft),#eef2ff,var(--primary-softer));border:1px solid rgba(124,58,237,.1);border-radius:var(--r-2xl);padding:3rem 1.5rem;text-align:center;position:relative;overflow:hidden}
+    @media(min-width:768px){.cta-box{padding:4rem 2.5rem}}
+    .cta-box::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(124,58,237,.04) 0%,transparent 50%);animation:cta-p 12s ease-in-out infinite}
+    @keyframes cta-p{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,20px)}}
+    .cta-inner{position:relative;z-index:1}
+    .cta-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.5rem);font-weight:700;margin-bottom:.75rem;letter-spacing:-.02em;color:var(--text)}
+    .cta-desc{color:var(--text-2);margin-bottom:1.75rem;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7}
 
-    /* SOCIAL BUBBLE PORTFOLIO BLOB STYLE */
-    .social-bubble {
-      width: 44px;
-      height: 44px;
-      background: #ffffff !important;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      border-radius: 35% 65% 55% 45% / 50% 40% 60% 50% !important;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      animation: floatBubble 3.5s ease-in-out infinite;
-    }
+    /* === Footer === */
+    .ftr{background:var(--bg-warm);border-top:1px solid var(--border);padding:3.5rem 0 1.5rem;position:relative;z-index:1}
+    .ftr-grid{display:grid;grid-template-columns:1fr;gap:2rem;margin-bottom:2.5rem}
+    @media(min-width:640px){.ftr-grid{grid-template-columns:1.4fr 1fr 1fr 1fr}}
+    .ftr-brand{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:800;margin-bottom:.75rem;color:var(--text)}
+    .ftr-desc{color:var(--text-2);font-size:.85rem;line-height:1.7;margin-bottom:1.25rem}
+    .ftr-socials{display:flex;gap:.4rem}
+    .ftr-social{width:34px;height:34px;border-radius:var(--r-md);background:var(--bg-soft);border:1px solid var(--border-light);display:flex;align-items:center;justify-content:center;font-size:.8rem;color:var(--text-2);transition:background var(--tf),color var(--tf),transform var(--tf)}
+    .ftr-social:hover{background:var(--primary);color:#fff;transform:translateY(-2px)}
+    .ftr-heading{font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text);margin-bottom:1rem}
+    .ftr-links{display:flex;flex-direction:column;gap:.6rem}
+    .ftr-links a{color:var(--text-2);font-size:.85rem;transition:color var(--tf),padding-left var(--tf)}
+    .ftr-links a:hover{color:var(--primary);padding-left:3px}
+    .ftr-bottom{border-top:1px solid var(--border);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+    .ftr-copy{font-size:.75rem;color:var(--text-3)}
+    .ftr-legal{display:flex;gap:1.25rem}
+    .ftr-legal a{font-size:.75rem;color:var(--text-3);transition:color var(--tf)}
+    .ftr-legal a:hover{color:var(--text-2)}
+    @media(max-width:639px){.ftr-bottom{flex-direction:column;text-align:center}}
 
-    .social-bubble:nth-child(1) {
-      animation-delay: 0s;
-    }
+    /* Animations */
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+    .reveal.vis{opacity:1;transform:translateY(0)}
+    .rd1{transition-delay:80ms}.rd2{transition-delay:160ms}.rd3{transition-delay:240ms}.rd4{transition-delay:320ms}
+    .rd5{transition-delay:400ms}.rd6{transition-delay:480ms}.rd7{transition-delay:560ms}.rd8{transition-delay:640ms}
 
-    .social-bubble:nth-child(2) {
-      animation-delay: 0.6s;
-    }
-
-    .social-bubble:nth-child(3) {
-      animation-delay: 1.2s;
-    }
-
-    .social-bubble:nth-child(4) {
-      animation-delay: 1.8s;
-    }
-
-    .social-bubble:nth-child(5) {
-      animation-delay: 2.4s;
-    }
-
-    .social-bubble-facebook {
-      border: 2.5px solid #00E5FF !important;
-      box-shadow: 0 0 14px rgba(0, 229, 255, 0.5) !important;
-    }
-
-    .social-bubble-instagram {
-      border: 2.5px solid #9C27B0 !important;
-      box-shadow: 0 0 14px rgba(156, 39, 176, 0.5) !important;
-    }
-
-    .social-bubble-twitter {
-      border: 2.5px solid #00E676 !important;
-      box-shadow: 0 0 14px rgba(0, 230, 118, 0.5) !important;
-    }
-
-    .social-bubble-linkedin {
-      border: 2.5px solid #FF5722 !important;
-      box-shadow: 0 0 14px rgba(255, 87, 34, 0.5) !important;
-    }
-
-    .social-bubble-telegram {
-      border: 2.5px solid #FF007F !important;
-      box-shadow: 0 0 14px rgba(255, 0, 127, 0.5) !important;
-    }
-
-    .social-bubble:hover {
-      transform: translateY(-12px) scale(1.12) !important;
-      animation-play-state: paused;
-      background: #ffffff !important;
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important;
-    }
-
-    .custom-cart-wish-img {
-      width: 50px;
-      height: 66px;
-      object-fit: contain;
-      background: #f8fafc;
-      border-radius: 0.5rem;
-      padding: 2px;
-    }
-
-    .skeleton-bg {
-      background: linear-gradient(90deg, #e5e7eb 25%, #f3f4f6 50%, #e5e7eb 75%);
-      background-size: 200% 100%;
-      animation: shimmer 1.8s infinite;
-    }
-
-    /* OVERLAY TRANSITION SYSTEM */
-    @keyframes overlayOpen {
-      0% {
-        opacity: 0;
-        transform: translateY(30px) scale(0.96);
-      }
-
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    @keyframes overlayClose {
-      0% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-
-      100% {
-        opacity: 0;
-        transform: translateY(30px) scale(0.96);
-      }
-    }
-
-    @keyframes alertOpen {
-      0% {
-        opacity: 0;
-        transform: scale(0.9) translateY(12px);
-      }
-
-      100% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
-    }
-
-    @keyframes alertClose {
-      0% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-      }
-
-      100% {
-        opacity: 0;
-        transform: scale(0.9) translateY(12px);
-      }
-    }
-
-    .full-page-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 4000;
-      background: white;
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      max-width: 100vw;
-      height: 100%;
-      overflow: hidden;
-      opacity: 0;
-      animation: overlayOpen 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      will-change: transform, opacity;
-    }
-
-    .full-page-overlay.closing {
-      animation: overlayClose 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
-    }
-
-    .alert-modal-container {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10000;
-    }
-
-    .alert-modal-bg {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(4px);
-      opacity: 0;
-      transition: opacity 0.28s ease-out;
-    }
-
-    .alert-modal-bg.active {
-      opacity: 1;
-    }
-
-    .alert-modal-content {
-      background: white;
-      border-radius: 1.5rem;
-      padding: 1.5rem;
-      max-width: 20rem;
-      width: 100%;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-      text-align: center;
-      position: relative;
-      z-index: 10;
-      opacity: 0;
-      animation: alertOpen 0.36s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    }
-
-    .alert-modal-content.closing {
-      animation: alertClose 0.26s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
-    }
-
-    .full-page-overlay .overlay-scroll {
-      flex: 1;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .close-btn {
-      padding: 6px 14px;
-      background: #ef4444;
-      color: white;
-      border-radius: 9999px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
-    }
-
-    .floating {
-      animation: floatSubtle 4s ease-in-out infinite;
-      will-change: transform;
-    }
-
-    .cat-tab {
-      padding: 5px 12px;
-      border-radius: 9999px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      cursor: pointer;
-      background: #f3f4f6;
-      color: #4b5563;
-      white-space: nowrap;
-    }
-
-    .cat-tab.active {
-      background: #1f2937;
-      color: white;
-    }
-
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-
-    @media (max-width: 640px) {
-      body {
-        padding-top: 82px;
-      }
-
-      header {
-        height: 50px;
-      }
-    }
+    /* Toast */
+    .toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(100px);background:#fff;border:1px solid var(--border);color:var(--text);padding:.75rem 1.25rem;border-radius:var(--r-full);box-shadow:0 12px 40px rgba(0,0,0,.12);z-index:500;font-size:.85rem;font-weight:500;display:flex;align-items:center;gap:.4rem;white-space:nowrap;transition:transform var(--tb)}
+    .toast.show{transform:translateX(-50%) translateY(0)}
   </style>
 </head>
-
-<body class="bg-white text-gray-900">
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { initializeFirestore, persistentLocalCache, persistentMultipleTabManager, collection, getDocs, addDoc, doc, setDoc, getDoc, updateDoc, query, orderBy, where, serverTimestamp, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-    // Firebase Config
-    const firebaseConfig = {
-      apiKey: "AIzaSyDFiZTWSkxQLXHIz_vqvKpAu0uIoGUbJe8",
-      authDomain: "client-7-517cc.firebaseapp.com",
-      projectId: "client-7-517cc",
-      storageBucket: "client-7-517cc.firebasestorage.app",
-      messagingSenderId: "1019499384063",
-      appId: "1:1019499384063:web:b5fde3666fdb02ee8510ca",
-      measurementId: "G-TCEMXK3RFH"
-    };
-    const app = initializeApp(firebaseConfig);
-    const db = initializeFirestore(app, {
-      localCache: persistentLocalCache({
-        tabManager: persistentMultipleTabManager()
-      })
-    });
-    const auth = getAuth(app);
-
-    // ⚠️ IMPORTANT: Replace with your actual OpenRouter API key. Keep it secure!
-    const CHAT_API_KEY = "YOUR_API_KEY"; // Insert your key here
-    // Free model from OpenRouter (100% free, unlimited usage)
-    const CHAT_MODEL = "openrouter/free"; // Correct free model ID
-
-    let products = [], categories = [], categoryMap = {}, activeCategory = 'all';
-    let cart = JSON.parse(localStorage.getItem('shobdotori_cart') || '[]');
-    let wishlist = JSON.parse(localStorage.getItem('shobdotori_wishlist') || '[]');
-    let currentUser = null, userDocRef = null, chatUnsubscribe = null;
-    let revealObserver = null;
-
-    const $ = (s) => document.querySelector(s);
-    const $$ = (s) => document.querySelectorAll(s);
-
-    async function saveCartToFirebase() { if (!userDocRef) return; await setDoc(userDocRef, { cart }, { merge: true }); }
-    async function saveWishlistToFirebase() { if (!userDocRef) return; await setDoc(userDocRef, { wishlist }, { merge: true }); }
-    function saveCart() { localStorage.setItem('shobdotori_cart', JSON.stringify(cart)); updateCartBadge(); if (currentUser) saveCartToFirebase(); }
-    function saveWishlist() { localStorage.setItem('shobdotori_wishlist', JSON.stringify(wishlist)); updateWishlistBadge(); if (currentUser) saveWishlistToFirebase(); }
-
-    async function loadUserData() {
-      if (!currentUser) return;
-      userDocRef = doc(db, 'users', currentUser.uid);
-      const snap = await getDoc(userDocRef);
-      if (snap.exists()) {
-        const d = snap.data();
-        if (d.cart) cart = d.cart;
-        if (d.wishlist) wishlist = d.wishlist;
-      } else {
-        await setDoc(userDocRef, { cart, wishlist, email: currentUser.email, name: currentUser.displayName || 'Guest User' });
-      }
-      saveCart(); saveWishlist();
-      updateProfileUI();
-    }
-
-    function formatPrice(p) { return '$' + Number(p).toFixed(2); }
-    function discountPercent(o, c) { if (!o || o <= c) return null; return Math.round(((o - c) / o) * 100); }
-
-    function getStockDisplay(stock) {
-      if (stock === undefined || stock === null || stock === '' || stock === 0) {
-        return '∞';
-      }
-      return stock;
-    }
-
-    async function fetchCollection(colName) {
-      try {
-        const snap = await getDocs(collection(db, colName));
-        const docs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-        return docs.sort((a, b) => {
-          const tA = a.createdAt ? (a.createdAt.toMillis ? a.createdAt.toMillis() : new Date(a.createdAt).getTime()) : 0;
-          const tB = b.createdAt ? (b.createdAt.toMillis ? b.createdAt.toMillis() : new Date(b.createdAt).getTime()) : 0;
-          return tB - tA;
-        });
-      } catch (err) {
-        console.warn("Fetch failed, attempting fallback query without sorting:", err);
-        const snap = await getDocs(collection(db, colName));
-        return snap.docs.map(d => ({ id: d.id, ...d.data() }));
-      }
-    }
-
-    async function seedDemoData() {
-      const demoCategories = [
-        { id: 'fiction', name: 'Fiction' },
-        { id: 'self-help', name: 'Self Help' },
-        { id: 'sci-fi', name: 'Sci-Fi' },
-        { id: 'biography', name: 'Biography' }
-      ];
-
-      const demoProducts = [
-        {
-          name: "The Midnight Library",
-          author: "Matt Haig",
-          price: 12.99,
-          originalPrice: 16.99,
-          image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=600&auto=format&fit=crop",
-          badge: "Bestseller",
-          desc: "Between life and death there is a library, and within that library, the shelves go on forever. Every book provides a chance to try another life you could have lived.",
-          category: "fiction",
-          stock: 45,
-          createdAt: serverTimestamp()
-        },
-        {
-          name: "Atomic Habits",
-          author: "James Clear",
-          price: 15.00,
-          originalPrice: 21.99,
-          image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=600&auto=format&fit=crop",
-          badge: "Must Read",
-          desc: "No matter your goals, Atomic Habits offers a proven framework for improving every day, written by one of the world's leading experts on habit formation.",
-          category: "self-help",
-          stock: 120,
-          createdAt: serverTimestamp()
-        },
-        {
-          name: "Dune",
-          author: "Frank Herbert",
-          price: 9.99,
-          originalPrice: 14.99,
-          image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=600&auto=format&fit=crop",
-          badge: "Classic",
-          desc: "Set on the desert planet Arrakis, Dune is the story of the boy Paul Atreides, who would become the mysterious man known as Muad'Dib.",
-          category: "sci-fi",
-          stock: 30,
-          createdAt: serverTimestamp()
-        },
-        {
-          name: "Educated",
-          author: "Tara Westover",
-          price: 11.50,
-          originalPrice: 11.50,
-          image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=600&auto=format&fit=crop",
-          badge: "Trending",
-          desc: "An unforgettable memoir about a young girl who, kept out of school, leaves her survivalist family and goes on to earn a PhD from Cambridge University.",
-          category: "biography",
-          stock: 18,
-          createdAt: serverTimestamp()
-        }
-      ];
-
-      try {
-        for (const cat of demoCategories) {
-          await setDoc(doc(db, 'categories', cat.id), { name: cat.name, createdAt: serverTimestamp() });
-        }
-        for (const prod of demoProducts) {
-          await addDoc(collection(db, 'products'), prod);
-        }
-        console.log("Demo data successfully seeded to Firestore!");
-      } catch (err) {
-        console.error("Error seeding demo data:", err);
-      }
-    }
-
-    async function loadAllData() {
-      // 1. Try loading from LocalStorage cache immediately for near-zero ms paint
-      const cachedProducts = localStorage.getItem('shobdotori_cached_products');
-      const cachedCategories = localStorage.getItem('shobdotori_cached_categories');
-
-      if (cachedProducts && cachedCategories) {
-        try {
-          products = JSON.parse(cachedProducts);
-          categories = JSON.parse(cachedCategories);
-          categories.forEach(cat => categoryMap[cat.id] = cat.name);
-          document.body.classList.add('ready');
-          renderMainView();
-          observeReveal();
-          updateCartBadge();
-          updateWishlistBadge();
-        } catch (err) {
-          console.warn("Failed to parse cached products/categories:", err);
-        }
-      }
-
-      // 2. Fetch fresh data in the background (will load instantly from Firestore offline cache if available)
-      try {
-        let p = await fetchCollection('products');
-        let c = await fetchCollection('categories');
-
-        // Seed demo products if not already present
-        const hasDemo = p.some(prod => prod.name === "The Midnight Library");
-        if (!hasDemo) {
-          console.log("Demo products not found in Firestore. Seeding...");
-          await seedDemoData();
-          p = await fetchCollection('products');
-          c = await fetchCollection('categories');
-        }
-
-        // Check if the data has actually changed before triggering a DOM update
-        const dataChanged = JSON.stringify(p) !== JSON.stringify(products) || JSON.stringify(c) !== JSON.stringify(categories);
-
-        products = p;
-        categories = c;
-        categories.forEach(cat => categoryMap[cat.id] = cat.name);
-
-        // Cache the fresh data
-        localStorage.setItem('shobdotori_cached_products', JSON.stringify(p));
-        localStorage.setItem('shobdotori_cached_categories', JSON.stringify(c));
-
-        loadFooterSocials();
-
-        if (dataChanged || !cachedProducts) {
-          document.body.classList.add('ready');
-          renderMainView();
-          observeReveal();
-          updateCartBadge();
-          updateWishlistBadge();
-        }
-      } catch (e) {
-        console.error("Failed to load products and categories: ", e);
-      }
-    }
-
-    async function loadFooterSocials() {
-      const container = $('#footer-social-container');
-      if (!container) return;
-      try {
-        const sSnap = await getDoc(doc(db, 'settings', 'socials'));
-        if (sSnap.exists()) {
-          const data = sSnap.data();
-          let html = '';
-          if (data.facebook) {
-            html += `<a href="${data.facebook}" target="_blank" class="social-bubble social-bubble-facebook" aria-label="Facebook"><i class="fab fa-facebook-f text-black"></i></a>`;
-          }
-          if (data.instagram) {
-            html += `<a href="${data.instagram}" target="_blank" class="social-bubble social-bubble-instagram" aria-label="Instagram"><i class="fab fa-instagram text-black"></i></a>`;
-          }
-          if (data.twitter) {
-            html += `<a href="${data.twitter}" target="_blank" class="social-bubble social-bubble-twitter" aria-label="Twitter"><i class="fab fa-twitter-x text-black"></i></a>`;
-          }
-          if (data.linkedin) {
-            html += `<a href="${data.linkedin}" target="_blank" class="social-bubble social-bubble-linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-black"></i></a>`;
-          }
-          if (data.telegram) {
-            html += `<a href="${data.telegram}" target="_blank" class="social-bubble social-bubble-telegram" aria-label="Telegram"><i class="fab fa-telegram-plane text-black"></i></a>`;
-          }
-          container.innerHTML = html;
-        }
-      } catch (err) {
-        console.error('Error rendering socials: ', err);
-      }
-    }
-
-    window.closeOverlay = function (overlayElement) {
-      if (!overlayElement) return;
-      overlayElement.classList.add('closing');
-      const onAnimationEnd = (e) => {
-        if (e.target === overlayElement) {
-          overlayElement.remove();
-          if (!document.querySelector('.full-page-overlay:not(.closing)')) {
-            document.body.style.overflow = '';
-          }
-          overlayElement.removeEventListener('animationend', onAnimationEnd);
-        }
-      };
-      overlayElement.addEventListener('animationend', onAnimationEnd);
-      setTimeout(() => {
-        if (overlayElement.parentNode) {
-          overlayElement.remove();
-          if (!document.querySelector('.full-page-overlay:not(.closing)')) {
-            document.body.style.overflow = '';
-          }
-        }
-      }, 360);
-    };
-
-    function productCard(product, idx) {
-      const disc = discountPercent(product.originalPrice, product.price);
-      // Eager-load first 4 items to improve LCP
-      const isAboveFold = idx !== undefined && idx < 4;
-      const imageAttrs = isAboveFold ? 'fetchpriority="high"' : 'loading="lazy"';
-      return `
-  <div class="group cursor-pointer reveal-on-scroll hover-lift text-center" onclick="window.goToProductDetail('${product.id}')">
-    <div class="book-cover-wrap mb-1.5 shadow-sm">
-      <img src="${product.image || ''}" alt="${product.name}" class="book-cover-img" width="150" height="200" onerror="this.style.display='none';this.parentElement.style.background='#F3F0FF';" ${imageAttrs}>
-      ${product.badge ? `<span class="absolute top-1 left-1 px-1 py-0.5 rounded-full bg-white/90 backdrop-blur-sm text-[7px] font-bold uppercase text-gray-900">${product.badge}</span>` : ''}
-      ${disc ? `<span class="absolute top-1 right-1 px-1 py-0.5 rounded-full bg-red-500 text-white text-[7px] font-bold">-${disc}%</span>` : ''}
-    </div>
-    <div class="space-y-0.5 px-0.5">
-      <h3 class="text-[10px] sm:text-xs font-semibold text-gray-900 line-clamp-1">${product.name}</h3>
-      <div class="flex items-center justify-center gap-1.5">
-        <span class="font-bold text-xs sm:text-sm text-gray-900">${formatPrice(product.price)}</span>
-        ${product.originalPrice > product.price ? `<span class="text-[9px] text-gray-400 line-through">${formatPrice(product.originalPrice)}</span>` : ''}
-      </div>
-    </div>
-    <button class="mt-2 w-full py-2 bg-black hover:bg-gray-800 text-white rounded-lg text-[10px] sm:text-xs font-semibold transition-all flex items-center justify-center gap-1 add-to-cart-btn" data-id="${product.id}">
-      <span class="btn-text">Add to Cart</span>
-    </button>
-  </div>`;
-    }
-
-    function attachListeners() {
-      $$('.add-to-cart-btn').forEach(b => b.onclick = (e) => {
-        e.stopPropagation();
-        const id = String(b.dataset.id);
-        const existing = cart.find(i => String(i.id) === id);
-        if (existing) existing.qty++; else cart.push({ id, qty: 1 });
-        saveCart();
-        b.classList.add('animate-add-success');
-        b.innerHTML = `
-      <svg class="w-3.5 h-3.5 text-white animate-check-pop" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
-      </svg> Added`;
-        setTimeout(() => {
-          b.classList.remove('animate-add-success');
-          b.innerHTML = '<span class="btn-text">Add to Cart</span>';
-        }, 1400);
-      });
-    }
-
-    function applyStaggerDelay() {
-      const items = document.querySelectorAll('.reveal-on-scroll:not(.is-visible)');
-      items.forEach((el, index) => {
-        el.style.transitionDelay = (index * 0.08) + 's';
-      });
-    }
-
-    function filterProducts(catId) {
-      activeCategory = catId;
-      const grid = $('#products-grid'); if (!grid) return;
-
-      let filtered = catId === 'all' ? products : products.filter(p => p.category === catId);
-
-      const sorted = [...filtered].sort((a, b) => (b.reviews || 0) - (a.reviews || 0));
-      grid.innerHTML = sorted.length ? sorted.map((p, idx) => productCard(p, idx)).join('') : '<p class="col-span-full text-center text-gray-400 py-8 text-sm">No products found</p>';
-      attachListeners();
-      applyStaggerDelay();
-      observeReveal();
-    }
-
-    // ── THREE.JS HERO DRONE CONTROLLER (CONFLIT-FREE SMOOTH ROAMING) ──
-    let heroDroneGroup = null;
-    let heroDrone = null;
-    let heroMixer = null;
-    let heroPropellers = [];
-
-    function initHeroDrone() {
-      const container = document.getElementById('drone-hero-canvas-container');
-      if (!container) return;
-
-      const scene = new THREE.Scene();
-
-      const camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 1000);
-      camera.position.set(0, 0, 10);
-
-      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'high-performance' });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-      renderer.setSize(container.clientWidth, container.clientHeight);
-      container.innerHTML = '';
-      container.appendChild(renderer.domElement);
-
-      const ambientLight = new THREE.AmbientLight(0xffffff, 1.3);
-      scene.add(ambientLight);
-
-      const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
-      dirLight.position.set(5, 10, 7);
-      scene.add(dirLight);
-
-      // Parent Group to avoid AnimationMixer clashing/stuttering
-      heroDroneGroup = new THREE.Group();
-      scene.add(heroDroneGroup);
-
-      const loader = new THREE.GLTFLoader();
-
-      loader.load('drone.glb', function (gltf) {
-        heroDrone = gltf.scene;
-
-        // Add drone model inside the parent group
-        heroDroneGroup.add(heroDrone);
-
-        // Initial scale and settings
-        heroDrone.scale.set(1.4, 1.4, 1.4);
-        if (window.innerWidth < 768) {
-          heroDrone.scale.set(0.7, 0.7, 0.7);
-        }
-        // Grab propellers
-        heroPropellers = [];
-        heroDrone.traverse((child) => {
-          if (child.isMesh && (
-            child.name.toLowerCase().includes('propeller') ||
-            child.name.toLowerCase().includes('rotor') ||
-            child.name.toLowerCase().includes('fan') ||
-            child.name.toLowerCase().includes('blade') ||
-            child.name.toLowerCase().includes('wing')
-          )) {
-            heroPropellers.push(child);
-          }
-        });
-
-        // Run custom GLTF animations if bundled (propeller spins, etc)
-        if (gltf.animations && gltf.animations.length > 0) {
-          heroMixer = new THREE.AnimationMixer(heroDrone);
-          gltf.animations.forEach((clip) => {
-            heroMixer.clipAction(clip).play();
-          });
-        }
-      }, undefined, function (error) {
-        console.warn('Hero drone load skipped or file missing:', error);
-      });
-
-      const clock = new THREE.Clock();
-      let isHeroSceneVisible = true;
-      const observer = new IntersectionObserver(entries => {
-        isHeroSceneVisible = entries[0].isIntersecting;
-      });
-      observer.observe(container);
-
-      function animate() {
-        requestAnimationFrame(animate);
-        if (!isHeroSceneVisible) return;
-
-        const delta = clock.getDelta();
-        const time = clock.getElapsedTime();
-
-        // Local keyframe update
-        if (heroMixer) heroMixer.update(delta);
-
-        // Manual high speed propeller rotations
-        heroPropellers.forEach(prop => {
-          prop.rotation.y += 0.35;
-        });
-
-        // Parent group transformations for smooth, conflict-free roaming
-        if (heroDroneGroup && heroDrone) {
-          const isMobile = window.innerWidth < 768;
-
-          const basePosX = isMobile ? 0 : 2.2;
-          const basePosY = isMobile ? -0.9 : 0.4;
-          const basePosZ = isMobile ? -1.5 : 0;
-
-          // Smooth flying/roaming translations
-          const targetX = basePosX + Math.sin(time * 0.4) * (isMobile ? 1.0 : 2.2);
-          const targetY = basePosY + Math.cos(time * 0.6) * (isMobile ? 0.3 : 0.5);
-          const targetZ = basePosZ + Math.sin(time * 0.3) * (isMobile ? 0.4 : 0.8);
-
-          // Interpolate with Lerp
-          heroDroneGroup.position.x = THREE.MathUtils.lerp(heroDroneGroup.position.x, targetX, 0.05);
-          heroDroneGroup.position.y = THREE.MathUtils.lerp(heroDroneGroup.position.y, targetY, 0.05);
-          heroDroneGroup.position.z = THREE.MathUtils.lerp(heroDroneGroup.position.z, targetZ, 0.05);
-
-          // Continuous 360 degree rotation on Y-axis
-          heroDroneGroup.rotation.y = (time * 0.25);
-
-          // Aerodynamic tilting (banking/flying animations)
-          heroDroneGroup.rotation.x = Math.sin(time * 0.6) * 0.12;
-          heroDroneGroup.rotation.z = Math.cos(time * 0.6) * 0.12;
-        }
-
-        renderer.render(scene, camera);
-      }
-      animate();
-
-      const resizeObserver = new ResizeObserver(() => {
-        if (container.clientWidth === 0 || container.clientHeight === 0) return;
-        camera.aspect = container.clientWidth / container.clientHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(container.clientWidth, container.clientHeight);
-      });
-      resizeObserver.observe(container);
-    }
-
-    function renderMainView() {
-      const main = $('#main-content');
-      main.innerHTML = `
-  <!-- ORIGINAL ASPECT HERO SECTION RESTORED -->
-  <section class="relative w-full rounded-2xl sm:rounded-3xl h-[280px] sm:h-[480px] lg:h-[580px] overflow-hidden mt-2 shadow-lg ring-1 ring-black/5 isolate">
-    <div class="absolute inset-0 bg-[#F3F0FF] overflow-hidden">
-      <div class="absolute top-[-15%] right-[-10%] w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] rounded-full bg-gradient-to-b from-purple-300 via-indigo-300 to-transparent blur-[100px] opacity-60 animate-float-slow mix-blend-multiply"></div>
-      <div class="absolute bottom-[-10%] left-[-10%] w-[250px] sm:w-[450px] h-[250px] sm:h-[450px] rounded-full bg-gradient-to-tr from-violet-400 via-fuchsia-200 to-blue-200 blur-[80px] opacity-50 animate-float-medium mix-blend-multiply"></div>
-      
-      <!-- Instant Loading Three.js canvas container rendered in front of text with z-20 -->
-      <div id="drone-hero-canvas-container" class="absolute inset-0 w-full h-full z-20 pointer-events-none"></div>
-    </div>
-    <div class="absolute inset-0 flex items-center justify-center text-center px-4 z-10">
-      <div class="max-w-md sm:max-w-xl reveal-on-scroll">
-        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-semibold text-gray-900 tracking-tighter mb-3">Your Premier Literary Haven</h1>
-        <p class="text-xs sm:text-base text-gray-600 max-w-xs sm:max-w-lg mx-auto mb-5">Selected collections and titles direct to your bookshelf.</p>
-        <a href="#products" class="inline-flex items-center gap-2.5 bg-white text-gray-900 pl-6 pr-4 py-2.5 rounded-full shadow-lg hover:scale-105 transition-transform active:scale-95">
-          <span class="text-sm sm:text-base font-extrabold tracking-tight">Shop Collection</span>
-          <div class="flex items-center justify-center">
-            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-800">
-              <g>
-                <animateTransform
-                  attributeName="transform"
-                  type="translate"
-                  values="0 0; 4 0; 0 0"
-                  dur="1.2s"
-                  repeatCount="indefinite"
-                />
-                <path
-                  d="M16 10L32 24L16 38"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="6"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </g>
-            </svg>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- BENEFITS SECTION -->
-  <section class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 sm:mt-12 reveal-on-scroll">
-    <div class="bg-gray-50/70 hover:bg-gray-50 rounded-2xl p-4 flex flex-col items-center text-center border border-gray-100/50 hover:shadow-sm transition-all duration-300">
-      <div class="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center text-purple-600 mb-2.5">
-        <i class="fa-solid fa-truck-fast text-sm"></i>
-      </div>
-      <h2 class="text-xs font-bold text-gray-900">Free Shipping</h2>
-      <p class="text-[10px] text-gray-500 mt-1 max-w-[130px]">On all orders over $50 with premium packaging.</p>
-    </div>
-    <div class="bg-gray-50/70 hover:bg-gray-50 rounded-2xl p-4 flex flex-col items-center text-center border border-gray-100/50 hover:shadow-sm transition-all duration-300">
-      <div class="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center text-purple-600 mb-2.5">
-        <i class="fa-solid fa-shield-halved text-sm"></i>
-      </div>
-      <h2 class="text-xs font-bold text-gray-900">Secure Payments</h2>
-      <p class="text-[10px] text-gray-500 mt-1 max-w-[130px]">SSL encrypted transactions & safe options.</p>
-    </div>
-    <div class="bg-gray-50/70 hover:bg-gray-50 rounded-2xl p-4 flex flex-col items-center text-center border border-gray-100/50 hover:shadow-sm transition-all duration-300">
-      <div class="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center text-purple-600 mb-2.5">
-        <i class="fa-solid fa-medal text-sm"></i>
-      </div>
-      <h2 class="text-xs font-bold text-gray-900">Handpicked Quality</h2>
-      <p class="text-[10px] text-gray-500 mt-1 max-w-[130px]">Only the finest titles selected by experts.</p>
-    </div>
-    <div class="bg-gray-50/70 hover:bg-gray-50 rounded-2xl p-4 flex flex-col items-center text-center border border-gray-100/50 hover:shadow-sm transition-all duration-300">
-      <div class="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center text-purple-600 mb-2.5">
-        <i class="fa-solid fa-headset text-sm"></i>
-      </div>
-      <h2 class="text-xs font-bold text-gray-900">24/7 Support</h2>
-      <p class="text-[10px] text-gray-500 mt-1 max-w-[130px]">Dedicated customer service round the clock.</p>
-    </div>
-  </section>
-
-  <!-- BESTSELLERS SPOTLIGHT -->
-  <section class="mt-10 sm:mt-16 reveal-on-scroll">
-    <div class="flex items-center justify-between mb-4">
-      <div>
-        <h2 class="text-lg sm:text-2xl font-semibold text-gray-900">Bestsellers Spotlight</h2>
-        <p class="text-[10px] sm:text-xs text-gray-500 mt-0.5">Handpicked premium titles dominating the charts this week.</p>
-      </div>
-      <div class="flex gap-1">
-        <button id="spotlight-prev" class="w-8 h-8 rounded-full border bg-white flex items-center justify-center hover:bg-gray-50 active:scale-95 text-xs text-gray-600 transition-all shadow-sm" aria-label="Previous">
-          <i class="fa-solid fa-chevron-left text-[10px]"></i>
-        </button>
-        <button id="spotlight-next" class="w-8 h-8 rounded-full border bg-white flex items-center justify-center hover:bg-gray-50 active:scale-95 text-xs text-gray-600 transition-all shadow-sm" aria-label="Next">
-          <i class="fa-solid fa-chevron-right text-[10px]"></i>
-        </button>
-      </div>
-    </div>
-    <div id="spotlight-container" class="flex gap-4 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pb-2">
-      ${products.slice(0, 6).map(p => `
-      <div class="min-w-[200px] sm:min-w-[240px] bg-slate-50/50 hover:bg-white border border-gray-100 hover:border-purple-100 rounded-2xl p-3 shadow-sm hover:shadow-md transition-all duration-300 snap-start flex flex-col justify-between group cursor-pointer" onclick="window.goToProductDetail('${p.id}')">
-        <div>
-          <div class="aspect-[3/4] rounded-xl overflow-hidden bg-white shadow-sm border border-gray-100/50 relative mb-3">
-            <img src="${p.image || ''}" alt="${p.name}" class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300" width="200" height="267" loading="lazy">
-            ${p.badge ? `<span class="absolute top-2 left-2 px-1.5 py-0.5 rounded-full bg-purple-600 text-white text-[8px] font-bold uppercase tracking-wider">${p.badge}</span>` : ''}
-          </div>
-          <h3 class="text-xs font-bold text-gray-900 line-clamp-1 group-hover:text-purple-600 transition-colors">${p.name}</h3>
-          <p class="text-[10px] text-gray-500 mt-0.5 line-clamp-1">by ${p.author || 'Unknown'}</p>
-        </div>
-        <div class="flex items-center justify-between mt-3 pt-2.5 border-t border-gray-100/50">
-          <span class="text-sm font-bold text-gray-900">${formatPrice(p.price)}</span>
-          <button class="w-7 h-7 rounded-full bg-black hover:bg-purple-600 text-white flex items-center justify-center transition-all duration-300 add-to-cart-btn-spotlight" data-id="${p.id}" onclick="event.stopPropagation();" aria-label="Add ${p.name} to cart">
-            <i class="fa-solid fa-plus text-[10px]"></i>
-          </button>
-        </div>
-      </div>
-      `).join('')}
-    </div>
-  </section>
-
-  <!-- DISCOVER SECTION -->
-  <section id="products" class="mt-10 sm:mt-16">
-    <h2 class="text-lg sm:text-2xl font-semibold text-gray-900 reveal-on-scroll mb-3">Discover Collection</h2>
-    
-    <div class="mb-5 relative reveal-on-scroll">
-      <input type="text" id="product-search" placeholder="Search by book title, author name or keywords..." class="w-full px-4 py-3 pr-10 border border-gray-100 bg-gray-50/50 rounded-2xl text-xs outline-none cursor-pointer" readonly>
-      <span class="absolute right-3.5 top-3.5 text-gray-400">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-        </svg>
-      </span>
-    </div>
-
-    <div class="flex flex-nowrap gap-1.5 mb-4 overflow-x-auto no-scrollbar pb-1 w-full" id="category-tabs">
-      <span class="cat-tab active" data-cat="all">All</span>
-      ${categories.map(c => `<span class="cat-tab" data-cat="${c.id}">${c.name}</span>`).join('')}
-    </div>
-    <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2 sm:gap-2.5" id="products-grid"></div>
-  </section>
-
-  <!-- TESTIMONIALS SECTION -->
-  <section class="mt-14 sm:mt-20 reveal-on-scroll">
-    <div class="text-center max-w-lg mx-auto mb-8">
-      <h2 class="text-lg sm:text-2xl font-semibold text-gray-900">What Our Readers Say</h2>
-      <p class="text-xs text-gray-500 mt-1">Real reviews from our community of passionate book lovers.</p>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="bg-gray-50/50 border border-gray-100 rounded-2xl p-5 relative hover:shadow-sm transition-all duration-300">
-        <div class="flex gap-0.5 text-yellow-400 text-[10px] mb-3">
-          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-        </div>
-        <p class="text-xs text-gray-600 italic leading-relaxed">"The delivery was incredibly fast and the packaging was absolutely beautiful! Hand-wrapped and felt so personal."</p>
-        <div class="flex items-center gap-2.5 mt-4 pt-3 border-t border-gray-100">
-          <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-[10px] font-bold">SM</div>
-          <div>
-            <h3 class="text-xs font-bold text-gray-900">Sajid Mahmud</h3>
-            <p class="text-[9px] text-gray-400">Verified Reader</p>
-          </div>
-        </div>
-      </div>
-      <div class="bg-gray-50/50 border border-gray-100 rounded-2xl p-5 relative hover:shadow-sm transition-all duration-300">
-        <div class="flex gap-0.5 text-yellow-400 text-[10px] mb-3">
-          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-        </div>
-        <p class="text-xs text-gray-600 italic leading-relaxed">"Their curation of books is top-notch. I found rare editions of my favorite authors that are sold out everywhere else."</p>
-        <div class="flex items-center gap-2.5 mt-4 pt-3 border-t border-gray-100">
-          <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-[10px] font-bold">AN</div>
-          <div>
-            <h3 class="text-xs font-bold text-gray-900">Anika Nawar</h3>
-            <p class="text-[9px] text-gray-400">Verified Reader</p>
-          </div>
-        </div>
-      </div>
-      <div class="bg-gray-50/50 border border-gray-100 rounded-2xl p-5 relative hover:shadow-sm transition-all duration-300">
-        <div class="flex gap-0.5 text-yellow-400 text-[10px] mb-3">
-          <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
-        </div>
-        <p class="text-xs text-gray-600 italic leading-relaxed">"The AI chatbot recommendation was surprisingly good! It helped me choose a perfect gift book for a friend."</p>
-        <div class="flex items-center gap-2.5 mt-4 pt-3 border-t border-gray-100">
-          <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-[10px] font-bold">RR</div>
-          <div>
-            <h3 class="text-xs font-bold text-gray-900">Rashed Rayhan</h3>
-            <p class="text-[9px] text-gray-400">Verified Reader</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- NEWSLETTER SECTION -->
-  <section class="mt-14 sm:mt-20 bg-gradient-to-r from-purple-500/10 via-indigo-500/10 to-transparent border border-purple-500/10 rounded-2xl sm:rounded-3xl p-6 sm:p-10 reveal-on-scroll">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-      <div>
-        <h2 class="text-lg sm:text-2xl font-semibold text-gray-900">Join the Literary Club</h2>
-        <p class="text-xs text-gray-500 mt-1 max-w-sm">Subscribe to receive curated reading recommendations, early access to new releases, and exclusive member-only promotions.</p>
-      </div>
-      <div>
-        <form id="newsletter-form" class="flex gap-2" onsubmit="event.preventDefault(); showAlert('Thank you for subscribing!'); this.reset();">
-          <input id="newsletter-email" name="email" type="email" placeholder="Enter your email address..." required class="flex-1 px-4 py-3 border border-gray-200 rounded-xl text-xs outline-none focus:ring-1 focus:ring-purple-600 bg-white transition-all">
-          <button type="submit" class="px-5 py-3 bg-black hover:bg-gray-800 text-white rounded-xl text-xs font-semibold shadow-md active:scale-95 transition-all">Subscribe</button>
-        </form>
-      </div>
-    </div>
-  </section>`;
-
-      $$('.cat-tab').forEach(tab => {
-        tab.onclick = () => {
-          $$('.cat-tab').forEach(t => t.classList.remove('active'));
-          tab.classList.add('active');
-          filterProducts(tab.dataset.cat);
-        };
-      });
-
-      // Attach Spotlight Carousel Navigation Listeners
-      const spotlightContainer = $('#spotlight-container');
-      const prevBtn = $('#spotlight-prev');
-      const nextBtn = $('#spotlight-next');
-      if (spotlightContainer && prevBtn && nextBtn) {
-        prevBtn.onclick = () => spotlightContainer.scrollBy({ left: -260, behavior: 'smooth' });
-        nextBtn.onclick = () => spotlightContainer.scrollBy({ left: 260, behavior: 'smooth' });
-      }
-
-      // Attach Spotlight Cart Button Listeners
-      $$('.add-to-cart-btn-spotlight').forEach(b => b.onclick = (e) => {
-        e.stopPropagation();
-        const id = String(b.dataset.id);
-        const existing = cart.find(i => String(i.id) === id);
-        if (existing) existing.qty++; else cart.push({ id, qty: 1 });
-        saveCart();
-        b.classList.add('bg-green-600');
-        b.innerHTML = '<i class="fa-solid fa-check text-[10px]"></i>';
-        setTimeout(() => {
-          b.classList.remove('bg-green-600');
-          b.innerHTML = '<i class="fa-solid fa-plus text-[10px]"></i>';
-        }, 1400);
-      });
-
-      const searchInput = $('#product-search');
-      if (searchInput) {
-        searchInput.onclick = (e) => {
-          e.preventDefault();
-          window.openSearchOverlay();
-        };
-        searchInput.onfocus = (e) => {
-          e.preventDefault();
-          searchInput.blur();
-          window.openSearchOverlay();
-        };
-      }
-
-
-      filterProducts('all');
-      observeReveal();
-
-      // Launch Three.js Drone asynchronously once the main thread is idle - Disabled for now
-      // if (window.requestIdleCallback) {
-      //   requestIdleCallback(() => initHeroDrone());
-      // } else {
-      //   setTimeout(initHeroDrone, 100);
-      // }
-    }
-
-    // ── SEARCH OVERLAY ──
-    window.openSearchOverlay = function () {
-      const existing = document.querySelector('#search-overlay-page'); if (existing) existing.remove();
-      const overlay = document.createElement('div'); overlay.id = 'search-overlay-page'; overlay.className = 'full-page-overlay';
-
-      overlay.innerHTML = `
-  <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
-    <div class="flex items-center gap-3 px-5 py-4 border-b bg-white sticky top-0 z-10">
-      <div class="relative flex-1">
-        <input id="overlay-search-input" type="text" placeholder="Search books by title, author name or keywords..." class="w-full px-4 py-3 pr-10 border border-purple-100 bg-purple-50/20 rounded-2xl text-xs focus:ring-2 focus:ring-purple-600/20 focus:border-purple-600 outline-none transition-all">
-        <span class="absolute right-3.5 top-3.5 text-gray-400">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-          </svg>
-        </span>
-      </div>
-      <button id="close-search-overlay" class="close-btn">Close</button>
-    </div>
-    
-    <div id="overlay-search-results-area" class="flex-1 overflow-y-auto p-5 bg-white">
-      <div id="overlay-search-results-grid" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
-    </div>
-  </div>`;
-
-      document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-
-      const closeBtn = overlay.querySelector('#close-search-overlay');
-      closeBtn.onclick = () => { window.closeOverlay(overlay); };
-
-      const input = overlay.querySelector('#overlay-search-input');
-      const grid = overlay.querySelector('#overlay-search-results-grid');
-
-      input.focus();
-
-      input.oninput = () => {
-        const queryStr = input.value.trim().toLowerCase();
-        if (!queryStr) {
-          grid.innerHTML = '';
-          return;
-        }
-        const filtered = products.filter(p =>
-          (p.name && p.name.toLowerCase().includes(queryStr)) ||
-          (p.author && p.author.toLowerCase().includes(queryStr)) ||
-          (p.desc && p.desc.toLowerCase().includes(queryStr))
-        );
-
-        if (filtered.length === 0) {
-          grid.innerHTML = `<p class="col-span-full text-center text-gray-400 py-8 text-xs">No matching books found</p>`;
-        } else {
-          grid.innerHTML = filtered.map(p => {
-            const disc = discountPercent(p.originalPrice, p.price);
-            return `
-        <div class="group cursor-pointer hover-lift text-center opacity-0 animate-fade-in-up" onclick="window.goToProductDetail('${p.id}')">
-          <div class="book-cover-wrap mb-1.5 shadow-sm">
-            <img src="${p.image || ''}" alt="${p.name}" class="book-cover-img" width="150" height="200" onerror="this.style.display='none';this.parentElement.style.background='#F3F0FF';" loading="lazy">
-            ${p.badge ? `<span class="absolute top-1 left-1 px-1 py-0.5 rounded-full bg-white/90 backdrop-blur-sm text-[7px] font-bold uppercase text-gray-900">${product.badge}</span>` : ''}
-            ${disc ? `<span class="absolute top-1 right-1 px-1 py-0.5 rounded-full bg-red-500 text-white text-[7px] font-bold">-${disc}%</span>` : ''}
-          </div>
-          <div class="space-y-0.5 px-0.5">
-            <h3 class="text-[10px] sm:text-xs font-semibold text-gray-900 line-clamp-1">${p.name}</h3>
-            <div class="flex items-center justify-center gap-1.5">
-              <span class="font-bold text-xs sm:text-sm text-gray-900">${formatPrice(p.price)}</span>
-            </div>
-          </div>
-        </div>`;
-          }).join('');
-        }
-      };
-
-      input.onkeydown = (e) => {
-        if (e.key === 'Enter') {
-          const queryStr = input.value.trim().toLowerCase();
-          if (!queryStr) return;
-          openSearchResultsPage(queryStr);
-          overlay.remove();
-        }
-      };
-    };
-
-    window.openSearchResultsPage = function (queryStr) {
-      const existing = document.querySelector('#search-results-page'); if (existing) existing.remove();
-      const overlay = document.createElement('div'); overlay.id = 'search-results-page'; overlay.className = 'full-page-overlay';
-
-      const filtered = products.filter(p =>
-        (p.name && p.name.toLowerCase().includes(queryStr)) ||
-        (p.author && p.author.toLowerCase().includes(queryStr)) ||
-        (p.desc && p.desc.toLowerCase().includes(queryStr))
-      );
-
-      overlay.innerHTML = `
-  <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
-    <div class="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
-      <h2 class="text-xs font-bold uppercase text-gray-400 tracking-wider">Search Results for: "${queryStr}"</h2>
-      <button id="close-results-overlay" class="close-btn">Close</button>
-    </div>
-    <div class="overlay-scroll p-5">
-      <div id="results-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        ${filtered.length ? filtered.map(p => {
-        const disc = discountPercent(p.originalPrice, p.price);
-        return `
-          <div class="group cursor-pointer hover-lift text-center" onclick="window.goToProductDetail('${p.id}')">
-            <div class="book-cover-wrap mb-1.5 shadow-sm">
-              <img src="${p.image || ''}" alt="${p.name}" class="book-cover-img" width="150" height="200" onerror="this.style.display='none';this.parentElement.style.background='#F3F0FF';" loading="lazy">
-              ${p.badge ? `<span class="absolute top-1 left-1 px-1 py-0.5 rounded-full bg-white/90 backdrop-blur-sm text-[7px] font-bold uppercase text-gray-900">${p.badge}</span>` : ''}
-              ${disc ? `<span class="absolute top-1 right-1 px-1 py-0.5 rounded-full bg-red-500 text-white text-[7px] font-bold">-${disc}%</span>` : ''}
-            </div>
-            <div class="space-y-0.5 px-0.5">
-              <h3 class="text-[10px] sm:text-xs font-semibold text-gray-900 line-clamp-1">${p.name}</h3>
-              <div class="flex items-center justify-center gap-1.5">
-                <span class="font-bold text-xs sm:text-sm text-gray-900">${formatPrice(p.price)}</span>
-                ${p.originalPrice > p.price ? `<span class="text-[9px] text-gray-400 line-through">${formatPrice(p.originalPrice)}</span>` : ''}
-              </div>
-            </div>
-            <button class="mt-2 w-full py-2 bg-black hover:bg-gray-800 text-white rounded-lg text-[10px] sm:text-xs font-semibold transition-all flex items-center justify-center gap-1 add-to-cart-btn" data-id="${p.id}">
-              <span class="btn-text">Add to Cart</span>
-            </button>
-          </div>`;
-      }).join('') : '<p class="col-span-full text-center text-gray-400 py-12 text-xs">No matching books found</p>'}
-      </div>
-    </div>
-  </div>`;
-
-      document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-      overlay.querySelector('#close-results-overlay').onclick = () => { window.closeOverlay(overlay); };
-
-      overlay.querySelectorAll('.add-to-cart-btn').forEach(b => b.onclick = (e) => {
-        e.stopPropagation();
-        const id = String(b.dataset.id);
-        const existing = cart.find(i => String(i.id) === id);
-        if (existing) existing.qty++; else cart.push({ id, qty: 1 });
-        saveCart();
-        b.classList.add('animate-add-success');
-        b.innerHTML = `
-      <svg class="w-3.5 h-3.5 text-white animate-check-pop" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
-      </svg> Added`;
-        setTimeout(() => {
-          b.classList.remove('animate-add-success');
-          b.innerHTML = '<span class="btn-text">Add to Cart</span>';
-        }, 1400);
-      });
-    };
-
-    // Product Details Overlay
-    window.goToProductDetail = function (id) {
-      const product = products.find(p => p.id === id); if (!product) return;
-      const disc = discountPercent(product.originalPrice, product.price);
-      const isWish = wishlist.includes(product.id);
-      const existing = document.querySelector('.full-page-overlay'); if (existing) existing.remove();
-      const overlay = document.createElement('div'); overlay.className = 'full-page-overlay';
-
-      overlay.innerHTML = `
-  <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
-    <div class="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
-      <h2 class="text-base font-bold text-gray-900">Product Details</h2>
-      <button id="close-product-overlay" class="close-btn">Close</button>
-    </div>
-    <div class="overlay-scroll pb-10">
-      <div class="max-w-[280px] sm:max-w-[340px] mx-auto mt-6">
-        <div class="book-cover-wrap shadow-md border border-gray-100/50">
-          <img src="${product.image || ''}" alt="${product.name}" class="book-cover-img" width="280" height="373" loading="lazy">
-        </div>
-      </div>
-      <div class="px-6 py-6 space-y-5 text-left">
-        <div class="flex items-start justify-between">
-          <h1 class="text-xl sm:text-2xl font-serif font-bold text-gray-900 leading-snug">${product.name}</h1>
-          <button id="overlay-wishlist" class="w-10 h-10 rounded-full flex items-center justify-center transition-all active:scale-90 ml-3 flex-shrink-0 ${isWish ? 'bg-red-50' : 'bg-gray-100'}">
-            <svg class="w-5 h-5 ${isWish ? 'text-red-500 fill-current' : 'text-gray-600'}" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-            </svg>
-          </button>
-        </div>
-        <div class="flex flex-wrap items-baseline gap-2">
-          <span class="text-2xl font-bold text-gray-900">${formatPrice(product.price)}</span>
-          ${product.originalPrice > product.price ? `<span class="text-base text-gray-400 line-through">${formatPrice(product.originalPrice)}</span>` : ''}
-          ${disc ? `<span class="text-xs font-semibold text-red-500 bg-red-50 px-2 py-0.5 rounded-full">-${disc}%</span>` : ''}
-        </div>
-        <div class="grid grid-cols-2 gap-4 border-t pt-4 text-xs">
-          <div>
-            <p class="font-bold text-gray-400 uppercase tracking-wide">Author</p>
-            <p class="font-semibold text-slate-800 mt-0.5">${product.author || 'Unknown'}</p>
-          </div>
-          <div>
-            <p class="font-bold text-gray-400 uppercase tracking-wide">Stock Quantity</p>
-            <p class="font-semibold text-slate-800 mt-0.5">${getStockDisplay(product.stock)}</p>
-          </div>
-        </div>
-        <div class="border-t pt-4">
-          <p class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">Description</p>
-          <p class="text-xs text-gray-600 leading-relaxed">${product.desc || 'No details available.'}</p>
-        </div>
-
-      </div>
-    </div>
-    <div class="border-t p-4 flex gap-3 bg-white pointer-events-auto sticky bottom-0 w-full max-w-2xl mx-auto">
-      <button class="flex-1 py-3 bg-black hover:bg-gray-800 text-white rounded-xl font-semibold text-xs flex items-center justify-center gap-2 add-to-cart-btn active:scale-95 transition-all" data-id="${product.id}">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-        </svg> Add to Cart
-      </button>
-      <button class="flex-1 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-semibold text-xs buy-now-btn active:scale-95 transition-all" data-id="${product.id}">Buy Now</button>
-    </div>
-  </div>`;
-
-      document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-      overlay.querySelector('#close-product-overlay').onclick = () => { window.closeOverlay(overlay); };
-
-
-
-      const addBtn = overlay.querySelector('.add-to-cart-btn');
-      if (addBtn) addBtn.onclick = (e) => {
-        e.stopPropagation();
-        const pid = String(addBtn.dataset.id);
-        const ex = cart.find(i => String(i.id) === pid);
-        if (ex) ex.qty++; else cart.push({ id: pid, qty: 1 });
-        saveCart();
-        addBtn.classList.add('animate-add-success');
-        addBtn.innerHTML = `
-      <svg class="w-4 h-4 text-white animate-check-pop" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
-      </svg> Added`;
-        setTimeout(() => {
-          addBtn.classList.remove('animate-add-success');
-          addBtn.innerHTML = `
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-        </svg> Add to Cart`;
-        }, 1400);
-      };
-      const wishBtn = overlay.querySelector('#overlay-wishlist');
-      if (wishBtn) wishBtn.onclick = () => {
-        const idx = wishlist.indexOf(product.id);
-        if (idx > -1) {
-          wishlist.splice(idx, 1);
-          wishBtn.innerHTML = `
-        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-        </svg>`;
-          wishBtn.classList.remove('bg-red-50');
-        } else {
-          wishlist.push(product.id);
-          wishBtn.innerHTML = `
-        <svg class="w-5 h-5 text-red-500 fill-current" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-        </svg>`;
-          wishBtn.classList.add('bg-red-50');
-        }
-        saveWishlist();
-      };
-      const buyBtn = overlay.querySelector('.buy-now-btn');
-      if (buyBtn) buyBtn.onclick = () => openCheckout([{ id: product.id, qty: 1 }], product.price);
-    };
-
-    // Checkout
-    window.openCheckout = async function (items, subtotal) {
-      const existing = document.querySelector('.full-page-overlay'); if (existing) existing.remove();
-      const overlay = document.createElement('div'); overlay.className = 'full-page-overlay';
-      let itemsHtml = '';
-      items.forEach(item => {
-        const prod = products.find(p => p.id === item.id);
-        if (prod) itemsHtml += `
-    <div class="flex gap-3 items-center bg-gray-50 rounded-xl p-3" data-id="${prod.id}" data-price="${prod.price}">
-      <img src="${prod.image || ''}" class="custom-cart-wish-img" width="50" height="66" loading="lazy">
-      <div class="flex-1"><p class="text-xs font-medium text-gray-900">${prod.name}</p>
-        <div class="flex items-center gap-2 mt-1.5"><span class="text-[10px] text-gray-500">Qty:</span>
-          <button class="w-6 h-6 rounded-full border bg-white flex items-center justify-center text-xs qty-dec">-</button>
-          <span class="text-xs font-semibold qty-val">${item.qty}</span>
-          <button class="w-6 h-6 rounded-full border bg-white flex items-center justify-center text-xs qty-inc">+</button>
-        </div>
-      </div>
-      <p class="text-xs font-bold text-gray-900 item-total">${formatPrice(prod.price * item.qty)}</p>
-    </div>`;
-      });
-
-      let prefillName = '', prefillPhone = '', prefillAddress = '', prefillCity = '', prefillZip = '';
-      if (currentUser) {
-        const uSnap = await getDoc(doc(db, 'users', currentUser.uid));
-        if (uSnap.exists()) {
-          const uData = uSnap.data();
-          prefillName = uData.name || '';
-          prefillPhone = uData.phone || '';
-          prefillAddress = uData.address || '';
-          prefillCity = uData.city || '';
-          prefillZip = uData.zip || '';
-        }
-      }
-      const userEmail = currentUser ? currentUser.email : '';
-
-      overlay.innerHTML = `
-  <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
-    <div class="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
-      <h2 class="text-base font-bold text-gray-900">Checkout</h2>
-      <button id="cancel-checkout" class="close-btn">Close</button>
-    </div>
-    <div class="overlay-scroll p-5 space-y-4">
-      <div class="space-y-2.5">${itemsHtml}</div>
-      <div class="space-y-3 pt-3 border-t">
-        <p class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Billing & Shipping Details</p>
-        <input id="ch-name" placeholder="Full Name" value="${prefillName}" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs focus:ring-1 focus:ring-purple-500 outline-none">
-        <input id="ch-email" type="email" placeholder="Email" value="${userEmail}" ${currentUser ? 'readonly' : ''} class="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs ${currentUser ? 'bg-gray-50 text-gray-500' : ''} focus:ring-1 focus:ring-purple-500 outline-none">
-        <input id="ch-mobile" type="tel" placeholder="Mobile Number" value="${prefillPhone}" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs focus:ring-1 focus:ring-purple-500 outline-none">
-        <input id="ch-address" placeholder="Address" value="${prefillAddress}" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs focus:ring-1 focus:ring-purple-500 outline-none">
-        <div class="flex gap-2">
-          <input id="ch-city" placeholder="City" value="${prefillCity}" class="w-1/2 px-4 py-3 border border-gray-200 rounded-xl text-xs focus:ring-1 focus:ring-purple-500 outline-none">
-          <input id="ch-zip" placeholder="ZIP Code" value="${prefillZip}" class="w-1/2 px-4 py-3 border border-gray-200 rounded-xl text-xs focus:ring-1 focus:ring-purple-500 outline-none">
-        </div>
-      </div>
-      <div class="space-y-2 pt-3 border-t">
-        <p class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Promo Coupon</p>
-        <div class="flex gap-2">
-          <input id="coupon-input" placeholder="Promo code (e.g., LUXE20)" class="flex-1 px-4 py-3 border border-gray-200 rounded-xl text-xs focus:ring-1 focus:ring-purple-500 outline-none">
-          <button id="apply-coupon" class="px-5 py-3 bg-gray-100 hover:bg-gray-200 rounded-xl text-xs font-semibold text-gray-700 transition-colors">Apply</button>
-        </div>
-        <p id="coupon-msg" class="text-xs text-green-600 font-medium hidden"></p>
-      </div>
-      <div class="space-y-2 pt-3 border-t text-xs">
-        <div class="flex justify-between text-gray-500"><span>Subtotal</span><span id="order-subtotal" class="font-medium">${formatPrice(subtotal)}</span></div>
-        <div class="flex justify-between text-gray-900 font-bold text-sm"><span>Total Payment</span><span id="order-total">${formatPrice(subtotal)}</span></div>
-      </div>
-    </div>
-    <div class="border-t p-4 bg-white sticky bottom-0 w-full max-w-2xl mx-auto">
-      <button id="confirm-order" class="w-full py-3.5 bg-purple-600 hover:bg-purple-700 text-white rounded-xl font-bold text-xs shadow-lg shadow-purple-600/25 transition-all">Confirm & Place Order</button>
-    </div>
-  </div>`;
-
-      document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-      let discVal = 0;
-      const updateTotals = () => {
-        let ns = 0;
-        overlay.querySelectorAll('.bg-gray-50').forEach(el => {
-          const pr = parseFloat(el.dataset.price);
-          const q = parseInt(el.querySelector('.qty-val').textContent);
-          ns += pr * q;
-          el.querySelector('.item-total').textContent = formatPrice(pr * q);
-        });
-        overlay.querySelector('#order-subtotal').textContent = formatPrice(ns);
-        overlay.querySelector('#order-total').textContent = formatPrice(ns * (1 - discVal / 100));
-      };
-      overlay.querySelectorAll('.qty-inc').forEach(b => b.onclick = () => { const el = b.closest('.bg-gray-50'); const v = el.querySelector('.qty-val'); let q = parseInt(v.textContent); q++; v.textContent = q; updateTotals(); });
-      overlay.querySelectorAll('.qty-dec').forEach(b => b.onclick = () => { const el = b.closest('.bg-gray-50'); const v = el.querySelector('.qty-val'); let q = parseInt(v.textContent); if (q > 1) { q--; v.textContent = q; updateTotals(); } });
-      overlay.querySelector('#cancel-checkout').onclick = () => { window.closeOverlay(overlay); };
-      overlay.querySelector('#apply-coupon').onclick = () => { const code = overlay.querySelector('#coupon-input').value.trim().toUpperCase(); const msg = overlay.querySelector('#coupon-msg'); if (code === 'LUXE20') { discVal = 20; msg.textContent = 'Coupon applied! 20% Discount Activated.'; msg.classList.remove('hidden'); } else { discVal = 0; msg.textContent = 'Invalid coupon code'; msg.classList.remove('hidden'); } updateTotals(); };
-      overlay.querySelector('#confirm-order').onclick = async () => {
-        const name = overlay.querySelector('#ch-name').value.trim();
-        const email = overlay.querySelector('#ch-email').value.trim();
-        const mobile = overlay.querySelector('#ch-mobile').value.trim();
-        const address = overlay.querySelector('#ch-address').value.trim();
-        if (!name || !email || !address || !mobile) return showAlert('Please fill out all billing details');
-        const updatedItems = [];
-        overlay.querySelectorAll('.bg-gray-50').forEach(el => updatedItems.push({ id: el.dataset.id, qty: parseInt(el.querySelector('.qty-val').textContent) }));
-        const finalSubtotal = parseFloat(overlay.querySelector('#order-subtotal').textContent.replace('$', ''));
-        const finalTotal = finalSubtotal * (1 - discVal / 100);
-        await addDoc(collection(db, 'orders'), {
-          customer: { name, email, mobile, address, city: overlay.querySelector('#ch-city').value, zip: overlay.querySelector('#ch-zip').value },
-          items: updatedItems, subtotal: finalSubtotal, discount: discVal, total: finalTotal, status: 'pending', createdAt: serverTimestamp()
-        });
-        updatedItems.forEach(it => { cart = cart.filter(c => String(c.id) !== String(it.id)); });
-        saveCart();
-        overlay.remove();
-        document.body.style.overflow = '';
-        showAlert('Order placed successfully!');
-      };
-    };
-
-    // Tracking
-    window.openTracking = function () {
-      if (!currentUser) { openProfileOverlay(); return; }
-      const existing = document.querySelector('.full-page-overlay'); if (existing) existing.remove();
-      const overlay = document.createElement('div'); overlay.className = 'full-page-overlay';
-      overlay.innerHTML = `
-  <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
-    <div class="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
-      <h2 class="text-base font-bold text-gray-900">My Orders & Tracking</h2>
-      <button id="close-tracking" class="close-btn">Close</button>
-    </div>
-    <div class="overlay-scroll p-5 space-y-5">
-      <div class="bg-purple-50 rounded-2xl p-4 flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center">
-          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 h14a7 7 0 00-7-7z"></path>
-          </svg>
-        </div>
-        <div>
-          <p class="text-xs text-gray-500">Tracking Account</p>
-          <p class="text-xs font-bold text-purple-900 truncate max-w-[200px]">${currentUser.email}</p>
-        </div>
-      </div>
-      <button id="fetch-orders" class="w-full py-3 bg-black hover:bg-gray-800 text-white rounded-xl text-xs font-semibold transition-colors flex items-center justify-center gap-2">
-        <svg class="w-4 h-4 text-white animate-spin" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"></path>
-        </svg> Sync Orders
-      </button>
-      <div id="orders-list" class="space-y-4">
-        <div class="text-center py-12 text-gray-400">
-          <svg class="w-12 h-12 text-gray-300 mx-auto mb-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0zM13 11V7a1 1 0 00-1-1H3a1 1 0 00-1 1v7m11-3h3l3 3v2h-8m-4 0h6m-12 0h2"></path>
-          </svg>
-          <p class="text-xs">Click sync orders to update live status</p>
-        </div>
-      </div>
-    </div>
-  </div>`;
-
-      document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-      overlay.querySelector('#close-tracking').onclick = () => { window.closeOverlay(overlay); };
-      overlay.querySelector('#fetch-orders').onclick = async () => {
-        const list = overlay.querySelector('#orders-list');
-        list.innerHTML = `
-      <div class="text-center py-8">
-        <svg class="w-8 h-8 text-purple-600 animate-spin mx-auto" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"></path>
-        </svg>
-      </div>`;
-
-        const q = query(collection(db, 'orders'), where('customer.email', '==', currentUser.email), orderBy('createdAt', 'desc'));
-        const snap = await getDocs(q);
-        list.innerHTML = '';
-
-        if (snap.empty) {
-          list.innerHTML = `
-        <div class="text-center py-12 text-gray-400">
-          <svg class="w-12 h-12 text-gray-300 mx-auto mb-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-          </svg>
-          <p class="text-xs">No orders placed from this account yet</p>
-        </div>`;
-          return;
-        }
-
-        snap.forEach(doc => {
-          const o = doc.data();
-          const status = o.status || 'pending';
-
-          const step1 = 'bg-purple-600 text-white';
-          const step2 = (status === 'processing' || status === 'completed') ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-400';
-          const step3 = (status === 'completed') ? 'bg-purple-600 text-white' : 'bg-gray-100 text-gray-400';
-
-          const line1 = (status === 'processing' || status === 'completed') ? 'bg-purple-600' : 'bg-gray-100';
-          const line2 = (status === 'completed') ? 'bg-purple-600' : 'bg-gray-100';
-
-          list.innerHTML += `
-      <div class="border border-gray-100 rounded-2xl p-4 bg-white shadow-sm space-y-4">
-        <div class="flex justify-between items-center pb-2 border-b border-gray-50">
-          <div>
-            <p class="font-bold text-xs text-gray-900">#${doc.id.slice(-6).toUpperCase()}</p>
-            <p class="text-[10px] text-gray-400">${o.items ? o.items.length : 0} items · ${formatPrice(o.total)}</p>
-          </div>
-          <span class="text-[9px] font-bold px-2 py-1 rounded-full uppercase tracking-wider ${status === 'completed' ? 'bg-green-50 text-green-600' : status === 'processing' ? 'bg-blue-50 text-blue-600' : 'bg-yellow-50 text-yellow-600'}">${status}</span>
-        </div>
-        
-        <div class="relative flex items-center justify-between px-2">
-          <div class="absolute left-6 right-6 top-[13px] h-[3px] ${line1} z-0"></div>
-          <div class="absolute left-[50%] right-6 top-[13px] h-[3px] ${line2} z-0"></div>
-          
-          <div class="relative z-10 flex flex-col items-center">
-            <div class="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold ${step1} shadow-sm">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-              </svg>
-            </div>
-            <span class="text-[9px] font-semibold text-gray-500 mt-1">Pending</span>
-          </div>
-          <div class="relative z-10 flex flex-col items-center">
-            <div class="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold ${step2} shadow-sm">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-              </svg>
-            </div>
-            <span class="text-[9px] font-semibold text-gray-500 mt-1">Processing</span>
-          </div>
-          <div class="relative z-10 flex flex-col items-center">
-            <div class="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold ${step3} shadow-sm">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
-              </svg>
-            </div>
-            <span class="text-[9px] font-semibold text-gray-500 mt-1">Delivered</span>
-          </div>
-        </div>
-      </div>`;
-        });
-      };
-    };
-
-    // Cart overlay
-    function renderCartOverlay() {
-      const existing = document.querySelector('#cart-overlay-page'); if (existing) existing.remove();
-      const overlay = document.createElement('div'); overlay.id = 'cart-overlay-page'; overlay.className = 'full-page-overlay';
-      overlay.innerHTML = `
-  <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
-    <div class="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
-      <h2 class="text-base font-bold text-gray-900">Add to Cart</h2>
-      <button id="cart-close-overlay" class="close-btn">Close</button>
-    </div>
-    <div id="cart-items-list" class="flex-1 overflow-y-auto p-5 space-y-3"></div>
-    <div class="border-t p-5 bg-white sticky bottom-0 space-y-4">
-      <div class="flex justify-between items-center text-xs">
-        <span class="text-gray-500 font-medium">Subtotal</span>
-        <span id="cart-subtotal-overlay" class="font-bold text-gray-900 text-sm">$0.00</span>
-      </div>
-      <button id="cart-checkout-all" class="w-full py-3.5 bg-black hover:bg-gray-800 text-white rounded-xl font-bold text-xs transition-colors">Checkout Entire Bag</button>
-    </div>
-  </div>`;
-
-      document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-      overlay.querySelector('#cart-close-overlay').onclick = () => { window.closeOverlay(overlay); };
-      const container = overlay.querySelector('#cart-items-list');
-      const validCart = cart.filter(item => products.some(p => String(p.id) === String(item.id)));
-
-      if (validCart.length === 0) {
-        container.innerHTML = `
-    <div class="flex flex-col items-center justify-center h-full text-gray-400 py-16">
-      <div class="w-14 h-14 rounded-full bg-gray-50 flex items-center justify-center mb-3">
-        <svg class="w-6 h-6 text-gray-400 opacity-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-        </svg>
-      </div>
-      <p class="text-xs">Your bag is empty.</p>
-    </div>`;
-        overlay.querySelector('#cart-checkout-all').style.display = 'none';
-      } else {
-        container.innerHTML = validCart.map(item => {
-          const p = products.find(pr => String(pr.id) === String(item.id));
-          return `
-      <div class="flex gap-4 items-center bg-gray-50 rounded-2xl p-3 border border-gray-100">
-        <img src="${p.image || ''}" class="custom-cart-wish-img" width="50" height="66" loading="lazy">
-        <div class="flex-1 min-w-0">
-          <p class="text-xs font-bold text-gray-900 truncate">${p.name}</p>
-          <p class="text-[10px] text-gray-500 mt-0.5">${formatPrice(p.price)} &times; ${item.qty}</p>
-        </div>
-        <div class="flex items-center gap-2">
-          <button class="text-gray-400 hover:text-red-500 p-1 remove-cart-item text-xs transition-colors" data-id="${item.id}">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-            </svg>
-          </button>
-          <button class="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-[10px] font-bold buy-cart-item transition-colors" data-id="${item.id}" data-qty="${item.qty}">Buy</button>
-        </div>
-      </div>`;
-        }).join('');
-
-        container.querySelectorAll('.remove-cart-item').forEach(b => b.onclick = () => {
-          cart = cart.filter(i => String(i.id) !== b.dataset.id); saveCart(); renderCartOverlay();
-        });
-        container.querySelectorAll('.buy-cart-item').forEach(b => b.onclick = () => {
-          const pid = b.dataset.id; const qty = parseInt(b.dataset.qty);
-          const product = products.find(p => String(p.id) === pid);
-          if (!product) return;
-          window.closeOverlay(overlay);
-          openCheckout([{ id: pid, qty }], product.price * qty);
-        });
-
-        overlay.querySelector('#cart-checkout-all').onclick = () => {
-          window.closeOverlay(overlay);
-          const finalSubtotal = validCart.reduce((s, i) => {
-            const p = products.find(pr => String(pr.id) === String(i.id));
-            return s + (p ? p.price * i.qty : 0);
-          }, 0);
-          openCheckout(validCart, finalSubtotal);
-        };
-      }
-      const subtotal = validCart.reduce((s, i) => {
-        const p = products.find(pr => String(pr.id) === String(i.id));
-        return s + (p ? p.price * i.qty : 0);
-      }, 0);
-      overlay.querySelector('#cart-subtotal-overlay').textContent = formatPrice(subtotal);
-    }
-
-    // Wishlist overlay
-    function renderWishlistOverlay() {
-      const validWishlist = wishlist.filter(id => products.some(p => String(p.id) === String(id)));
-      const existing = document.querySelector('#wishlist-overlay-page'); if (existing) existing.remove();
-      const overlay = document.createElement('div'); overlay.id = 'wishlist-overlay-page'; overlay.className = 'full-page-overlay';
-      overlay.innerHTML = `
-  <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
-    <div class="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
-      <h2 class="text-base font-bold text-gray-900">Your Wishlist</h2>
-      <button id="wl-close-overlay" class="close-btn">Close</button>
-    </div>
-    <div id="wl-items-list" class="flex-1 overflow-y-auto p-5 space-y-3"></div>
-  </div>`;
-
-      document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-      overlay.querySelector('#wl-close-overlay').onclick = () => { window.closeOverlay(overlay); };
-      const container = overlay.querySelector('#wl-items-list');
-
-      if (validWishlist.length === 0) {
-        container.innerHTML = `
-    <div class="flex flex-col items-center justify-center h-full text-gray-400 py-16">
-      <div class="w-14 h-14 rounded-full bg-gray-50 flex items-center justify-center mb-3">
-        <svg class="w-6 h-6 text-gray-400 opacity-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-        </svg>
-      </div>
-      <p class="text-xs">Your wishlist is empty.</p>
-    </div>`;
-      } else {
-        const wishProds = products.filter(p => validWishlist.includes(p.id));
-        container.innerHTML = wishProds.map(p => `
-    <div class="flex gap-4 items-center bg-gray-50 rounded-2xl p-3 border border-gray-100">
-      <img src="${p.image || ''}" class="custom-cart-wish-img" width="50" height="66" loading="lazy">
-      <div class="flex-1 min-w-0">
-        <p class="text-xs font-bold text-gray-900 truncate">${p.name}</p>
-        <p class="text-[10px] text-gray-500 mt-0.5">${formatPrice(p.price)}</p>
-      </div>
-      <div class="flex items-center gap-2">
-        <button class="text-gray-400 hover:text-red-500 p-2 remove-wish-item text-xs transition-colors" data-id="${p.id}">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-          </svg>
-        </button>
-        <button class="px-3 py-1.5 bg-black hover:bg-gray-800 text-white rounded-lg text-[10px] font-bold move-to-cart-btn transition-colors" data-id="${p.id}">Add</button>
-      </div>
-    </div>`).join('');
-
-        container.querySelectorAll('.remove-wish-item').forEach(b => b.onclick = () => {
-          wishlist = wishlist.filter(i => i !== b.dataset.id); saveWishlist(); renderWishlistOverlay();
-        });
-        container.querySelectorAll('.move-to-cart-btn').forEach(b => b.onclick = () => {
-          const pid = b.dataset.id;
-          const ex = cart.find(i => String(i.id) === pid);
-          if (ex) ex.qty++; else cart.push({ id: pid, qty: 1 });
-          saveCart();
-          wishlist = wishlist.filter(i => i !== pid); saveWishlist();
-          renderWishlistOverlay();
-          showAlert('Product added to bag!');
-        });
-      }
-    }
-
-    // ═══ CHAT OVERLAY (FIXED AI API) ═══
-    function openChatOverlay() {
-      const existing = document.querySelector('#chat-overlay-page');
-      if (existing) {
-        if (chatUnsubscribe) { chatUnsubscribe(); chatUnsubscribe = null; }
-        existing.remove();
-      }
-      const overlay = document.createElement('div'); overlay.id = 'chat-overlay-page'; overlay.className = 'full-page-overlay';
-      overlay.innerHTML = `
-  <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
-    <div class="flex flex-col gap-3 px-5 py-4 border-b bg-white sticky top-0 z-10 shadow-sm">
-      <div class="flex items-center justify-between w-full">
-        <h2 class="text-sm font-bold text-gray-900 leading-none" id="chat-header-title">Chat With Admin</h2>
-        <button id="chat-close-overlay" class="close-btn">Close</button>
-      </div>
-      
-      <div class="flex gap-2 p-1 bg-gray-100 rounded-2xl w-full max-w-md mx-auto">
-        <button id="chat-tab-admin" class="flex-1 py-2.5 text-xs font-bold rounded-xl transition-all focus:outline-none bg-transparent text-gray-500 hover:text-gray-800">
-          Chat With Admin
-        </button>
-        <button id="chat-tab-ai" class="flex-1 py-2.5 text-xs font-bold rounded-xl transition-all focus:outline-none bg-purple-600 text-white shadow-sm">
-          AI Assistant
-        </button>
-      </div>
-    </div>
-    
-    <div id="chat-messages-area" class="flex-1 overflow-y-auto p-5 bg-gray-50/50 space-y-3.5"></div>
-    
-    <div class="border-t p-3 bg-white sticky bottom-0">
-      <div class="flex gap-2 items-center bg-gray-50 rounded-xl px-3 py-1 border border-gray-100">
-        <input id="chat-input-overlay" placeholder="Send a message..." class="flex-1 bg-transparent py-2.5 outline-none text-xs text-gray-900">
-        <button id="send-msg-overlay" class="w-8 h-8 bg-purple-600 hover:bg-purple-700 text-white rounded-lg flex items-center justify-center transition-colors">
-          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white">
-            <g>
-              <animateTransform
-                attributeName="transform"
-                type="translate"
-                values="0 0; 6 0; 0 0"
-                dur="1.2s"
-                repeatCount="indefinite"
-              />
-              <path
-                d="M16 10L32 24L16 38"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="3.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </g>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>`;
-
-      document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-      overlay.querySelector('#chat-close-overlay').onclick = () => {
-        window.closeOverlay(overlay);
-        if (chatUnsubscribe) { chatUnsubscribe(); chatUnsubscribe = null; }
-      };
-
-      const cont = overlay.querySelector('#chat-messages-area');
-      const tabAdmin = overlay.querySelector('#chat-tab-admin');
-      const tabAi = overlay.querySelector('#chat-tab-ai');
-
-      let currentMode = 'ai'; // start with AI
-      let aiChatHistory = [];
-
-      const renderAiChat = () => {
-        cont.innerHTML = '';
-        aiChatHistory.forEach(msg => {
-          const isAI = msg.role === 'assistant';
-          cont.innerHTML += `
-        <div class="flex ${isAI ? 'justify-start' : 'justify-end'} animate-fade-in-up">
-          <div class="max-w-[80%] px-4 py-3 rounded-2xl text-xs leading-relaxed ${isAI ? 'bg-white text-gray-800 rounded-tl-none border border-gray-100 shadow-sm' : 'bg-purple-600 text-white rounded-tr-none shadow-sm shadow-purple-600/10'}">
-            ${msg.content}
-          </div>
-        </div>`;
-        });
-        cont.scrollTop = cont.scrollHeight;
-      };
-
-      const setChatMode = (mode) => {
-        if (mode === 'admin') {
-          if (!currentUser) {
-            showAlert("Please log in to chat with Admin.");
-            openProfileOverlay();
-            return;
-          }
-        }
-
-        currentMode = mode;
-        if (chatUnsubscribe) { chatUnsubscribe(); chatUnsubscribe = null; }
-
-        if (mode === 'ai') {
-          $('#chat-header-title').textContent = "AI Book Assistant";
-          tabAi.className = "flex-1 py-2.5 text-xs font-bold rounded-xl transition-all focus:outline-none bg-purple-600 text-white shadow-sm";
-          tabAdmin.className = "flex-1 py-2.5 text-xs font-bold rounded-xl transition-all focus:outline-none bg-transparent text-gray-500 hover:text-gray-800";
-          renderAiChat();
-        } else {
-          $('#chat-header-title').textContent = "Chat With Admin";
-          tabAdmin.className = "flex-1 py-2.5 text-xs font-bold rounded-xl transition-all focus:outline-none bg-purple-600 text-white shadow-sm";
-          tabAi.className = "flex-1 py-2.5 text-xs font-bold rounded-xl transition-all focus:outline-none bg-transparent text-gray-500 hover:text-gray-800";
-          subscribeToLiveChat();
-        }
-      };
-
-      tabAdmin.onclick = () => setChatMode('admin');
-      tabAi.onclick = () => setChatMode('ai');
-
-      const subscribeToLiveChat = () => {
-        if (!currentUser) return;
-        const q = query(collection(db, `chats/${currentUser.uid}/messages`), orderBy('timestamp', 'asc'));
-        chatUnsubscribe = onSnapshot(q, snap => {
-          cont.innerHTML = ``;
-          snap.forEach(doc => {
-            const msg = doc.data();
-            cont.innerHTML += `
-        <div class="flex ${msg.sender === 'admin' ? 'justify-start' : 'justify-end'} animate-fade-in-up">
-          <div class="max-w-[80%] px-4 py-3 rounded-2xl text-xs leading-relaxed ${msg.sender === 'admin' ? 'bg-white text-gray-800 rounded-tl-none border border-gray-100 shadow-sm' : 'bg-purple-600 text-white rounded-tr-none shadow-sm shadow-purple-600/10'}">
-            ${msg.text}
-          </div>
-        </div>`;
-          });
-          cont.scrollTop = cont.scrollHeight;
-        });
-      };
-
-      const callOpenRouterAPI = async (userText) => {
-        if (!CHAT_API_KEY) {
-          aiChatHistory.push({ role: "assistant", content: "Error: AI chatbot key is not configured." });
-          renderAiChat();
-          return;
-        }
-        // typing indicator
-        const loaderEl = document.createElement('div');
-        loaderEl.className = "flex justify-start animate-fade-in-up";
-        loaderEl.innerHTML = `
-      <div class="max-w-[80%] px-4 py-3 rounded-2xl text-xs bg-white text-gray-400 rounded-tl-none border border-gray-100 shadow-sm flex items-center gap-1.5">
-        <span class="animate-bounce h-1.5 w-1.5 bg-gray-400 rounded-full"></span>
-        <span class="animate-bounce h-1.5 w-1.5 bg-gray-400 rounded-full" style="animation-delay:0.1s"></span>
-        <span class="animate-bounce h-1.5 w-1.5 bg-gray-400 rounded-full" style="animation-delay:0.2s"></span>
-      </div>`;
-        cont.appendChild(loaderEl);
-        cont.scrollTop = cont.scrollHeight;
-
-        try {
-          const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-            method: "POST",
-            headers: {
-              "Authorization": `Bearer ${CHAT_API_KEY}`,
-              "Content-Type": "application/json",
-              "HTTP-Referer": window.location.origin, // Optional but recommended by OpenRouter
-              "X-Title": "Shobdotori Bookstore"
-            },
-            body: JSON.stringify({
-              model: CHAT_MODEL,
-              messages: [
-                { role: "system", content: "You are Shobdotori Bookstore AI Assistant. Answer questions beautifully, help pick books based on author or name, and keep responses short and friendly in English." },
-                ...aiChatHistory.filter(h => h.role !== 'assistant' || (h.content && !h.content.includes("Error")))
-              ]
-            })
-          });
-
-          const data = await response.json();
-          // remove loader
-          if (loaderEl.parentNode) loaderEl.remove();
-
-          // proper error handling for OpenRouter API response
-          if (data && data.choices && data.choices.length > 0 && data.choices[0].message) {
-            const botResponse = data.choices[0].message.content;
-            aiChatHistory.push({ role: "assistant", content: botResponse });
-          } else if (data && data.error) {
-            aiChatHistory.push({ role: "assistant", content: `Error from AI: ${data.error.message || 'Unknown error'}` });
-          } else {
-            aiChatHistory.push({ role: "assistant", content: "Sorry, I received an invalid response. Please check the API key or model ID." });
-          }
-        } catch (err) {
-          console.error(err);
-          if (loaderEl.parentNode) loaderEl.remove();
-          aiChatHistory.push({ role: "assistant", content: "Sorry, I am facing connectivity issues. Please try again later." });
-        } finally {
-          renderAiChat();
-        }
-      };
-
-      const sendMessage = async () => {
-        const text = overlay.querySelector('#chat-input-overlay').value.trim();
-        if (!text) return;
-        overlay.querySelector('#chat-input-overlay').value = '';
-
-        if (currentMode === 'ai') {
-          aiChatHistory.push({ role: "user", content: text });
-          renderAiChat();
-          await callOpenRouterAPI(text);
-        } else {
-          await addDoc(collection(db, `chats/${currentUser.uid}/messages`), { text, sender: 'user', timestamp: serverTimestamp() });
-        }
-      };
-
-      overlay.querySelector('#send-msg-overlay').onclick = sendMessage;
-      overlay.querySelector('#chat-input-overlay').onkeydown = (e) => { if (e.key === 'Enter') sendMessage(); };
-
-      // Start with AI assistant tab active
-      setChatMode('ai');
-    }
-
-    function showAlert(msg) {
-      const existing = document.querySelector('.alert-modal-container'); if (existing) existing.remove();
-
-      const container = document.createElement('div');
-      container.className = 'alert-modal-container';
-
-      container.innerHTML = `
-    <div class="alert-modal-bg"></div>
-    <div class="alert-modal-content">
-      <p class="text-sm mb-4 font-semibold text-gray-800">${msg}</p>
-      <button class="close-btn close-alert">Dismiss</button>
-    </div>`;
-
-      document.body.appendChild(container);
-
-      const bg = container.querySelector('.alert-modal-bg');
-      setTimeout(() => bg.classList.add('active'), 10);
-
-      const closeAlert = () => {
-        const content = container.querySelector('.alert-modal-content');
-        content.classList.add('closing');
-        bg.classList.remove('active');
-        content.addEventListener('animationend', () => {
-          container.remove();
-        });
-        setTimeout(() => container.remove(), 260);
-      };
-
-      container.querySelector('.close-alert').onclick = closeAlert;
-      container.querySelector('.alert-modal-bg').onclick = closeAlert;
-    }
-
-    function observeReveal() {
-      if (revealObserver) revealObserver.disconnect();
-      revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.08 });
-      document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
-    }
-
-    function updateCartBadge() {
-      const c = $('#cart-count'); if (!c) return;
-      const validCount = cart.filter(item => products.some(p => String(p.id) === String(item.id))).length;
-      c.textContent = validCount;
-      c.style.display = validCount ? 'flex' : 'none';
-    }
-    function updateWishlistBadge() {
-      const c = $('#wishlist-count'); if (!c) return;
-      const validCount = wishlist.filter(id => products.some(p => String(p.id) === String(id))).length;
-      c.textContent = validCount;
-      c.style.display = validCount ? 'flex' : 'none';
-    }
-
-    function authErrorMsg(code) {
-      const map = {
-        'auth/invalid-email': 'Invalid Email format',
-        'auth/wrong-password': 'Wrong Password entered',
-        'auth/user-not-found': 'Account does not exist',
-        'auth/email-already-in-use': 'Email already registered',
-        'auth/weak-password': 'Password must be at least 6 characters'
-      };
-      return map[code] || 'Authentication error occurred.';
-    }
-
-    window.openProfileOverlay = function () {
-      const existing = document.querySelector('.full-page-overlay'); if (existing) existing.remove();
-      const overlay = document.createElement('div'); overlay.className = 'full-page-overlay';
-
-      if (currentUser) {
-        overlay.innerHTML = `
-    <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
-      <div class="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
-        <h2 class="text-base font-bold text-gray-900 font-serif">My Account Panel</h2>
-        <button id="close-profile" class="close-btn">Close</button>
-      </div>
-      <div class="overlay-scroll p-6 space-y-6 text-left">
-        <div class="bg-purple-50/50 rounded-2xl p-6 border border-purple-100 flex items-center gap-4">
-          <div class="w-14 h-14 rounded-full bg-purple-600 text-white flex items-center justify-center text-lg font-bold">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 h14a7 7 0 00-7-7z"></path>
-            </svg>
-          </div>
-          <div>
-            <h3 id="profile-display-name" class="font-bold text-lg text-slate-950">Loading...</h3>
-            <p class="text-xs text-slate-500">${currentUser.email}</p>
-          </div>
-        </div>
-
-        <form id="profile-update-form" class="space-y-4 pt-2">
-          <p class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-1">Shipping & Profile Information</p>
-          <div>
-            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Full Name</label>
-            <input id="prof-name" placeholder="Full Name" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs focus:ring-1 focus:ring-purple-500 outline-none">
-          </div>
-          <div>
-            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Phone Number</label>
-            <input id="prof-phone" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs focus:ring-1 focus:ring-purple-500 outline-none">
-          </div>
-          <div>
-            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Delivery Address</label>
-            <input id="prof-address" placeholder="Address" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs focus:ring-1 focus:ring-purple-500 outline-none">
-          </div>
-          <div class="flex gap-3">
-            <div class="w-1/2">
-              <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">City</label>
-              <input id="prof-city" placeholder="City" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs focus:ring-1 focus:ring-purple-500 outline-none">
-            </div>
-            <div class="w-1/2">
-              <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">ZIP Code</label>
-              <input id="prof-zip" placeholder="ZIP Code" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs focus:ring-1 focus:ring-purple-500 outline-none">
-            </div>
-          </div>
-          <button type="submit" class="w-full py-3 bg-black hover:bg-gray-800 text-white rounded-xl text-xs font-bold transition-all">Save Changes</button>
-        </form>
-
-        <button id="do-logout" class="w-full py-3 border border-red-200 hover:bg-red-50 text-red-600 rounded-xl text-xs font-bold transition-all mt-4 flex items-center justify-center gap-1">
-          <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
-          <span>Log Out</span>
-        </button>
-      </div>
-    </div>`;
-
-        document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-        overlay.querySelector('#close-profile').onclick = () => { window.closeOverlay(overlay); };
-
-        const getProfileDetails = async () => {
-          const snap = await getDoc(userDocRef);
-          if (snap.exists()) {
-            const uData = snap.data();
-            overlay.querySelector('#profile-display-name').textContent = uData.name || 'Shobdotori Member';
-            overlay.querySelector('#prof-name').value = uData.name || '';
-            overlay.querySelector('#prof-phone').value = uData.phone || '';
-            overlay.querySelector('#prof-address').value = uData.address || '';
-            overlay.querySelector('#prof-city').value = uData.city || '';
-            overlay.querySelector('#prof-zip').value = uData.zip || '';
-          }
-        };
-        getProfileDetails();
-
-        overlay.querySelector('#profile-update-form').onsubmit = async (e) => {
-          e.preventDefault();
-          const updatedName = overlay.querySelector('#prof-name').value.trim();
-          const updatedPhone = overlay.querySelector('#prof-phone').value.trim();
-          const updatedAddress = overlay.querySelector('#prof-address').value.trim();
-          const updatedCity = overlay.querySelector('#prof-city').value.trim();
-          const updatedZip = overlay.querySelector('#prof-zip').value.trim();
-
-          await updateDoc(userDocRef, {
-            name: updatedName,
-            phone: updatedPhone,
-            address: updatedAddress,
-            city: updatedCity,
-            zip: updatedZip
-          });
-          overlay.querySelector('#profile-display-name').textContent = updatedName;
-          showAlert('Profile details updated successfully!');
-        };
-
-        overlay.querySelector('#do-logout').onclick = async () => {
-          await signOut(auth);
-          window.closeOverlay(overlay);
-          showAlert('Logged out successfully.');
-        };
-
-      } else {
-        overlay.innerHTML = `
-    <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
-      <div class="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
-        <h2 class="text-base font-bold text-gray-900">Login to Shobdotori</h2>
-        <button id="close-profile-overlay" class="close-btn">Close</button>
-      </div>
-      <div class="overlay-scroll p-6 space-y-4 text-left">
-        <div>
-          <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">Email</label>
-          <input id="login-email" type="email" placeholder="example@shobdotori.com" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs focus:ring-1 focus:ring-purple-500 outline-none">
-        </div>
-        <div>
-          <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">Password</label>
-          <input id="login-pass" type="password" placeholder="••••••••" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs focus:ring-1 focus:ring-purple-500 outline-none">
-        </div>
-        <button id="do-login" class="w-full py-3 bg-black hover:bg-gray-800 text-white rounded-xl text-xs font-semibold transition-colors">Login</button>
-        <div class="flex flex-col gap-2.5 text-xs text-center mt-4">
-          <button id="forgot-link" class="text-gray-500 font-medium hover:text-black">Forgot password?</button>
-          <button id="signup-link" class="text-gray-500 font-medium hover:text-black underline">Create Account</button>
-        </div>
-      </div>
-    </div>`;
-
-        document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-        overlay.querySelector('#close-profile-overlay').onclick = () => { window.closeOverlay(overlay); };
-
-        overlay.querySelector('#do-login').onclick = async () => {
-          const email = overlay.querySelector('#login-email').value.trim();
-          const pass = overlay.querySelector('#login-pass').value.trim();
-          if (!email || !pass) return showAlert('Please fill out all fields');
-          try {
-            await signInWithEmailAndPassword(auth, email, pass);
-            window.closeOverlay(overlay);
-            showAlert('Logged in successfully!');
-          } catch (err) {
-            showAlert(authErrorMsg(err.code));
-          }
-        };
-
-        overlay.querySelector('#forgot-link').onclick = () => { window.closeOverlay(overlay); openForgotOverlay(); };
-        overlay.querySelector('#signup-link').onclick = () => { window.closeOverlay(overlay); openSignupOverlay(); };
-      }
-    };
-
-    window.openSignupOverlay = function () {
-      const existing = document.querySelector('.full-page-overlay'); if (existing) existing.remove();
-      const overlay = document.createElement('div'); overlay.className = 'full-page-overlay';
-      overlay.innerHTML = `
-  <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
-    <div class="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
-      <h2 class="text-base font-bold text-gray-900">Create Shobdotori Account</h2>
-      <button id="close-signup" class="close-btn">Close</button>
-    </div>
-    <div class="overlay-scroll p-6 space-y-4 text-left">
-      <div>
-        <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">Name</label>
-        <input id="su-name" placeholder="John Doe" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs focus:ring-1 focus:ring-purple-500 outline-none">
-      </div>
-      <div>
-        <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">Email</label>
-        <input id="su-email" type="email" placeholder="john@example.com" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs focus:ring-1 focus:ring-purple-500 outline-none">
-      </div>
-      <div>
-        <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">Password</label>
-        <input id="su-pass" type="password" placeholder="••••••••" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs focus:ring-1 focus:ring-purple-500 outline-none">
-      </div>
-      <button id="do-signup" class="w-full py-3 bg-black hover:bg-gray-800 text-white rounded-xl text-xs font-semibold transition-colors">Create Account</button>
-      <p class="text-xs text-center text-gray-500">I have account? <button id="login-link" class="underline hover:text-black font-semibold">Login</button></p>
-    </div>
-  </div>`;
-
-      document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-      overlay.querySelector('#close-signup').onclick = () => { window.closeOverlay(overlay); };
-
-      overlay.querySelector('#do-signup').onclick = async () => {
-        const name = overlay.querySelector('#su-name').value.trim();
-        const email = overlay.querySelector('#su-email').value.trim();
-        const pass = overlay.querySelector('#su-pass').value.trim();
-        if (!name || !email || !pass) return showAlert('Please fill out all fields');
-
-        try {
-          const cred = await createUserWithEmailAndPassword(auth, email, pass);
-          await setDoc(doc(db, 'users', cred.user.uid), { name, email, cart, wishlist });
-          window.closeOverlay(overlay);
-          showAlert('Shobdotori account created successfully!');
-        } catch (err) {
-          showAlert(authErrorMsg(err.code));
-        }
-      };
-      overlay.querySelector('#login-link').onclick = () => { window.closeOverlay(overlay); openProfileOverlay(); };
-    };
-
-    window.openForgotOverlay = function () {
-      const existing = document.querySelector('.full-page-overlay'); if (existing) existing.remove();
-      const overlay = document.createElement('div'); overlay.className = 'full-page-overlay';
-      overlay.innerHTML = `
-  <div class="flex flex-col h-full w-full max-w-2xl mx-auto bg-white">
-    <div class="flex items-center justify-between px-5 py-4 border-b bg-white sticky top-0 z-10">
-      <h2 class="text-base font-bold text-gray-900">Reset Password</h2>
-      <button id="close-forgot" class="close-btn">Close</button>
-    </div>
-    <div class="overlay-scroll p-6 space-y-4 text-left">
-      <div>
-        <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1.5">Registered Email</label>
-        <input id="fp-email" type="email" placeholder="example@shobdotori.com" class="w-full px-4 py-3 border border-gray-200 rounded-xl text-xs focus:ring-1 focus:ring-purple-500 outline-none">
-      </div>
-      <button id="do-reset" class="w-full py-3 bg-black hover:bg-gray-800 text-white rounded-xl text-xs font-semibold transition-colors">Send Reset Link</button>
-    </div>
-  </div>`;
-
-      document.body.appendChild(overlay); document.body.style.overflow = 'hidden';
-      overlay.querySelector('#close-forgot').onclick = () => { window.closeOverlay(overlay); };
-      overlay.querySelector('#do-reset').onclick = async () => {
-        const email = overlay.querySelector('#fp-email').value.trim();
-        if (!email) return showAlert('Please enter your email.');
-        try {
-          await sendPasswordResetEmail(auth, email);
-          window.closeOverlay(overlay);
-          showAlert('Password reset link has been sent to your email.');
-        } catch (err) {
-          showAlert(authErrorMsg(err.code));
-        }
-      };
-    };
-
-    function setupUI() {
-      $('#cart-btn').onclick = renderCartOverlay;
-      $('#wishlist-btn').onclick = renderWishlistOverlay;
-      $('#chat-btn').onclick = openChatOverlay;
-      $('#track-btn').onclick = window.openTracking;
-      $('#profile-btn').onclick = window.openProfileOverlay;
-    }
-
-    function updateProfileUI() {
-      const badge = $('#user-profile-badge');
-      if (currentUser && badge) {
-        badge.classList.remove('hidden');
-        badge.classList.add('flex');
-      } else if (badge) {
-        badge.classList.add('hidden');
-        badge.classList.remove('flex');
-      }
-    }
-
-    async function init() {
-      setupUI();
-      onAuthStateChanged(auth, async (user) => {
-        currentUser = user;
-        updateProfileUI();
-        if (user) {
-          await loadUserData();
-        } else {
-          userDocRef = null;
-        }
-      });
-      await loadAllData();
-    }
-    document.addEventListener('DOMContentLoaded', init);
-  </script>
-
-  <!-- PROMO BANNER -->
-  <div
-    class="fixed top-0 left-0 w-full h-8 bg-gradient-to-r from-purple-800 to-indigo-900 text-white text-center flex items-center justify-center text-[10px] sm:text-xs font-semibold z-50 tracking-wide">
-    <span>🎉 Flat 20% Off! Use code <span
-        class="bg-white/20 px-2 py-0.5 rounded text-yellow-300 font-bold mx-1 select-all">LUXE20</span>. Free shipping
-      on orders over $50.</span>
+<body>
+  <a href="#main" class="skip" id="skip-nav">Skip to main content</a>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-hidden="true" aria-label="Mobile navigation">
+    <a href="#featured" onclick="closeNav()">Shop</a>
+    <a href="#categories" onclick="closeNav()">Categories</a>
+    <a href="#about" onclick="closeNav()">About</a>
+    <a href="#reviews" onclick="closeNav()">Reviews</a>
+    <a href="store.html" onclick="closeNav()">Full Store</a>
+  </nav>
+
+  <div class="promo" role="status" aria-label="Promotional offer">
+    ✨ Flat 20% Off — code <span class="promo-code">LUXE20</span> • Free shipping $50+
   </div>
 
-  <!-- HEADER -->
-  <header
-    class="fixed top-8 left-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100 h-14 flex items-center">
-    <div class="max-w-7xl mx-auto px-3 sm:px-5 w-full flex items-center justify-between">
-      <a href="#" class="text-lg sm:text-xl font-semibold tracking-tight text-black font-serif">Shobdotori</a>
-      <div class="flex items-center gap-4 sm:gap-5">
-
-        <!-- Wishlist -->
-        <button id="wishlist-btn" class="relative text-gray-700 hover:text-black transition-colors"
-          aria-label="Wishlist">
-          <span id="wishlist-count"
-            class="absolute -top-1 -right-1.5 h-4 w-4 items-center justify-center rounded-full bg-gray-800 text-white text-[9px] font-bold hidden">0</span>
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-            </path>
-          </svg>
+  <header class="hdr" role="banner">
+    <div class="wrap hdr-inner">
+      <a href="index.html" class="logo" aria-label="Shobdotori — Home">
+        <span class="logo-icon" aria-hidden="true">📚</span>
+        Shobdotori
+      </a>
+      <nav class="nav-desk" aria-label="Main navigation">
+        <a href="#featured" class="nav-link">Shop</a>
+        <a href="#categories" class="nav-link">Categories</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#reviews" class="nav-link">Reviews</a>
+      </nav>
+      <div class="hdr-actions">
+        <a href="store.html" class="hdr-cta">Visit Store →</a>
+        <a href="store.html" class="hdr-cart" aria-label="Shopping cart">
+          <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          <span class="cart-badge" aria-label="0 items in cart">0</span>
+        </a>
+        <button class="menu-btn" id="menu-btn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+          <span></span><span></span><span></span>
         </button>
-
-        <!-- Cart -->
-        <button id="cart-btn" class="relative text-gray-700 hover:text-black transition-colors" aria-label="Cart">
-          <span id="cart-count"
-            class="absolute -top-1 -right-1.5 h-4 w-4 items-center justify-center rounded-full bg-gray-800 text-white text-[9px] font-bold hidden">0</span>
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-          </svg>
-        </button>
-
-        <!-- Tracking -->
-        <button id="track-btn" class="text-gray-700 hover:text-black transition-colors" aria-label="Track Order">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0zM13 11V7a1 1 0 00-1-1H3a1 1 0 00-1 1v7m11-3h3l3 3v2h-8m-4 0h6m-12 0h2">
-            </path>
-          </svg>
-        </button>
-
-        <!-- Profile -->
-        <button id="profile-btn" class="relative text-gray-700 hover:text-black transition-colors focus:outline-none"
-          aria-label="Profile">
-          <span id="user-profile-badge"
-            class="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-purple-600 hidden"></span>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="w-5 h-5">
-            <circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" stroke-width="3" />
-            <circle cx="32" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="3" />
-            <path d="M16 50c0-8.8 7.2-16 16-16s16 7.2 16 16" fill="none" stroke="currentColor" stroke-width="3"
-              stroke-linecap="round" />
-          </svg>
-        </button>
-
       </div>
     </div>
   </header>
 
-  <!-- LOADING SKELETON -->
-  <main id="main-content" class="max-w-7xl mx-auto px-3 sm:px-5 pb-20">
-    <div class="mt-2 space-y-4">
-      <div class="w-full h-[280px] sm:h-[480px] lg:h-[580px] skeleton-bg rounded-2xl sm:rounded-3xl"></div>
-      <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2">
-        <div class="bg-[#F7F5FF] rounded-2xl overflow-hidden p-2">
-          <div class="h-28 sm:h-32 skeleton-bg rounded-xl mb-2"></div>
-          <div class="space-y-1.5">
-            <div class="h-4 skeleton-bg rounded w-3/4"></div>
-            <div class="h-3 skeleton-bg rounded w-1/2"></div>
+  <main id="main" role="main">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="wrap hero-grid">
+        <div class="hero-content">
+          <span class="hero-eyebrow" role="text">New Arrivals This Week</span>
+          <h1 id="hero-heading">Your Next Favorite Book <em>Awaits</em></h1>
+          <p class="hero-desc">Browse 500+ hand-curated titles — from bestselling fiction to transformative self-help. Premium editions, beautiful packaging, delivered to your door.</p>
+          <div class="hero-btns">
+            <a href="store.html" class="btn btn-main">Shop All Books →</a>
+            <a href="#featured" class="btn btn-outline">See Bestsellers</a>
           </div>
-          <div class="h-8 skeleton-bg rounded-lg mt-2"></div>
+          <div class="hero-trust" role="list" aria-label="Trust indicators">
+            <span class="trust-item" role="listitem"><span class="trust-icon" aria-hidden="true">🚚</span> Free Shipping $50+</span>
+            <span class="trust-item" role="listitem"><span class="trust-icon" aria-hidden="true">🔒</span> Secure Checkout</span>
+            <span class="trust-item" role="listitem"><span class="trust-icon" aria-hidden="true">↩️</span> Easy Returns</span>
+          </div>
         </div>
-        <div class="bg-[#F7F5FF] rounded-2xl overflow-hidden p-2">
-          <div class="h-28 sm:h-32 skeleton-bg rounded-xl mb-2"></div>
-          <div class="space-y-1.5">
-            <div class="h-4 skeleton-bg rounded w-3/4"></div>
-            <div class="h-3 skeleton-bg rounded w-1/2"></div>
+        <div class="hero-showcase reveal">
+          <div class="showcase-main">
+            <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=640&h=480&fit=crop&q=80" alt="Stack of premium hardcover books on a wooden table" width="640" height="480" fetchpriority="high">
           </div>
-          <div class="h-8 skeleton-bg rounded-lg mt-2"></div>
-        </div>
-        <div class="bg-[#F7F5FF] rounded-2xl overflow-hidden p-2">
-          <div class="h-28 sm:h-32 skeleton-bg rounded-xl mb-2"></div>
-          <div class="space-y-1.5">
-            <div class="h-4 skeleton-bg rounded w-3/4"></div>
-            <div class="h-3 skeleton-bg rounded w-1/2"></div>
+          <div class="showcase-books">
+            <a href="store.html" class="showcase-book" aria-label="The Midnight Library — $24.99">
+              <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=200&h=300&fit=crop&q=75" alt="The Midnight Library book cover" width="200" height="300" loading="lazy">
+              <div class="showcase-book-info"><p class="showcase-book-title">The Midnight Library</p><p class="showcase-book-price">$24.99</p></div>
+            </a>
+            <a href="store.html" class="showcase-book" aria-label="Atomic Habits — $19.99">
+              <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=200&h=300&fit=crop&q=75" alt="Atomic Habits book cover" width="200" height="300" loading="lazy">
+              <div class="showcase-book-info"><p class="showcase-book-title">Atomic Habits</p><p class="showcase-book-price">$19.99</p></div>
+            </a>
+            <a href="store.html" class="showcase-book" aria-label="Sapiens — $21.99">
+              <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?w=200&h=300&fit=crop&q=75" alt="Sapiens book cover" width="200" height="300" loading="lazy">
+              <div class="showcase-book-info"><p class="showcase-book-title">Sapiens</p><p class="showcase-book-price">$21.99</p></div>
+            </a>
           </div>
-          <div class="h-8 skeleton-bg rounded-lg mt-2"></div>
-        </div>
-        <div class="bg-[#F7F5FF] rounded-2xl overflow-hidden p-2">
-          <div class="h-28 sm:h-32 skeleton-bg rounded-xl mb-2"></div>
-          <div class="space-y-1.5">
-            <div class="h-4 skeleton-bg rounded w-3/4"></div>
-            <div class="h-3 skeleton-bg rounded w-1/2"></div>
-          </div>
-          <div class="h-8 skeleton-bg rounded-lg mt-2"></div>
+          <div class="showcase-float pos-tr" aria-hidden="true"><p class="float-label">Rating</p><p class="float-val"><span class="float-stars">★★★★★</span> 4.9</p></div>
+          <div class="showcase-float pos-bl" aria-hidden="true"><p class="float-label">This Week</p><p class="float-val">+24 New Books</p></div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <section id="featured" class="sec sec-alt" aria-labelledby="featured-heading">
+      <div class="wrap">
+        <div class="sec-hdr reveal"><p class="sec-label">Bestsellers</p><h2 id="featured-heading" class="sec-title">Readers' Favorites</h2><p class="sec-desc">Our most loved titles, curated and recommended by thousands of passionate readers.</p></div>
+        <div class="products-grid" role="list" aria-label="Featured books">
+          <article class="product-card reveal rd1" role="listitem"><div class="product-img"><img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=320&h=420&fit=crop&q=75" alt="The Midnight Library by Matt Haig" width="320" height="420" loading="lazy"><span class="product-tag">Bestseller</span><div class="product-actions"><button class="pa-btn pa-cart" data-id="1" aria-label="Add The Midnight Library to cart">Add to Cart</button><button class="pa-btn pa-wish" data-id="1" aria-label="Add to wishlist">♥</button></div></div><div class="product-body"><p class="product-cat">Fiction</p><h3 class="product-name">The Midnight Library</h3><p class="product-author">Matt Haig</p><div class="product-bottom"><span class="product-price">$24.99</span><span class="product-rating"><span class="star" aria-hidden="true">★</span> 4.8</span></div></div></article>
+          <article class="product-card reveal rd2" role="listitem"><div class="product-img"><img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=320&h=420&fit=crop&q=75" alt="Atomic Habits by James Clear" width="320" height="420" loading="lazy"><span class="product-tag">Popular</span><div class="product-actions"><button class="pa-btn pa-cart" data-id="2" aria-label="Add Atomic Habits to cart">Add to Cart</button><button class="pa-btn pa-wish" data-id="2" aria-label="Add to wishlist">♥</button></div></div><div class="product-body"><p class="product-cat">Non-Fiction</p><h3 class="product-name">Atomic Habits</h3><p class="product-author">James Clear</p><div class="product-bottom"><span class="product-price">$19.99</span><span class="product-rating"><span class="star" aria-hidden="true">★</span> 4.9</span></div></div></article>
+          <article class="product-card reveal rd3" role="listitem"><div class="product-img"><img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?w=320&h=420&fit=crop&q=75" alt="Project Hail Mary by Andy Weir" width="320" height="420" loading="lazy"><div class="product-actions"><button class="pa-btn pa-cart" data-id="3" aria-label="Add Project Hail Mary to cart">Add to Cart</button><button class="pa-btn pa-wish" data-id="3" aria-label="Add to wishlist">♥</button></div></div><div class="product-body"><p class="product-cat">Sci-Fi</p><h3 class="product-name">Project Hail Mary</h3><p class="product-author">Andy Weir</p><div class="product-bottom"><span class="product-price">$27.99</span><span class="product-rating"><span class="star" aria-hidden="true">★</span> 4.7</span></div></div></article>
+          <article class="product-card reveal rd4" role="listitem"><div class="product-img"><img src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=320&h=420&fit=crop&q=75" alt="Einstein biography by Walter Isaacson" width="320" height="420" loading="lazy"><span class="product-tag">Editor's Pick</span><div class="product-actions"><button class="pa-btn pa-cart" data-id="5" aria-label="Add Einstein to cart">Add to Cart</button><button class="pa-btn pa-wish" data-id="5" aria-label="Add to wishlist">♥</button></div></div><div class="product-body"><p class="product-cat">Biography</p><h3 class="product-name">Einstein: His Life</h3><p class="product-author">Walter Isaacson</p><div class="product-bottom"><span class="product-price">$22.99</span><span class="product-rating"><span class="star" aria-hidden="true">★</span> 4.5</span></div></div></article>
+          <article class="product-card reveal rd5" role="listitem"><div class="product-img"><img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=320&h=420&fit=crop&q=75" alt="The Power of Now by Eckhart Tolle" width="320" height="420" loading="lazy"><div class="product-actions"><button class="pa-btn pa-cart" data-id="4" aria-label="Add The Power of Now to cart">Add to Cart</button><button class="pa-btn pa-wish" data-id="4" aria-label="Add to wishlist">♥</button></div></div><div class="product-body"><p class="product-cat">Self-Help</p><h3 class="product-name">The Power of Now</h3><p class="product-author">Eckhart Tolle</p><div class="product-bottom"><span class="product-price">$16.99</span><span class="product-rating"><span class="star" aria-hidden="true">★</span> 4.6</span></div></div></article>
+          <article class="product-card reveal rd6" role="listitem"><div class="product-img"><img src="https://images.unsplash.com/photo-1495446815901-a7d2e9227f88?w=320&h=420&fit=crop&q=75" alt="The Great Gatsby by F. Scott Fitzgerald" width="320" height="420" loading="lazy"><span class="product-tag">Classic</span><div class="product-actions"><button class="pa-btn pa-cart" data-id="6" aria-label="Add The Great Gatsby to cart">Add to Cart</button><button class="pa-btn pa-wish" data-id="6" aria-label="Add to wishlist">♥</button></div></div><div class="product-body"><p class="product-cat">Fiction</p><h3 class="product-name">The Great Gatsby</h3><p class="product-author">F. Scott Fitzgerald</p><div class="product-bottom"><span class="product-price">$14.99</span><span class="product-rating"><span class="star" aria-hidden="true">★</span> 4.8</span></div></div></article>
+          <article class="product-card reveal rd7" role="listitem"><div class="product-img"><img src="https://images.unsplash.com/photo-1476275466078-4007374efbbe?w=320&h=420&fit=crop&q=75" alt="Sapiens by Yuval Noah Harari" width="320" height="420" loading="lazy"><div class="product-actions"><button class="pa-btn pa-cart" data-id="7" aria-label="Add Sapiens to cart">Add to Cart</button><button class="pa-btn pa-wish" data-id="7" aria-label="Add to wishlist">♥</button></div></div><div class="product-body"><p class="product-cat">Non-Fiction</p><h3 class="product-name">Sapiens</h3><p class="product-author">Yuval Noah Harari</p><div class="product-bottom"><span class="product-price">$21.99</span><span class="product-rating"><span class="star" aria-hidden="true">★</span> 4.7</span></div></div></article>
+          <article class="product-card reveal rd8" role="listitem"><div class="product-img"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=320&h=420&fit=crop&q=75" alt="Dune by Frank Herbert" width="320" height="420" loading="lazy"><span class="product-tag">Masterpiece</span><div class="product-actions"><button class="pa-btn pa-cart" data-id="8" aria-label="Add Dune to cart">Add to Cart</button><button class="pa-btn pa-wish" data-id="8" aria-label="Add to wishlist">♥</button></div></div><div class="product-body"><p class="product-cat">Sci-Fi</p><h3 class="product-name">Dune</h3><p class="product-author">Frank Herbert</p><div class="product-bottom"><span class="product-price">$18.99</span><span class="product-rating"><span class="star" aria-hidden="true">★</span> 4.9</span></div></div></article>
+        </div>
+        <div style="text-align:center;margin-top:2.5rem" class="reveal"><a href="store.html" class="btn btn-main">Browse Full Collection →</a></div>
+      </div>
+    </section>
+
+    <section id="categories" class="sec" aria-labelledby="cat-heading">
+      <div class="wrap">
+        <div class="sec-hdr reveal"><p class="sec-label">Shop by Genre</p><h2 id="cat-heading" class="sec-title">Browse Collections</h2><p class="sec-desc">Find your next obsession in our carefully organized categories.</p></div>
+        <div class="cats-grid">
+          <a href="store.html" class="cat-card reveal rd1" aria-label="Shop Fiction — 120+ books"><img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=530&fit=crop&q=75" alt="Fiction books collection" width="400" height="530" loading="lazy"><div class="cat-overlay"><span class="cat-tag">Popular</span><h3 class="cat-name">Fiction</h3><p class="cat-count">120+ Books</p></div><span class="cat-arrow" aria-hidden="true">→</span></a>
+          <a href="store.html" class="cat-card reveal rd2" aria-label="Shop Non-Fiction — 85+ books"><img src="https://images.unsplash.com/photo-1524995997947-94c879543775?w=400&h=530&fit=crop&q=75" alt="Non-fiction books" width="400" height="530" loading="lazy"><div class="cat-overlay"><span class="cat-tag">Trending</span><h3 class="cat-name">Non-Fiction</h3><p class="cat-count">85+ Books</p></div><span class="cat-arrow" aria-hidden="true">→</span></a>
+          <a href="store.html" class="cat-card reveal rd3" aria-label="Shop Sci-Fi — 95+ books"><img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400&h=530&fit=crop&q=75" alt="Sci-fi and fantasy books" width="400" height="530" loading="lazy"><div class="cat-overlay"><span class="cat-tag">New Arrivals</span><h3 class="cat-name">Sci-Fi & Fantasy</h3><p class="cat-count">95+ Books</p></div><span class="cat-arrow" aria-hidden="true">→</span></a>
+          <a href="store.html" class="cat-card reveal rd4" aria-label="Shop Self-Help — 70+ books"><img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=530&fit=crop&q=75" alt="Self-help books" width="400" height="530" loading="lazy"><div class="cat-overlay"><span class="cat-tag">Bestselling</span><h3 class="cat-name">Self-Help</h3><p class="cat-count">70+ Books</p></div><span class="cat-arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="sec sec-alt" aria-labelledby="about-heading">
+      <div class="wrap">
+        <div class="sec-hdr reveal"><p class="sec-label">Why Shobdotori</p><h2 id="about-heading" class="sec-title">Built for Book Lovers</h2><p class="sec-desc">We're not just another bookstore — we're a curated destination for readers who value quality.</p></div>
+        <div class="feat-grid">
+          <article class="feat-card reveal rd1"><div class="feat-icon" aria-hidden="true">📚</div><h3 class="feat-name">Expert Curation</h3><p class="feat-desc">Every single book is handpicked by our team of literary experts. No filler, only quality reads.</p></article>
+          <article class="feat-card reveal rd2"><div class="feat-icon" aria-hidden="true">🌍</div><h3 class="feat-name">Global Authors</h3><p class="feat-desc">Discover voices from every continent — from local gems to internationally acclaimed writers.</p></article>
+          <article class="feat-card reveal rd3"><div class="feat-icon" aria-hidden="true">🎁</div><h3 class="feat-name">Premium Packaging</h3><p class="feat-desc">Every order arrives gift-ready with our signature eco-friendly premium packaging.</p></article>
+          <article class="feat-card reveal rd4"><div class="feat-icon" aria-hidden="true">💎</div><h3 class="feat-name">Genuine Editions</h3><p class="feat-desc">Only authentic, high-quality editions sourced directly from publishers worldwide.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews" class="sec" aria-labelledby="reviews-heading">
+      <div class="wrap">
+        <div class="sec-hdr reveal"><p class="sec-label">Customer Reviews</p><h2 id="reviews-heading" class="sec-title">Loved by 10,000+ Readers</h2><p class="sec-desc">Don't take our word for it — hear from our community of passionate readers.</p></div>
+        <div class="test-grid">
+          <article class="test-card reveal rd1" aria-label="Review by Ananya Sen"><div class="test-stars" aria-label="5 out of 5 stars" role="img">★★★★★</div><blockquote class="test-quote">"Shobdotori transformed my reading life. The curation is impeccable — every book I've ordered has been a masterpiece."</blockquote><div class="test-author"><div class="test-avatar" aria-hidden="true">AS</div><div><p class="test-name">Ananya Sen</p><p class="test-role">Avid Reader • 32 orders</p></div></div></article>
+          <article class="test-card reveal rd2" aria-label="Review by Rohan Kumar"><div class="test-stars" aria-label="5 out of 5 stars" role="img">★★★★★</div><blockquote class="test-quote">"I buy all my gifts from Shobdotori now. The quality, selection, and personalized recommendations are unmatched."</blockquote><div class="test-author"><div class="test-avatar" aria-hidden="true">RK</div><div><p class="test-name">Rohan Kumar</p><p class="test-role">Book Collector • 48 orders</p></div></div></article>
+          <article class="test-card reveal rd3" aria-label="Review by Priya Das"><div class="test-stars" aria-label="5 out of 5 stars" role="img">★★★★★</div><blockquote class="test-quote">"A bookstore that feels premium without being pretentious. Fast shipping, gorgeous editions, brilliant website. 10/10."</blockquote><div class="test-author"><div class="test-avatar" aria-hidden="true">PD</div><div><p class="test-name">Priya Das</p><p class="test-role">Literary Blogger • 21 orders</p></div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" aria-labelledby="cta-heading">
+      <div class="wrap"><div class="cta-box reveal"><div class="cta-inner"><h2 id="cta-heading" class="cta-title">Ready to Find Your Next Read?</h2><p class="cta-desc">Join 10,000+ readers. Use code <strong>LUXE20</strong> for 20% off your first order. Free shipping on orders over $50.</p><a href="store.html" class="btn btn-main">Shop Now →</a></div></div></div>
+    </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="relative mt-16 mb-8 px-3 sm:px-5">
-    <div
-      class="relative bg-[#0A0A0B] rounded-2xl sm:rounded-3xl text-white px-6 sm:px-10 py-10 sm:py-14 animate-float-subtle text-center">
-      <div class="flex flex-col sm:flex-row justify-between items-center gap-6">
-        <div class="text-center sm:text-left">
-          <a href="#" class="text-xl font-semibold font-serif">Shobdotori</a>
-          <p class="text-xs text-gray-300 mt-2">Premium Curated Bookstore Experience.</p>
-        </div>
-
-        <div class="flex gap-4 flex-wrap justify-center my-3" id="footer-social-container"></div>
-
-        <div class="flex gap-6 text-xs text-gray-300">
-          <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-          <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
-        </div>
+  <footer class="ftr" role="contentinfo">
+    <div class="wrap">
+      <div class="ftr-grid">
+        <div><p class="ftr-brand">Shobdotori</p><p class="ftr-desc">Premium curated bookstore for passionate readers. 500+ handpicked titles, beautiful packaging, doorstep delivery.</p><div class="ftr-socials" aria-label="Social media links"><a href="#" class="ftr-social" aria-label="Facebook">f</a><a href="#" class="ftr-social" aria-label="Twitter">𝕏</a><a href="#" class="ftr-social" aria-label="Instagram">◻</a><a href="#" class="ftr-social" aria-label="YouTube">▶</a></div></div>
+        <div><h2 class="ftr-heading">Shop</h2><ul class="ftr-links"><li><a href="store.html">All Books</a></li><li><a href="store.html">Bestsellers</a></li><li><a href="store.html">New Arrivals</a></li><li><a href="store.html">Gift Cards</a></li></ul></div>
+        <div><h2 class="ftr-heading">Support</h2><ul class="ftr-links"><li><a href="#">Contact Us</a></li><li><a href="#">FAQ</a></li><li><a href="#">Shipping Info</a></li><li><a href="#">Returns Policy</a></li></ul></div>
+        <div><h2 class="ftr-heading">Company</h2><ul class="ftr-links"><li><a href="#about">About Us</a></li><li><a href="#">Careers</a></li><li><a href="#">Blog</a></li><li><a href="#">Press Kit</a></li></ul></div>
       </div>
-      <div class="mt-8 pt-5 border-t border-white/10 text-center text-[10px] text-gray-300">
-        <p>&copy; 2026 Shobdotori Store. All Rights Reserved.</p>
-      </div>
+      <div class="ftr-bottom"><p class="ftr-copy">&copy; 2026 Shobdotori. All rights reserved.</p><nav class="ftr-legal" aria-label="Legal links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Cookie Policy</a></nav></div>
     </div>
   </footer>
 
-  <!-- FLOATING CHAT BUTTON -->
-  <button id="chat-btn"
-    class="fixed bottom-10 right-6 z-40 w-14 h-14 bg-purple-600 hover:bg-purple-700 hover:scale-110 active:scale-95 text-white rounded-full flex items-center justify-center shadow-2xl transition-all duration-300"
-    aria-label="Chat with us">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-7 h-7 text-white" fill="none">
-      <path
-        d="M7 4C5.343 4 4 5.343 4 7V13C4 14.657 5.343 16 7 16H8V20L12.5 16H17C18.657 16 20 14.657 20 13V7C20 5.343 18.657 4 17 4H7Z"
-        fill="currentColor" />
-      <rect x="8" y="8" width="8" height="1.5" rx="0.75" fill="white" />
-      <rect x="8" y="11" width="6" height="1.5" rx="0.75" fill="white" />
-    </svg>
-  </button>
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
+  <script>
+    const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');ro.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -30px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 
+    const menuBtn=document.getElementById('menu-btn'),mobileNav=document.getElementById('mobile-nav');
+    menuBtn.addEventListener('click',()=>{const o=menuBtn.getAttribute('aria-expanded')==='true';menuBtn.setAttribute('aria-expanded',!o);mobileNav.setAttribute('aria-hidden',o);document.body.style.overflow=o?'':'hidden'});
+    function closeNav(){menuBtn.setAttribute('aria-expanded','false');mobileNav.setAttribute('aria-hidden','true');document.body.style.overflow=''}
+
+    let toastTimer;
+    document.addEventListener('click',e=>{
+      const cb=e.target.closest('.pa-cart');
+      if(cb){const n=cb.closest('.product-card')?.querySelector('.product-name')?.textContent||'Book';showToast('✓ '+n+' added to cart!');let c=JSON.parse(localStorage.getItem('shobdotori_cart')||'[]');const id=+cb.dataset.id;const ex=c.find(i=>i.id===id);if(ex)ex.quantity+=1;else c.push({id,quantity:1});localStorage.setItem('shobdotori_cart',JSON.stringify(c));updBadge()}
+      const wb=e.target.closest('.pa-wish');if(wb){const n=wb.closest('.product-card')?.querySelector('.product-name')?.textContent||'Book';showToast('♥ '+n+' added to wishlist!')}
+    });
+    function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2800)}
+    function updBadge(){const c=JSON.parse(localStorage.getItem('shobdotori_cart')||'[]'),b=document.querySelector('.cart-badge'),n=c.reduce((s,i)=>s+i.quantity,0);b.textContent=n;b.style.display=n>0?'flex':'none'}
+    updBadge();
+  </script>
 </body>
-
 </html>
